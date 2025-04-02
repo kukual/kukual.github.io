@@ -1,0 +1,71 @@
+/* 
+ * 自定义光标样式
+ * 包含主光标、粒子跟随和烟花效果样式
+ */
+
+/* 主光标样式 */
+#cursor {
+  position: fixed;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  /* 紫色渐变背景 */
+  background: linear-gradient(135deg, #c471f5, #fa71cd);
+  /* 发光效果 */
+  box-shadow: 0 0 10px rgba(196, 113, 245, 0.7),
+              0 0 20px rgba(250, 113, 205, 0.5),
+              0 0 30px rgba(255, 122, 181, 0.3);
+  z-index: 9999; /* 确保在最上层 */
+  pointer-events: none; /* 不干扰鼠标事件 */
+  transform: translate(-50%, -50%); /* 居中 */
+  mix-blend-mode: screen; /* 混合模式 */
+  transition: transform 0.1s ease; /* 平滑过渡 */
+}
+
+/* 隐藏状态 */
+#cursor.hidden {
+  opacity: 0;
+}
+
+/* 点击状态 */
+#cursor.active {
+  transform: translate(-50%, -50%) scale(0.7);
+  background: linear-gradient(135deg, #ff7ab5, #ff8a9e);
+}
+
+/* 粒子跟随样式 */
+.cursor-particle {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998; /* 在主光标下方 */
+  transition: transform 0.1s ease;
+  filter: blur(1px); /* 模糊效果 */
+  opacity: 0.8;
+}
+
+/* 烟花粒子样式 */
+.firework-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9997; /* 在粒子下方 */
+  transform-origin: center;
+  filter: blur(0.5px);
+  box-shadow: 0 0 5px currentColor; /* 发光效果 */
+}
+
+/* 
+* 自定义指针样式 
+* 使用外部指针图标
+*/
+* {
+  cursor: url('https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/normal.cur'), auto !important;
+}
+
+/* 链接和按钮的特殊指针 */
+a, button, input[type="button"], input[type="submit"] {
+  cursor: url('https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/link.cur'), pointer !important;
+}
