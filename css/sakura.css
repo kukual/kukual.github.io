@@ -1,0 +1,31 @@
+/* 樱花基础样式 */
+.sakura {
+  position: fixed;
+  top: -10px;
+  z-index: -9999;
+  pointer-events: none;
+  animation: fall linear infinite;
+  color: #E67E22; /* 主色调橙 */
+  text-shadow: 0 0 5px rgba(230,126,34,0.5);
+  opacity: 0.7;
+}
+
+/* 飘落动画 */
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(360deg);
+  }
+}
+
+/* 生成不同大小和速度的樱花 */
+.sakura:nth-child(5n) { 
+  font-size: 18px;
+  left: calc(10% - 10px);
+  animation-duration: 15s;
+}
+.sakura:nth-child(5n+1) {
+  font-size: 22px;
+  left: calc(20% - 20px);
+  animation-duration: 18s;
+}
+/* 更多样式规则... */

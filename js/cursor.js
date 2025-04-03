@@ -1,5 +1,5 @@
 /**
- * 自定义光标效果 - 紫色流光粒子跟随
+ * 自定义光标效果 - 黄昏色系流光粒子跟随
  * 包含主光标、粒子跟随效果和点击烟花特效
  */
 
@@ -30,8 +30,8 @@ class Cursor {
             const particle = document.createElement("div");
             particle.className = "cursor-particle";
             
-            // 设置粒子颜色渐变 (紫色系)
-            particle.style.backgroundColor = `hsl(${300 + i * 5}, 100%, 60%)`;
+            // 设置粒子颜色渐变 (黄昏色系)
+            particle.style.backgroundColor = `hsl(${25 + i * 3}, 100%, 60%)`;
             
             // 粒子大小递减
             particle.style.width = `${8 - i * 0.5}px`;
@@ -94,7 +94,8 @@ class Cursor {
      * @param {number} y - 点击Y坐标
      */
     createFirework(x, y) {
-        const colors = ['#c471f5', '#fa71cd', '#ff7ab5', '#ff8a9e', '#ff9a86'];
+        // 黄昏色系颜色数组
+        const colors = ['#FF7F50', '#FFA07A', '#FF8C00', '#FFD700', '#FF6347'];
         const particleCount = 30;
         
         for (let i = 0; i < particleCount; i++) {
@@ -161,8 +162,8 @@ class Cursor {
                 particle.el.style.left = `${particle.pos.x}px`;
                 particle.el.style.top = `${particle.pos.y}px`;
                 
-                // 粒子颜色动态变化
-                const hue = 280 + Math.sin(Date.now() * 0.002 + i * 0.2) * 20;
+                // 粒子颜色动态变化 (黄昏色系)
+                const hue = 25 + Math.sin(Date.now() * 0.002 + i * 0.2) * 15;
                 particle.el.style.backgroundColor = `hsl(${hue}, 100%, 60%)`;
             });
         } else {
@@ -177,4 +178,10 @@ class Cursor {
 // 初始化光标效果
 (() => {
     CURSOR = new Cursor();
+    // 修复页面滚动时的位置计算
+    document.addEventListener('scroll', () => {
+        if (CURSOR.pos.curr) {
+            CURSOR.pos.curr.y = CURSOR.pos.curr.y - window.scrollY;
+        }
+    });
 })();
