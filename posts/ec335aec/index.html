@@ -1,0 +1,444 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>利用Github和hexo搭建自己的个人博客 | kukualのblog</title><meta name="author" content="kukual"><meta name="copyright" content="kukual"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f5f0fa"><meta name="description" content="利用GitHub和hexo搭建自己的个人博客的详细教程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用Github和hexo搭建自己的个人博客">
+<meta property="og:url" content="https://kukual.github.io/posts/ec335aec/index.html">
+<meta property="og:site_name" content="kukualのblog">
+<meta property="og:description" content="利用GitHub和hexo搭建自己的个人博客的详细教程。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://kukual.github.io/img/102.jpeg">
+<meta property="article:published_time" content="2025-03-27T20:52:00.000Z">
+<meta property="article:modified_time" content="2025-03-27T20:52:11.000Z">
+<meta property="article:author" content="kukual">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kukual.github.io/img/102.jpeg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "利用Github和hexo搭建自己的个人博客",
+  "url": "https://kukual.github.io/posts/ec335aec/",
+  "image": "https://kukual.github.io/img/102.jpeg",
+  "datePublished": "2025-03-27T20:52:00.000Z",
+  "dateModified": "2025-03-27T20:52:11.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "kukual",
+      "url": "https://kukual.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/01.png"><link rel="canonical" href="https://kukual.github.io/posts/ec335aec/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#2d0a3d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f5f0fa')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&amp;family=Ma+Shan+Zheng&amp;family=Fredoka+One&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":"ture","top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":true,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":300,"languages":{"author":"作者: kukual","link":"链接: ","source":"来源: kukualのblog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '利用Github和hexo搭建自己的个人博客',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Chewy&family=Fredoka+One&family=Caveat:wght@400;700&family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@300;500;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="/css/categorybar.css"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/03.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/02.jpg" onerror="this.onerror=null;this.src='/img/05.jpg'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/101.jpeg);"><nav id="nav"><!-- 左侧博客信息区域--><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/01.png" alt="Logo"><span class="site-name">kukualのblog</span></a><a class="nav-page-title" href="/"><span class="site-name">利用Github和hexo搭建自己的个人博客</span></a></span><!-- 新增的导航菜单容器（居中布局关键）--><div id="nav-menus-container"><!-- 菜单主体部分--><div id="menus"><!-- 搜索按钮--><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><!-- 菜单项--><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div><!-- 移动端汉堡菜单按钮（保持原位置）--><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">利用Github和hexo搭建自己的个人博客</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-03-27T20:52:00.000Z" title="发表于 2025-03-28 04:52:00">2025-03-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-27T20:52:11.000Z" title="更新于 2025-03-28 04:52:11">2025-03-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;本文最后更新于&quot;,&quot;messageNext&quot;:&quot;天前，部分内容可能已失效&quot;,&quot;postUpdate&quot;:&quot;2025-03-28 04:52:11&quot;}" hidden></div><h1 id="1-安装Git"><a href="#1-安装Git" class="headerlink" title="1 安装Git"></a>1 安装Git</h1><p><strong>官方地址</strong>： <a target="_blank" rel="noopener" href="https://git-scm.com/">https://git-scm.com/</a> </p>
+<ol>
+<li>到Git官网下载与电脑操作系统对应的安装包，进行安装。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401023917109.png"></li>
+<li>安装步骤，，之后的步骤直接全部点击下一步，最后点击install。<br>选择安装路径，安装路径要全英文<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024619132.png"><br>添加桌面快捷方式<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024702705.png"><br>默认，点击下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024710120.png"><br>默认，点击下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024715970.png"><br>默认，点击下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024722989.png"><br>默认，点击下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024728956.png"><br>默认，点击下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024733513.png"><br>默认，点击下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024740447.png"><br>默认，点击下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024751575.png"><br>默认，点击下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024813576.png"><br>默认，点击下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024818922.png"><br>默认，点击下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024828467.png"><br>默认，点击下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024832707.png"><br>等待安装<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024841957.png"><br>最后这个界面就显示安装完成<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024857897.png"></li>
+<li>安装好之后，在电脑桌面鼠标右键选择Open Git Bash Here，出现git窗口。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024908934.png"></li>
+<li>输入：<code>git --version</code>，出现版本信息，说明安装成功。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024919383.png"></li>
+</ol>
+<h1 id="2-安装node-js"><a href="#2-安装node-js" class="headerlink" title="2 安装node.js"></a>2 安装node.js</h1><p><strong>官方地址</strong>： <a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></p>
+<ol>
+<li>到官网下载安装包，然后点击运行安装。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024926695.png"><br>来到node.js安装界面<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024931868.png"><br>点击同意<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024936183.png"><br>更改路径<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024939720.png"><br>下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024944399.png"><br>下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024950088.png"><br>最后点击install。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401024956672.png"><br>等待安装<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401025001607.png"><br>显示安装成功，点击finish。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401025016062.png"></li>
+<li>安装好之后，配置环境变量<br>右键点击“此电脑”，点击属性。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401025029294.png"><br>点击高级系统设置<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401025036014.png"><br>点击环境变量<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401025042007.png"><br>在系统变量中点击新建<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401025049116.png"><br>填写变量名，变量值为node.js的安装路径。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401025055161.png"><br>最后点击确认就完成了环境变量的配置。</li>
+<li>在Git终端里面输入：<code>node -v</code><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401025124076.png"><br>出现版本号说明安装成功了。</li>
+</ol>
+<h1 id="3-安装hexo"><a href="#3-安装hexo" class="headerlink" title="3 安装hexo"></a>3 安装hexo</h1><h2 id="3-1-安装cnpm"><a href="#3-1-安装cnpm" class="headerlink" title="3.1 安装cnpm"></a>3.1 安装cnpm</h2><ol>
+<li>cnpm 是 中国版的 npm（Node Package Manager），解决国内用户访问官方 npm 仓库速度慢的问题。</li>
+<li>安装命令：<br> <code>npm install -g cnpm --registry==https://registry.npm.taobao.org</code><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401050329190.png"></li>
+<li>测试命令：<code>cnpm -v</code><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401050333416.png"><br>出现版本号说明安装成功。</li>
+</ol>
+<h2 id="3-2-安装hexo"><a href="#3-2-安装hexo" class="headerlink" title="3.2 安装hexo"></a>3.2 安装hexo</h2><ol>
+<li>安装命令：<code>cnpm install hexo-cli -g</code><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401050621837.png"><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401050627376.png"></li>
+<li>测试命令：<code>hexo -v</code><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401050632296.png"><br>出现这样的界面说明安装成功</li>
+</ol>
+<h1 id="4-hexo搭建本地博客测试"><a href="#4-hexo搭建本地博客测试" class="headerlink" title="4 hexo搭建本地博客测试"></a>4 hexo搭建本地博客测试</h1><h2 id="4-1-搭建博客"><a href="#4-1-搭建博客" class="headerlink" title="4.1 搭建博客"></a>4.1 搭建博客</h2><ol>
+<li>新建一个Blogs的文件夹，进入文件夹，右键选择Open Git Bash Here，进入Git终端。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401050647742.png"></li>
+<li>初始化hexo命令：<code>hexo init</code>。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401050910133.png"><br> 初始化成功后，Blogs文件夹下出现许多文件<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401050953424.png"></li>
+<li>安装hexo相关依赖<br> 命令：<code>npm install</code><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051000375.png"><br> 命令2：<code>npm install hexo-deployer-git --save</code><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051005482.png"></li>
+<li>启动hexo命令：<code>hexo s</code>。先不要ctrl+c，不然就会停止服务<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051009622.png"></li>
+<li>在浏览器访问 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a> ,就可以看到hexo默认的页面。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051014372.png"></li>
+</ol>
+<h2 id="4-2-修改主题"><a href="#4-2-修改主题" class="headerlink" title="4.2 修改主题"></a>4.2 修改主题</h2><p>hexo主题官网： <a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a></p>
+<ol>
+<li>选择amazing主题<br> 主题下载及安装教程： <a target="_blank" rel="noopener" href="https://github.com/removeif/hexo-theme-amazing">https://github.com/removeif/hexo-theme-amazing</a><br> 主题预览： <a target="_blank" rel="noopener" href="https://dogzi.fun/">https://dogzi.fun/</a><br> 下载主题的命令：<code>git clone https://github.com/removeif/hexo-theme-amazing.git themes/amazing</code>。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051021655.png"><br> ok,这样就下载好了。<br> 在Blogs的themes目录下就可以看到amazing主题文件夹。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051026103.png"></li>
+<li>安装 semver 模块<br>命令：<code>npm install semver --save</code><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051038695.png"></li>
+<li>安装缺失的依赖<br>命令：<code>npm install --save bulma-stylus@0.8.0 hexo-component-inferno@^3.1.2 hexo-renderer-inferno@^1.0.2 inferno@^8.2.3 inferno-create-element@^8.2.3</code><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051050363.png"></li>
+<li>安装主题依赖<br>命令：<code>npm install hexo-renderer-pug hexo-renderer-stylus --save</code>。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051055710.png"></li>
+<li>配置amazing主题<br> 以下步骤为个人主观配置，具体配置步骤请参考文章： <a target="_blank" rel="noopener" href="https://github.com/removeif/hexo-theme-amazing">https://github.com/removeif/hexo-theme-amazing</a> 。</li>
+</ol>
+<ul>
+<li>打开<code>D:\Blogs\_config.yml</code>文件， 找到theme部分，将landscape改为amazing。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051103747.png"></li>
+<li>在<code>D:\Blogs\amazing\</code>目录下创建<code>_config.amazing.yml</code>文件，把<code>\amazing\_config.yml</code>文件里面的内容复制到<code>_config.amazing.yml</code>文中。</li>
+<li>后续修改博客的配置只需修改<code>_config.amazing.yml</code>文件。</li>
+</ul>
+<h2 id="4-3-预览主题"><a href="#4-3-预览主题" class="headerlink" title="4.3 预览主题"></a>4.3 预览主题</h2><ol>
+<li>使用<code>hexo clean</code>命令清除缓存<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051150953.png"></li>
+<li>使用<code>hexo g</code>命令生成静态网页，生成 public 文件夹<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051209123.png"></li>
+<li>使用<code>hexo s</code>命令启动hexo<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051214505.png"></li>
+<li>在浏览器访问 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a> ,就可以看到amazing主题的页面。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051220596.png"></li>
+</ol>
+<h1 id="接下来就是将hexo部署到GitHub"><a href="#接下来就是将hexo部署到GitHub" class="headerlink" title="接下来就是将hexo部署到GitHub"></a>接下来就是将hexo部署到GitHub</h1><h1 id="5-git配置SSH-key"><a href="#5-git配置SSH-key" class="headerlink" title="5 git配置SSH key"></a>5 git配置SSH key</h1><p>可以免密的将本地的源码和资源上传到github，无需要每次都输账号和密码。</p>
+<h2 id="5-1-没有Github账号的，要先注册"><a href="#5-1-没有Github账号的，要先注册" class="headerlink" title="5.1 没有Github账号的，要先注册"></a>5.1 没有Github账号的，要先注册</h2><h2 id="5-2-生成ssh-key"><a href="#5-2-生成ssh-key" class="headerlink" title="5.2 生成ssh key"></a>5.2 生成ssh key</h2><ol>
+<li>命令：<code>ssh-keygen -t rsa -C &quot;邮件地址&quot;</code><ul>
+<li><strong>注意</strong>：邮箱地址为注册GitHub时使用的邮箱地址。<br>  输入命令后连续按三次回车。</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051227641.png"><br>2. 在用户文件夹下可以看到一个.ssh文件夹<br>	<img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051231897.png"><br>3. 进入文件夹，打开id_rsa.pub文件，复制里面的内容</p>
+<h2 id="5-3-添加ssh-key到GitHub"><a href="#5-3-添加ssh-key到GitHub" class="headerlink" title="5.3 添加ssh key到GitHub"></a>5.3 添加ssh key到GitHub</h2><ol>
+<li>打开github主页，点击右上角个人头像，再点击Settings<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051236958.png"></li>
+<li>进入到个人设置页面后，点击左侧的SSH and GPG keys选项，再点击New SSH key<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051252235.png"></li>
+<li>title自定义，key为id_rsa.pub文件复制的内容。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051257638.png"><br>最后点击 Add SSH key</li>
+<li>测试是否添加成功<br> 命令：<code>ssh -T git@github.com</code><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051310141.png"><br>出现<code>You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code>，说明添加成功。</li>
+<li>配置账号和密码<br>命令1：<code>git config --global user.name &quot;yourname&quot;</code>，yourname为GitHub用户名<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051315440.png"><br>命令2：<code>git config --global user.email &quot;youremail&quot;</code>，youremail为GitHub注册邮箱<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051321176.png"></li>
+</ol>
+<h1 id="6-搭建个人博客"><a href="#6-搭建个人博客" class="headerlink" title="6 搭建个人博客"></a>6 搭建个人博客</h1><h2 id="6-1-创建博客文件夹"><a href="#6-1-创建博客文件夹" class="headerlink" title="6.1 创建博客文件夹"></a>6.1 创建博客文件夹</h2><p>在<code>4 hexo搭建本地博客测试</code>中已经创建过了</p>
+<h2 id="6-2-创建仓库"><a href="#6-2-创建仓库" class="headerlink" title="6.2 创建仓库"></a>6.2 创建仓库</h2><ol>
+<li>在右上角个人头像附近有个+，点它，然后再点New repository<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051325660.png"></li>
+<li>给仓库命名，进行其他设置，点击创建<br> 仓库名称格式：用户名.github.io<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051331478.png"></li>
+<li>打开<code>D:\Blogs\_config.yml</code>文件，拉到最后。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051338667.png"><br> 找到deploy这部分，替换为以下内容：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy</span>:</span><br><span class="line">  <span class="attr">type</span>: git</span><br><span class="line">  <span class="attr">repository</span>: git@github.<span class="property">com</span>:name/name.<span class="property">github</span>.<span class="property">io</span>.<span class="property">git</span> </span><br><span class="line">  <span class="attr">branch</span>: main</span><br></pre></td></tr></table></figure>
+<p>name为GitHub用户名和仓库名，branch要看仓库是main还是master。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051342711.png"><br>修改后的<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051346384.png"></p>
+<h2 id="6-3-发布到github"><a href="#6-3-发布到github" class="headerlink" title="6.3 发布到github"></a>6.3 发布到github</h2><ol>
+<li>命令：<code>hexo d</code><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051353087.png"><br> 出现Deploy done: git，说明上传成功。</li>
+<li>在浏览器访问 <a href="https://kukual.github.io/">https://kukual.github.io/</a><br>出现以下界面，说明访问成功<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/git-post/20250401051400567.png"></li>
+</ol>
+<h2 id="6-4-其他"><a href="#6-4-其他" class="headerlink" title="6.4 其他"></a>6.4 其他</h2><p>hexo搭建博客详细教程请查看 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/index.html">https://hexo.io/zh-cn/docs/index.html</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://kukual.github.io/">kukual</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://kukual.github.io/posts/ec335aec/">https://kukual.github.io/posts/ec335aec/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://kukual.github.io" target="_blank">kukualのblog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/git/">git</a></div><div class="post-share"><div class="social-share" data-image="/img/102.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>感谢您的支持！</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/posts/b5a0661a/" title="标题"><img class="cover" src="/img/135.jpeg" onerror="onerror=null;src='/img/06.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">标题</div></div><div class="info-2"><div class="info-item-1">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartRun server1$ hexo server  More info: Server Generate static files1$ hexo generate  More...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/02.jpg" onerror="this.onerror=null;this.src='/img/05.jpg'" alt="avatar"/></div><div class="author-info-name">kukual</div><div class="author-info-description">专注于网络安全技术研究 | 渗透测试实战案例 | CTF竞赛解析 | 漏洞复现分析</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" href="https://kukual.github.io/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/kukual" target="_blank" title="Github"><i class="fab fa-github" style="color: #8a2be2;"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_74811095" target="_blank" title="CSDN"><i class="fa-solid fa-code" style="color: #8a2be2;"></i></a><a class="social-icon" href="https://www.xiaohongshu.com/user/profile/5e8a0aae0000000001002ce4" target="_blank" title="redbook"><i class="fa-solid fa-book" style="color: #8a2be2;"></i></a><a class="social-icon" href="https://space.bilibili.com/498478848" target="_blank" title="bilibili"><i class="fab fa-bilibili" style="color: #8a2be2;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><style>
+.announcement-card {
+    --main-color: #ff00ff;
+    --secondary-color: #00ffff;
+    --highlight-color: #ff5500;
+    position: relative;
+    overflow: hidden;
+}
+.announcement-content {
+    font-size: 1rem; 
+    line-height: 1.2; 
+    color: #ffffff;
+    position: relative;
+}
+.keyword {
+    color: var(--secondary-color);
+    font-weight: 300;
+    font-size: 1.1rem; 
+}
+.highlight {
+    color: var(--main-color);
+    font-weight: 1000;
+    font-size: 1.2rem; 
+}
+.announcement-content ul {
+    list-style-type: none;
+    margin: 0.8rem 0; 
+    padding-left: 1.5rem;   
+}
+</style>
+<div class="announcement-card">
+    <div class="announcement-content">
+        <p><span class="highlight">欢迎来到「酷库阿洛」网络安全研习录</span>！🎉</p>
+        <p><strong>本平台专注于：</strong></p>
+        <ul>
+            <li><span class="keyword">> 网络安全技术研究</span></li>
+            <li><span class="keyword">> 渗透测试实战案例</span></li>
+            <li><span class="keyword">> CTF竞赛解析</span></li>
+            <li><span class="keyword">> 漏洞复现分析</span></li>
+        </ul>
+        <p>🌟 <strong>加入我们，一起探索网络安全奥秘，提升攻防实战能力，共同守护数字世界的安宁！</strong></p>
+    </div>
+</div>
+</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%AE%89%E8%A3%85Git"><span class="toc-number">1.</span> <span class="toc-text">1 安装Git</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85node-js"><span class="toc-number">2.</span> <span class="toc-text">2 安装node.js</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E5%AE%89%E8%A3%85hexo"><span class="toc-number">3.</span> <span class="toc-text">3 安装hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E5%AE%89%E8%A3%85cnpm"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 安装cnpm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E5%AE%89%E8%A3%85hexo"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 安装hexo</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-hexo%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E5%8D%9A%E5%AE%A2%E6%B5%8B%E8%AF%95"><span class="toc-number">4.</span> <span class="toc-text">4 hexo搭建本地博客测试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 搭建博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 修改主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E9%A2%84%E8%A7%88%E4%B8%BB%E9%A2%98"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 预览主题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A5%E4%B8%8B%E6%9D%A5%E5%B0%B1%E6%98%AF%E5%B0%86hexo%E9%83%A8%E7%BD%B2%E5%88%B0GitHub"><span class="toc-number">5.</span> <span class="toc-text">接下来就是将hexo部署到GitHub</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-git%E9%85%8D%E7%BD%AESSH-key"><span class="toc-number">6.</span> <span class="toc-text">5 git配置SSH key</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E6%B2%A1%E6%9C%89Github%E8%B4%A6%E5%8F%B7%E7%9A%84%EF%BC%8C%E8%A6%81%E5%85%88%E6%B3%A8%E5%86%8C"><span class="toc-number">6.1.</span> <span class="toc-text">5.1 没有Github账号的，要先注册</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E7%94%9F%E6%88%90ssh-key"><span class="toc-number">6.2.</span> <span class="toc-text">5.2 生成ssh key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E6%B7%BB%E5%8A%A0ssh-key%E5%88%B0GitHub"><span class="toc-number">6.3.</span> <span class="toc-text">5.3 添加ssh key到GitHub</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2"><span class="toc-number">7.</span> <span class="toc-text">6 搭建个人博客</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">7.1.</span> <span class="toc-text">6.1 创建博客文件夹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93"><span class="toc-number">7.2.</span> <span class="toc-text">6.2 创建仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-%E5%8F%91%E5%B8%83%E5%88%B0github"><span class="toc-number">7.3.</span> <span class="toc-text">6.3 发布到github</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-4-%E5%85%B6%E4%BB%96"><span class="toc-number">7.4.</span> <span class="toc-text">6.4 其他</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/1361a6d9/" title="butterfly主题魔改05：页面增加樱花动态背景效果"><img src="/img/116.jpg" onerror="this.onerror=null;this.src='/img/06.jpg'" alt="butterfly主题魔改05：页面增加樱花动态背景效果"/></a><div class="content"><a class="title" href="/posts/1361a6d9/" title="butterfly主题魔改05：页面增加樱花动态背景效果">butterfly主题魔改05：页面增加樱花动态背景效果</a><time datetime="2025-04-03T20:52:00.000Z" title="发表于 2025-04-04 04:52:00">2025-04-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/9ad33db7/" title="butterfly主题魔改04：页面鼠标魔改-紫色水晶月光"><img src="/img/114.jpg" onerror="this.onerror=null;this.src='/img/06.jpg'" alt="butterfly主题魔改04：页面鼠标魔改-紫色水晶月光"/></a><div class="content"><a class="title" href="/posts/9ad33db7/" title="butterfly主题魔改04：页面鼠标魔改-紫色水晶月光">butterfly主题魔改04：页面鼠标魔改-紫色水晶月光</a><time datetime="2025-04-02T20:52:00.000Z" title="发表于 2025-04-03 04:52:00">2025-04-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/4cb43628/" title="butterfly主题魔改03：导航栏设置（标题、菜单、搜索按钮）"><img src="/img/112.jpeg" onerror="this.onerror=null;this.src='/img/06.jpg'" alt="butterfly主题魔改03：导航栏设置（标题、菜单、搜索按钮）"/></a><div class="content"><a class="title" href="/posts/4cb43628/" title="butterfly主题魔改03：导航栏设置（标题、菜单、搜索按钮）">butterfly主题魔改03：导航栏设置（标题、菜单、搜索按钮）</a><time datetime="2025-04-01T20:52:00.000Z" title="发表于 2025-04-02 04:52:00">2025-04-02</time></div></div></div></div></div></div></main><footer id="footer" style="background-color: rgba(45, 10, 61, 0.2);"><div id="footer-wrap"><div class="footer_custom_text"><style>
+  .footer {
+    text-align: center;
+    position: relative;
+  }
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .social-links i {
+    color: #8400ff;
+  }
+  .social-link {
+    color: #8a2be2;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: rgba(138, 43, 226, 0.1);
+  }
+  .social-link:hover {
+    color: #892be294;
+    background: #892be294;
+    transform: translateY(-3px) scale(1.2);
+    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+    text-decoration: none !important; 
+  }
+  .footer p {
+    margin: 0.5rem 0;
+    line-height: 1;
+  }
+  .copyright {
+    font-size: 1.1rem; 
+    color: #c08bdf;
+    font-weight: 400;
+  }
+  .tagline {
+    font-size: 0.8rem;
+    color: #8a2be2;
+    font-style: italic;
+    font-weight: 500;
+  }
+  .visitor-count {
+    font-size: 0.75rem;
+    color: rgba(219, 142, 255, 0.658);
+    font-weight: 300;
+  }
+  #visitorCount {
+    font-weight: bold;
+  }
+</style>
+<div class="footer">
+  <div class="social-links">
+    <a href="https://github.com/kukual" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+      <i class="fab fa-github"></i>
+    </a>
+    <a href="https://blog.csdn.net/weixin_74811095" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="CSDN" title="CSDN">
+      <i class="fas fa-code"></i>
+    </a>
+    <a href="https://www.xiaohongshu.com/user/profile/5e8a0aae0000000001002ce4" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="小红书" title="小红书">
+      <i class="fas fa-book"></i>
+    </a>
+    <a href="https://space.bilibili.com/498478848" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="bilibili" title="bilibili">
+      <i class="fab fa-bilibili"></i>
+    </a>
+  </div>
+  <p class="copyright">© 2025 kukualのblog - 所有权利保留</p>
+  <p class="tagline">> Stay curious, stay hacking, stay anime! <</p>
+  <p class="visitor-count">访问量: <span id="visitorCount">1024</span> | 你是第 <span id="dailyVisitor">1</span> 位今日访客</p>
+</div>
+<script>
+  // 确保DOM加载完成后执行
+  document.addEventListener('DOMContentLoaded', function() {
+    // 模拟访问量增长
+    function updateVisitorCount() {
+      const countElement = document.getElementById('visitorCount');
+      let count = parseInt(countElement.textContent) || 1024;
+      // 从localStorage获取或初始化计数
+      const storedCount = localStorage.getItem('totalVisitors');
+      if (storedCount) {
+        count = parseInt(storedCount);
+        countElement.textContent = count;
+      }
+      // 每日访客计数
+      const today = new Date().toDateString();
+      const dailyData = JSON.parse(localStorage.getItem('dailyVisitors') || '{"date":"", "count":0}');
+      if (dailyData.date !== today) {
+        dailyData.date = today;
+        dailyData.count = 0;
+      }
+      dailyData.count += 1;
+      document.getElementById('dailyVisitor').textContent = dailyData.count;
+      localStorage.setItem('dailyVisitors', JSON.stringify(dailyData));
+      // 每30秒随机增加访问量
+      setInterval(() => {
+        count += Math.floor(Math.random() * 3);
+        countElement.textContent = count;
+        localStorage.setItem('totalVisitors', count.toString());
+      }, 30000);
+    }
+    updateVisitorCount();
+    // 添加点击动画效果
+    const socialLinks = document.querySelectorAll('.social-link');
+    socialLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        this.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 300);
+      });
+    });
+  });
+</script>
+</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script defer src="/js/cursor.js"></script><script defer src="/js/sakura.js"></script><script src="/live2d-widget/autoload.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="输入关键词…" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_categories_card_injector_config(){
+    // 检查容器是否存在
+    var parent_div_git = document.getElementById('recent-posts');
+    // 如果容器不存在，则动态创建
+    if (!parent_div_git) {
+      console.warn('butterfly_categories_card: 挂载容器不存在，正在动态创建...');
+      // 创建新容器（默认插入到页面主体顶部）
+      parent_div_git = document.createElement('div');
+      parent_div_git.id = 'recent-posts'; // 赋予配置的ID
+      document.querySelector('#page').prepend(parent_div_git); // 插入到 #content-inner 内
+    }
+    var item_html = '<style>li.categoryBar-list-item{width:32.3%;}.categoryBar-list{max-height: 950px;overflow:auto;}.categoryBar-list::-webkit-scrollbar{width:0!important}@media screen and (max-width: 650px){.categoryBar-list{max-height: 800px;}}</style><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"><div id="categoryBar"><ul class="categoryBar-list"><li class="categoryBar-list-item" style="background:url(/img/11.png);"> <a class="categoryBar-list-link" href="/categories/博客搭建/">博客搭建</a><span class="categoryBar-list-count">8</span><span class="categoryBar-list-descr">1</span></li><li class="categoryBar-list-item" style="background:url(/img/12.png);"> <a class="categoryBar-list-link" href="/categories/操作系统/">操作系统</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">2</span></li><li class="categoryBar-list-item" style="background:url(/img/13.png);"> <a class="categoryBar-list-link" href="/categories/分类/">分类</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">3</span></li><li class="categoryBar-list-item" style="background:url(/img/14.png);"> <a class="categoryBar-list-link" href="/categories/网络协议/">网络协议</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">4</span></li><li class="categoryBar-list-item" style="background:url(/img/15.png);"> <a class="categoryBar-list-link" href="/categories/漏洞挖掘/">漏洞挖掘</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">5</span></li><li class="categoryBar-list-item" style="background:url(/img/16.png);"> <a class="categoryBar-list-link" href="/categories/靶场练习/">靶场练习</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">6</span></li><li class="categoryBar-list-item" style="background:url(/img/17.png);"> <a class="categoryBar-list-link" href="/categories/渗透测试/">渗透测试</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">7</span></li><li class="categoryBar-list-item" style="background:url(/img/18.png);"> <a class="categoryBar-list-link" href="/categories/数据库/">数据库</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">8</span></li></ul></div></div>';
+    console.log('已挂载 butterfly_categories_card');
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+  }
+  // 路径匹配逻辑（使用 startsWith）
+  if (location.pathname.startsWith('/categories/') || '/categories/' === 'all') {
+    butterfly_categories_card_injector_config();
+  }
+  </script><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/b5a0661a/" alt=""><img width="48" height="48" src="/img/135.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-28</span><a class="blog-slider__title" href="posts/b5a0661a/" alt="">标题</a><div class="blog-slider__text">描述一下这篇文章讲了什么</div><a class="blog-slider__button" href="posts/b5a0661a/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/1361a6d9/" alt=""><img width="48" height="48" src="/img/116.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-04</span><a class="blog-slider__title" href="posts/1361a6d9/" alt="">butterfly主题魔改05：页面增加樱花动态背景效果</a><div class="blog-slider__text">butterfly主题魔改05：页面增加樱花动态背景效果</div><a class="blog-slider__button" href="posts/1361a6d9/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/9ad33db7/" alt=""><img width="48" height="48" src="/img/114.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-03</span><a class="blog-slider__title" href="posts/9ad33db7/" alt="">butterfly主题魔改04：页面鼠标魔改-紫色水晶月光</a><div class="blog-slider__text">butterfly主题魔改04：页面鼠标魔改-紫色水晶月光</div><a class="blog-slider__button" href="posts/9ad33db7/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/4cb43628/" alt=""><img width="48" height="48" src="/img/112.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-02</span><a class="blog-slider__title" href="posts/4cb43628/" alt="">butterfly主题魔改03：导航栏设置（标题、菜单、搜索按钮）</a><div class="blog-slider__text">butterfly主题魔改03：导航栏设置（标题、菜单、搜索按钮）</div><a class="blog-slider__button" href="posts/4cb43628/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/8c39ed99/" alt=""><img width="48" height="48" src="/img/110.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-01</span><a class="blog-slider__title" href="posts/8c39ed99/" alt="">butterfly主题魔改02：主题颜色、内容显示宽度设置、图片设置</a><div class="blog-slider__text">butterfly主题魔改02：主题颜色、内容显示宽度设置、图片设置</div><a class="blog-slider__button" href="posts/8c39ed99/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/8ac25d19/" alt=""><img width="48" height="48" src="/img/106.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-30</span><a class="blog-slider__title" href="posts/8ac25d19/" alt="">hexo butterfly主题整体结构解析</a><div class="blog-slider__text">hexo butterfly主题整体结构解析</div><a class="blog-slider__button" href="posts/8ac25d19/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/8ac25d19/" alt=""><img width="48" height="48" src="/img/106.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-30</span><a class="blog-slider__title" href="posts/8ac25d19/" alt="">hexo butterfly主题整体结构解析</a><div class="blog-slider__text">hexo butterfly主题整体结构解析</div><a class="blog-slider__button" href="posts/8ac25d19/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/77f87ebd/" alt=""><img width="48" height="48" src="/img/104.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-29</span><a class="blog-slider__title" href="posts/77f87ebd/" alt="">腾讯云COS+Obsidian实现图片自动上传到图床</a><div class="blog-slider__text">注册创建腾讯云COS，并利用PicList和Obsidian实现图片自动上传到图床。</div><a class="blog-slider__button" href="posts/77f87ebd/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/ec335aec/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-28</span><a class="blog-slider__title" href="posts/ec335aec/" alt="">利用Github和hexo搭建自己的个人博客</a><div class="blog-slider__text">利用GitHub和hexo搭建自己的个人博客的详细教程。</div><a class="blog-slider__button" href="posts/ec335aec/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/b5a0661a/" alt=""><img width="48" height="48" src="/img/135.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-28</span><a class="blog-slider__title" href="posts/b5a0661a/" alt="">标题</a><div class="blog-slider__text">描述一下这篇文章讲了什么</div><a class="blog-slider__button" href="posts/b5a0661a/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/b5a0661a/" alt=""><img width="48" height="48" src="/img/135.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-28</span><a class="blog-slider__title" href="posts/b5a0661a/" alt="">标题</a><div class="blog-slider__text">描述一下这篇文章讲了什么</div><a class="blog-slider__button" href="posts/b5a0661a/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/b5a0661a/" alt=""><img width="48" height="48" src="/img/135.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-28</span><a class="blog-slider__title" href="posts/b5a0661a/" alt="">标题</a><div class="blog-slider__text">描述一下这篇文章讲了什么</div><a class="blog-slider__button" href="posts/b5a0661a/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/b5a0661a/" alt=""><img width="48" height="48" src="/img/135.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-28</span><a class="blog-slider__title" href="posts/b5a0661a/" alt="">标题</a><div class="blog-slider__text">描述一下这篇文章讲了什么</div><a class="blog-slider__button" href="posts/b5a0661a/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/b5a0661a/" alt=""><img width="48" height="48" src="/img/135.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-28</span><a class="blog-slider__title" href="posts/b5a0661a/" alt="">标题</a><div class="blog-slider__text">描述一下这篇文章讲了什么</div><a class="blog-slider__button" href="posts/b5a0661a/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/b5a0661a/" alt=""><img width="48" height="48" src="/img/135.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-28</span><a class="blog-slider__title" href="posts/b5a0661a/" alt="">标题</a><div class="blog-slider__text">描述一下这篇文章讲了什么</div><a class="blog-slider__button" href="posts/b5a0661a/" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>
