@@ -2608,6 +2608,7 @@ figure.highlight pre .javascript .function {
   display: inline-block;
   width: calc(100% / 2 - 8px);
   vertical-align: top;
+  height: 32em;
 }
 @media screen and (max-width: 768px) {
   #recent-posts .recent-post-item {
@@ -2663,7 +2664,7 @@ figure.highlight pre .javascript .function {
 }
 #recent-posts .recent-post-item >.recent-post-info > .article-title {
   color: var(--text-highlight-color);
-  font-size: 1.55em;
+  font-size: 1.2em;
   line-height: 1.4;
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
@@ -2692,7 +2693,7 @@ figure.highlight pre .javascript .function {
 #recent-posts .recent-post-item >.recent-post-info > .article-meta-wrap {
   margin: 6px 0;
   color: var(--card-meta);
-  font-size: 0.9em;
+  font-size: 0.6em;
 }
 #recent-posts .recent-post-item >.recent-post-info > .article-meta-wrap > .post-meta-date {
   cursor: default;
@@ -2720,7 +2721,9 @@ figure.highlight pre .javascript .function {
   text-decoration: underline;
 }
 #recent-posts .recent-post-item >.recent-post-info > .content {
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 12;
+  font-size: 0.8em;
+  line-height: 1.5;
 }
 #article-container .shuoshuo-item {
   margin-bottom: 20px;

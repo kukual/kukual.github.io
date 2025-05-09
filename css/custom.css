@@ -34,11 +34,11 @@ background: linear-gradient(-45deg, #3d0072ce, #4e0072dc, #6b19b8cb, #e6a6ffd2) 
   background: rgba(45, 10, 61, 0.7) !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
 }
-#nav {
-  background: linear-gradient(-45deg, #e2c1ff88, #ffb6e688, #c9a9ff88, #ffb3fd88) !important;
+.nav-fixed>#nav {
+  background: linear-gradient(-45deg, #e0c1fa55, #fdbde755, #cfb5fc55, #fcbffa55) !important;
   backdrop-filter: blur(10px);
 }
-[data-theme="dark"] #nav{
+[data-theme="dark"] .nav-fixed>#nav{
   background: rgba(45, 10, 61, 0.7) !important;
   backdrop-filter: blur(10px);
 }
