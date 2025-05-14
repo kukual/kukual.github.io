@@ -20,9 +20,9 @@
       
         <tags>
             
-            <tag> hexo </tag>
-            
             <tag> butterfly </tag>
+            
+            <tag> hexo </tag>
             
         </tags>
       
@@ -47,9 +47,9 @@
       
         <tags>
             
-            <tag> hexo </tag>
-            
             <tag> butterfly </tag>
+            
+            <tag> hexo </tag>
             
         </tags>
       
@@ -74,9 +74,9 @@
       
         <tags>
             
-            <tag> hexo </tag>
-            
             <tag> butterfly </tag>
+            
+            <tag> hexo </tag>
             
         </tags>
       
@@ -101,9 +101,9 @@
       
         <tags>
             
-            <tag> hexo </tag>
-            
             <tag> butterfly </tag>
+            
+            <tag> hexo </tag>
             
         </tags>
       
@@ -128,9 +128,9 @@
       
         <tags>
             
-            <tag> hexo </tag>
-            
             <tag> butterfly </tag>
+            
+            <tag> hexo </tag>
             
         </tags>
       
@@ -155,9 +155,9 @@
       
         <tags>
             
-            <tag> hexo </tag>
-            
             <tag> butterfly </tag>
+            
+            <tag> hexo </tag>
             
         </tags>
       
@@ -182,9 +182,9 @@
       
         <tags>
             
-            <tag> hexo </tag>
-            
             <tag> butterfly </tag>
+            
+            <tag> hexo </tag>
             
         </tags>
       
@@ -209,9 +209,9 @@
       
         <tags>
             
-            <tag> hexo </tag>
-            
             <tag> butterfly </tag>
+            
+            <tag> hexo </tag>
             
         </tags>
       
@@ -236,9 +236,9 @@
       
         <tags>
             
-            <tag> hexo </tag>
-            
             <tag> butterfly </tag>
+            
+            <tag> hexo </tag>
             
         </tags>
       
@@ -263,9 +263,9 @@
       
         <tags>
             
-            <tag> hexo </tag>
-            
             <tag> butterfly </tag>
+            
+            <tag> hexo </tag>
             
         </tags>
       
@@ -290,9 +290,9 @@
       
         <tags>
             
-            <tag> hexo </tag>
-            
             <tag> butterfly </tag>
+            
+            <tag> hexo </tag>
             
         </tags>
       
@@ -317,9 +317,9 @@
       
         <tags>
             
-            <tag> hexo </tag>
-            
             <tag> butterfly </tag>
+            
+            <tag> hexo </tag>
             
         </tags>
       
@@ -344,9 +344,9 @@
       
         <tags>
             
-            <tag> hexo </tag>
-            
             <tag> butterfly </tag>
+            
+            <tag> hexo </tag>
             
         </tags>
       
@@ -371,9 +371,9 @@
       
         <tags>
             
-            <tag> hexo </tag>
-            
             <tag> butterfly </tag>
+            
+            <tag> hexo </tag>
             
         </tags>
       
@@ -417,7 +417,7 @@
       <link href="/posts/ec335aec/"/>
       <url>/posts/ec335aec/</url>
       
-        <content type="html"><![CDATA[<h1 id="1-安装Git"><a href="#1-安装Git" class="headerlink" title="1 安装Git"></a>1 安装Git</h1><p><strong>官方地址</strong>： <a href="https://git-scm.com/">https://git-scm.com/</a></p><ol><li>到Git官网下载与电脑操作系统对应的安装包，进行安装。<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/01.png"></li><li>安装步骤，，之后的步骤直接全部点击下一步，最后点击install。<br>选择安装路径，安装路径要全英文<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/02.png"><br>添加桌面快捷方式<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/03.png"><br>默认，点击下一步<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/04.png"><br>默认，点击下一步<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/05.png"><br>默认，点击下一步<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/06.png"><br>默认，点击下一步<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/07.png"><br>默认，点击下一步<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/08.png"><br>默认，点击下一步<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/09.png"><br>默认，点击下一步<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/10.png"><br>默认，点击下一步<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/11.png"><br>默认，点击下一步<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/12.png"><br>默认，点击下一步<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/13.png"><br>默认，点击下一步<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/14.png"><br>等待安装<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/15.png"><br>最后这个界面就显示安装完成<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/16.png"></li><li>安装好之后，在电脑桌面鼠标右键选择Open Git Bash Here，出现git窗口。<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/17.png"></li><li>输入：<code>git --version</code>，出现版本信息，说明安装成功。<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/18.png"></li></ol><h1 id="2-安装node-js"><a href="#2-安装node-js" class="headerlink" title="2 安装node.js"></a>2 安装node.js</h1><p><strong>官方地址</strong>： <a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></p><ol><li>到官网下载安装包，然后点击运行安装。<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/19.png"><br>来到node.js安装界面<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/20.png"><br>点击同意<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/21.png"><br>更改路径<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/22.png"><br>下一步<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/23.png"><br>下一步<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/24.png"><br>最后点击install。<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/25.png"><br>等待安装<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/26.png"><br>显示安装成功，点击finish。<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/27.png"></li><li>安装好之后，配置环境变量<br>右键点击“此电脑”，点击属性。<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/28.png"><br>点击高级系统设置<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/29.png"><br>点击环境变量<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/30.png"><br>在系统变量中点击新建<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/31.png"><br>填写变量名，变量值为node.js的安装路径。<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/32.png"><br>最后点击确认就完成了环境变量的配置。</li><li>在Git终端里面输入：<code>node -v</code><br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/33.png"><br>出现版本号说明安装成功了。</li></ol><h1 id="3-安装hexo"><a href="#3-安装hexo" class="headerlink" title="3 安装hexo"></a>3 安装hexo</h1><h2 id="3-1-安装cnpm"><a href="#3-1-安装cnpm" class="headerlink" title="3.1 安装cnpm"></a>3.1 安装cnpm</h2><ol><li>cnpm 是 中国版的 npm（Node Package Manager），解决国内用户访问官方 npm 仓库速度慢的问题。</li><li>安装命令：<br> <code>npm install -g cnpm --registry==https://registry.npm.taobao.org</code><br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/34.png"></li><li>测试命令：<code>cnpm -v</code><br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/35.png"><br>出现版本号说明安装成功。</li></ol><h2 id="3-2-安装hexo"><a href="#3-2-安装hexo" class="headerlink" title="3.2 安装hexo"></a>3.2 安装hexo</h2><ol><li>安装命令：<code>cnpm install hexo-cli -g</code><br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/36.png"><br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/37.png"></li><li>测试命令：<code>hexo -v</code><br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/38.png"><br>出现这样的界面说明安装成功</li></ol><h1 id="4-hexo搭建本地博客测试"><a href="#4-hexo搭建本地博客测试" class="headerlink" title="4 hexo搭建本地博客测试"></a>4 hexo搭建本地博客测试</h1><h2 id="4-1-搭建博客"><a href="#4-1-搭建博客" class="headerlink" title="4.1 搭建博客"></a>4.1 搭建博客</h2><ol><li>新建一个Blogs的文件夹，进入文件夹，右键选择Open Git Bash Here，进入Git终端。<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/39.png"></li><li>初始化hexo命令：<code>hexo init</code>。<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/40.png"><br> 初始化成功后，Blogs文件夹下出现许多文件<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/41.png"></li><li>安装hexo相关依赖<br> 命令：<code>npm install</code><br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/42.png"><br> 命令2：<code>npm install hexo-deployer-git --save</code><br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/43.png"></li><li>启动hexo命令：<code>hexo s</code>。先不要ctrl+c，不然就会停止服务<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/44.png"></li><li>在浏览器访问 <a href="http://localhost:4000/">http://localhost:4000/</a> ,就可以看到hexo默认的页面。<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/45.png"></li></ol><h2 id="4-2-修改主题"><a href="#4-2-修改主题" class="headerlink" title="4.2 修改主题"></a>4.2 修改主题</h2><p>hexo主题官网： <a href="https://hexo.io/themes/">https://hexo.io/themes/</a></p><ol><li>选择amazing主题<br> 主题下载及安装教程： <a href="https://github.com/removeif/hexo-theme-amazing">https://github.com/removeif/hexo-theme-amazing</a><br> 主题预览： <a href="https://dogzi.fun/">https://dogzi.fun/</a><br> 下载主题的命令：<code>git clone https://github.com/removeif/hexo-theme-amazing.git themes/amazing</code>。<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/60.png"><br> ok,这样就下载好了。<br> 在Blogs的themes目录下就可以看到amazing主题文件夹。<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/61.png"></li><li>安装 semver 模块<br>命令：<code>npm install semver --save</code><br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/62.png"></li><li>安装缺失的依赖<br>命令：<code>npm install --save bulma-stylus@0.8.0 hexo-component-inferno@^3.1.2 hexo-renderer-inferno@^1.0.2 inferno@^8.2.3 inferno-create-element@^8.2.3</code><br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/63.png"></li><li>安装主题依赖<br>命令：<code>npm install hexo-renderer-pug hexo-renderer-stylus --save</code>。<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/64.png"></li><li>配置amazing主题<br> 以下步骤为个人主观配置，具体配置步骤请参考文章： <a href="https://github.com/removeif/hexo-theme-amazing">https://github.com/removeif/hexo-theme-amazing</a> 。</li></ol><ul><li>打开<code>D:\Blogs\_config.yml</code>文件， 找到theme部分，将landscape改为amazing。<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/65.png"></li><li>在<code>D:\Blogs\amazing\</code>目录下创建<code>_config.amazing.yml</code>文件，把<code>\amazing\_config.yml</code>文件里面的内容复制到<code>_config.amazing.yml</code>文中。</li><li>后续修改博客的配置只需修改<code>_config.amazing.yml</code>文件。</li></ul><h2 id="4-3-预览主题"><a href="#4-3-预览主题" class="headerlink" title="4.3 预览主题"></a>4.3 预览主题</h2><ol><li>使用<code>hexo clean</code>命令清除缓存<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/66.png"></li><li>使用<code>hexo g</code>命令生成静态网页，生成 public 文件夹<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/67.png"></li><li>使用<code>hexo s</code>命令启动hexo<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/68.png"></li><li>在浏览器访问 <a href="http://localhost:4000/">http://localhost:4000/</a> ,就可以看到amazing主题的页面。<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/69.png"></li></ol><h1 id="接下来就是将hexo部署到GitHub"><a href="#接下来就是将hexo部署到GitHub" class="headerlink" title="接下来就是将hexo部署到GitHub"></a>接下来就是将hexo部署到GitHub</h1><h1 id="5-git配置SSH-key"><a href="#5-git配置SSH-key" class="headerlink" title="5 git配置SSH key"></a>5 git配置SSH key</h1><p>可以免密的将本地的源码和资源上传到github，无需要每次都输账号和密码。</p><h2 id="5-1-没有Github账号的，要先注册"><a href="#5-1-没有Github账号的，要先注册" class="headerlink" title="5.1 没有Github账号的，要先注册"></a>5.1 没有Github账号的，要先注册</h2><h2 id="5-2-生成ssh-key"><a href="#5-2-生成ssh-key" class="headerlink" title="5.2 生成ssh key"></a>5.2 生成ssh key</h2><ol><li>命令：<code>ssh-keygen -t rsa -C &quot;邮件地址&quot;</code><ul><li><strong>注意</strong>：邮箱地址为注册GitHub时使用的邮箱地址。<br>  输入命令后连续按三次回车。</li></ul></li></ol><p><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/70.png"><br>2. 在用户文件夹下可以看到一个.ssh文件夹<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/71.png"><br>3. 进入文件夹，打开id_rsa.pub文件，复制里面的内容</p><h2 id="5-3-添加ssh-key到GitHub"><a href="#5-3-添加ssh-key到GitHub" class="headerlink" title="5.3 添加ssh key到GitHub"></a>5.3 添加ssh key到GitHub</h2><ol><li>打开github主页，点击右上角个人头像，再点击Settings<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/72.png"></li><li>进入到个人设置页面后，点击左侧的SSH and GPG keys选项，再点击New SSH key<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/73.png"></li><li>title自定义，key为id_rsa.pub文件复制的内容。<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/74.png"><br>最后点击 Add SSH key</li><li>测试是否添加成功<br> 命令：<code>ssh -T git@github.com</code><br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/75.png"><br>出现<code>You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code>，说明添加成功。</li><li>配置账号和密码<br>命令1：<code>git config --global user.name &quot;yourname&quot;</code>，yourname为GitHub用户名<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/76.png"><br>命令2：<code>git config --global user.email &quot;youremail&quot;</code>，youremail为GitHub注册邮箱<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/77.png"></li></ol><h1 id="6-搭建个人博客"><a href="#6-搭建个人博客" class="headerlink" title="6 搭建个人博客"></a>6 搭建个人博客</h1><h2 id="6-1-创建博客文件夹"><a href="#6-1-创建博客文件夹" class="headerlink" title="6.1 创建博客文件夹"></a>6.1 创建博客文件夹</h2><p>在<code>4 hexo搭建本地博客测试</code>中已经创建过了</p><h2 id="6-2-创建仓库"><a href="#6-2-创建仓库" class="headerlink" title="6.2 创建仓库"></a>6.2 创建仓库</h2><ol><li>在右上角个人头像附近有个+，点它，然后再点New repository<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/78.png"></li><li>给仓库命名，进行其他设置，点击创建<br> 仓库名称格式：用户名.github.io<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/79.png"></li><li>打开<code>D:\Blogs\_config.yml</code>文件，拉到最后。<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/80.png"><br> 找到deploy这部分，替换为以下内容：</li></ol><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy</span>:</span><br><span class="line">  <span class="attr">type</span>: git</span><br><span class="line">  <span class="attr">repository</span>: git@github.<span class="property">com</span>:name/name.<span class="property">github</span>.<span class="property">io</span>.<span class="property">git</span> </span><br><span class="line">  <span class="attr">branch</span>: main</span><br></pre></td></tr></table></figure><p>name为GitHub用户名和仓库名，branch要看仓库是main还是master。<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/81.png"><br>修改后的<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/82.png"></p><h2 id="6-3-发布到github"><a href="#6-3-发布到github" class="headerlink" title="6.3 发布到github"></a>6.3 发布到github</h2><ol><li>命令：<code>hexo d</code><br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/83.png"><br> 出现Deploy done: git，说明上传成功。</li><li>在浏览器访问 <a href="https://kukual.github.io/">https://kukual.github.io/</a><br>出现以下界面，说明访问成功<br><img src="/0pt/01%20%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/84.png"></li></ol><h2 id="6-4-其他"><a href="#6-4-其他" class="headerlink" title="6.4 其他"></a>6.4 其他</h2><p>hexo搭建博客详细教程请查看 <a href="https://hexo.io/zh-cn/docs/index.html">https://hexo.io/zh-cn/docs/index.html</a></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="1-安装Git"><a href="#1-安装Git" class="headerlink" title="1 安装Git"></a>1 安装Git</h1><p><strong>官方地址</strong>： <a href="https://git-scm.com/">https://git-scm.com/</a></p><ol><li>到Git官网下载与电脑操作系统对应的安装包，进行安装。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944483.png?imageSlim"></li><li>安装步骤，，之后的步骤直接全部点击下一步，最后点击install。<br>选择安装路径，安装路径要全英文<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944484.png?imageSlim"><br>添加桌面快捷方式<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944485.png?imageSlim"><br>默认，点击下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944486.png?imageSlim"><br>默认，点击下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944487.png?imageSlim"><br>默认，点击下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944488.png?imageSlim"><br>默认，点击下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944489.png?imageSlim"><br>默认，点击下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944490.png?imageSlim"><br>默认，点击下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944491.png?imageSlim"><br>默认，点击下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944492.png?imageSlim"><br>默认，点击下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944493.png?imageSlim"><br>默认，点击下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944494.png?imageSlim"><br>默认，点击下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944495.png?imageSlim"><br>默认，点击下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944496.png?imageSlim"><br>等待安装<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944497.png?imageSlim"><br>最后这个界面就显示安装完成<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944498.png?imageSlim"></li><li>安装好之后，在电脑桌面鼠标右键选择Open Git Bash Here，出现git窗口。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944499.png?imageSlim"></li><li>输入：<code>git --version</code>，出现版本信息，说明安装成功。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944500.png?imageSlim"></li></ol><h1 id="2-安装node-js"><a href="#2-安装node-js" class="headerlink" title="2 安装node.js"></a>2 安装node.js</h1><p><strong>官方地址</strong>： <a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></p><ol><li>到官网下载安装包，然后点击运行安装。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944501.png?imageSlim"><br>来到node.js安装界面<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944502.png?imageSlim"><br>点击同意<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944503.png?imageSlim"><br>更改路径<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944504.png?imageSlim"><br>下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944505.png?imageSlim"><br>下一步<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944506.png?imageSlim"><br>最后点击install。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944507.png?imageSlim"><br>等待安装<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944508.png?imageSlim"><br>显示安装成功，点击finish。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944509.png?imageSlim"></li><li>安装好之后，配置环境变量<br>右键点击“此电脑”，点击属性。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944510.png?imageSlim"><br>点击高级系统设置<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944511.png?imageSlim"><br>点击环境变量<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944512.png?imageSlim"><br>在系统变量中点击新建<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944513.png?imageSlim"><br>填写变量名，变量值为node.js的安装路径。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944515.png?imageSlim"><br>最后点击确认就完成了环境变量的配置。</li><li>在Git终端里面输入：<code>node -v</code><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944516.png?imageSlim"><br>出现版本号说明安装成功了。</li></ol><h1 id="3-安装hexo"><a href="#3-安装hexo" class="headerlink" title="3 安装hexo"></a>3 安装hexo</h1><h2 id="3-1-安装cnpm"><a href="#3-1-安装cnpm" class="headerlink" title="3.1 安装cnpm"></a>3.1 安装cnpm</h2><ol><li>cnpm 是 中国版的 npm（Node Package Manager），解决国内用户访问官方 npm 仓库速度慢的问题。</li><li>安装命令：<br> <code>npm install -g cnpm --registry==https://registry.npm.taobao.org</code><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944517.png?imageSlim"></li><li>测试命令：<code>cnpm -v</code><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944518.png?imageSlim"><br>出现版本号说明安装成功。</li></ol><h2 id="3-2-安装hexo"><a href="#3-2-安装hexo" class="headerlink" title="3.2 安装hexo"></a>3.2 安装hexo</h2><ol><li>安装命令：<code>cnpm install hexo-cli -g</code><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944519.png?imageSlim"><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944520.png?imageSlim"></li><li>测试命令：<code>hexo -v</code><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944521.png?imageSlim"><br>出现这样的界面说明安装成功</li></ol><h1 id="4-hexo搭建本地博客测试"><a href="#4-hexo搭建本地博客测试" class="headerlink" title="4 hexo搭建本地博客测试"></a>4 hexo搭建本地博客测试</h1><h2 id="4-1-搭建博客"><a href="#4-1-搭建博客" class="headerlink" title="4.1 搭建博客"></a>4.1 搭建博客</h2><ol><li>新建一个Blogs的文件夹，进入文件夹，右键选择Open Git Bash Here，进入Git终端。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944522.png?imageSlim"></li><li>初始化hexo命令：<code>hexo init</code>。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944523.png?imageSlim"><br> 初始化成功后，Blogs文件夹下出现许多文件<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944524.png?imageSlim"></li><li>安装hexo相关依赖<br> 命令：<code>npm install</code><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944525.png?imageSlim"><br> 命令2：<code>npm install hexo-deployer-git --save</code><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944526.png?imageSlim"></li><li>启动hexo命令：<code>hexo s</code>。先不要ctrl+c，不然就会停止服务<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944527.png?imageSlim"></li><li>在浏览器访问 <a href="http://localhost:4000/">http://localhost:4000/</a> ,就可以看到hexo默认的页面。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944528.png?imageSlim"></li></ol><h2 id="4-2-修改主题"><a href="#4-2-修改主题" class="headerlink" title="4.2 修改主题"></a>4.2 修改主题</h2><p>hexo主题官网： <a href="https://hexo.io/themes/">https://hexo.io/themes/</a></p><ol><li>选择amazing主题<br> 主题下载及安装教程： <a href="https://github.com/removeif/hexo-theme-amazing">https://github.com/removeif/hexo-theme-amazing</a><br> 主题预览： <a href="https://dogzi.fun/">https://dogzi.fun/</a><br> 下载主题的命令：<code>git clone https://github.com/removeif/hexo-theme-amazing.git themes/amazing</code>。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944529.png?imageSlim"><br> ok,这样就下载好了。<br> 在Blogs的themes目录下就可以看到amazing主题文件夹。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944530.png?imageSlim"></li><li>安装 semver 模块<br>命令：<code>npm install semver --save</code><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944531.png?imageSlim"></li><li>安装缺失的依赖<br>命令：<code>npm install --save bulma-stylus@0.8.0 hexo-component-inferno@^3.1.2 hexo-renderer-inferno@^1.0.2 inferno@^8.2.3 inferno-create-element@^8.2.3</code><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944532.png?imageSlim"></li><li>安装主题依赖<br>命令：<code>npm install hexo-renderer-pug hexo-renderer-stylus --save</code>。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944533.png?imageSlim"></li><li>配置amazing主题<br> 以下步骤为个人主观配置，具体配置步骤请参考文章： <a href="https://github.com/removeif/hexo-theme-amazing">https://github.com/removeif/hexo-theme-amazing</a> 。</li></ol><ul><li>打开<code>D:\Blogs\_config.yml</code>文件， 找到theme部分，将landscape改为amazing。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944534.png?imageSlim"></li><li>在<code>D:\Blogs\amazing\</code>目录下创建<code>_config.amazing.yml</code>文件，把<code>\amazing\_config.yml</code>文件里面的内容复制到<code>_config.amazing.yml</code>文中。</li><li>后续修改博客的配置只需修改<code>_config.amazing.yml</code>文件。</li></ul><h2 id="4-3-预览主题"><a href="#4-3-预览主题" class="headerlink" title="4.3 预览主题"></a>4.3 预览主题</h2><ol><li>使用<code>hexo clean</code>命令清除缓存<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944535.png?imageSlim"></li><li>使用<code>hexo g</code>命令生成静态网页，生成 public 文件夹<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944536.png?imageSlim"></li><li>使用<code>hexo s</code>命令启动hexo<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944537.png?imageSlim"></li><li>在浏览器访问 <a href="http://localhost:4000/">http://localhost:4000/</a> ,就可以看到amazing主题的页面。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944538.png?imageSlim"></li></ol><h1 id="接下来就是将hexo部署到GitHub"><a href="#接下来就是将hexo部署到GitHub" class="headerlink" title="接下来就是将hexo部署到GitHub"></a>接下来就是将hexo部署到GitHub</h1><h1 id="5-git配置SSH-key"><a href="#5-git配置SSH-key" class="headerlink" title="5 git配置SSH key"></a>5 git配置SSH key</h1><p>可以免密的将本地的源码和资源上传到github，无需要每次都输账号和密码。</p><h2 id="5-1-没有Github账号的，要先注册"><a href="#5-1-没有Github账号的，要先注册" class="headerlink" title="5.1 没有Github账号的，要先注册"></a>5.1 没有Github账号的，要先注册</h2><h2 id="5-2-生成ssh-key"><a href="#5-2-生成ssh-key" class="headerlink" title="5.2 生成ssh key"></a>5.2 生成ssh key</h2><ol><li>命令：<code>ssh-keygen -t rsa -C &quot;邮件地址&quot;</code><ul><li><strong>注意</strong>：邮箱地址为注册GitHub时使用的邮箱地址。<br>  输入命令后连续按三次回车。</li></ul></li></ol><p><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944539.png?imageSlim"><br>2. 在用户文件夹下可以看到一个.ssh文件夹<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944540.png?imageSlim"><br>3. 进入文件夹，打开id_rsa.pub文件，复制里面的内容</p><h2 id="5-3-添加ssh-key到GitHub"><a href="#5-3-添加ssh-key到GitHub" class="headerlink" title="5.3 添加ssh key到GitHub"></a>5.3 添加ssh key到GitHub</h2><ol><li>打开github主页，点击右上角个人头像，再点击Settings<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944541.png?imageSlim"></li><li>进入到个人设置页面后，点击左侧的SSH and GPG keys选项，再点击New SSH key<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944542.png?imageSlim"></li><li>title自定义，key为id_rsa.pub文件复制的内容。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944543.png?imageSlim"><br>最后点击 Add SSH key</li><li>测试是否添加成功<br> 命令：<code>ssh -T git@github.com</code><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944544.png?imageSlim"><br>出现<code>You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code>，说明添加成功。</li><li>配置账号和密码<br>命令1：<code>git config --global user.name &quot;yourname&quot;</code>，yourname为GitHub用户名<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944545.png?imageSlim"><br>命令2：<code>git config --global user.email &quot;youremail&quot;</code>，youremail为GitHub注册邮箱<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944546.png?imageSlim"></li></ol><h1 id="6-搭建个人博客"><a href="#6-搭建个人博客" class="headerlink" title="6 搭建个人博客"></a>6 搭建个人博客</h1><h2 id="6-1-创建博客文件夹"><a href="#6-1-创建博客文件夹" class="headerlink" title="6.1 创建博客文件夹"></a>6.1 创建博客文件夹</h2><p>在<code>4 hexo搭建本地博客测试</code>中已经创建过了</p><h2 id="6-2-创建仓库"><a href="#6-2-创建仓库" class="headerlink" title="6.2 创建仓库"></a>6.2 创建仓库</h2><ol><li>在右上角个人头像附近有个+，点它，然后再点New repository<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944547.png?imageSlim"></li><li>给仓库命名，进行其他设置，点击创建<br> 仓库名称格式：用户名.github.io<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944548.png?imageSlim"></li><li>打开<code>D:\Blogs\_config.yml</code>文件，拉到最后。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944549.png?imageSlim"><br> 找到deploy这部分，替换为以下内容：</li></ol><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy</span>:</span><br><span class="line">  <span class="attr">type</span>: git</span><br><span class="line">  <span class="attr">repository</span>: git@github.<span class="property">com</span>:name/name.<span class="property">github</span>.<span class="property">io</span>.<span class="property">git</span> </span><br><span class="line">  <span class="attr">branch</span>: main</span><br></pre></td></tr></table></figure><p>name为GitHub用户名和仓库名，branch要看仓库是main还是master。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944550.png?imageSlim"><br>修改后的<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944551.png?imageSlim"></p><h2 id="6-3-发布到github"><a href="#6-3-发布到github" class="headerlink" title="6.3 发布到github"></a>6.3 发布到github</h2><ol><li>命令：<code>hexo d</code><br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944552.png?imageSlim"><br> 出现Deploy done: git，说明上传成功。</li><li>在浏览器访问 <a href="https://kukual.github.io/">https://kukual.github.io/</a><br>出现以下界面，说明访问成功<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250514143944553.png?imageSlim"></li></ol><h2 id="6-4-其他"><a href="#6-4-其他" class="headerlink" title="6.4 其他"></a>6.4 其他</h2><p>hexo搭建博客详细教程请查看 <a href="https://hexo.io/zh-cn/docs/index.html">https://hexo.io/zh-cn/docs/index.html</a></p>]]></content>
       
       
       <categories>
@@ -429,9 +429,9 @@
       
         <tags>
             
-            <tag> git </tag>
-            
             <tag> hexo </tag>
+            
+            <tag> git </tag>
             
         </tags>
       
