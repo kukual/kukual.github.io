@@ -13,6 +13,11 @@
 
 class CrystalCursor {
     constructor() {
+
+
+        this.maxClickParticles = 300; // 例如，同时最多的水晶粒子数
+        this.activeClickParticles = 0;
+
         // 检测是否为触摸设备，如果是则不做任何处理
         if (window.matchMedia("(hover: none)").matches) {
             return;
@@ -28,7 +33,7 @@ class CrystalCursor {
         this.currentPointer = 'normal'; // 当前指针类型
         // 线性插值函数，用于平滑移动
         this.lerp = (a, b, n) => (1 - n) * a + n * b;
-        
+
         // 创建光标DOM元素
         this.cursor = document.createElement("div");
         this.cursor.id = "moonlight-cursor";
@@ -45,13 +50,16 @@ class CrystalCursor {
             </div>
         `;
         document.body.append(this.cursor);
-        
+
+
         // 创建拖尾粒子
         for (let i = 0; i < this.trailLength; i++) {
             const particle = document.createElement("div");
             particle.className = "crystal-trail";
             particle.style.setProperty('--i', i);
             document.body.appendChild(particle);
+            this.trail
+
             // 每个粒子有自己的位置、大小、延迟等属性
             this.trailParticles.push({
                 el: particle,
@@ -63,7 +71,7 @@ class CrystalCursor {
                 angle: 0
             });
         }
-        
+
         // 初始化事件监听器
         this.initEventListeners();
         // 开始渲染动画
@@ -78,14 +86,14 @@ class CrystalCursor {
         this.mouseLeaveHandler = () => this.cursor.classList.add("hidden");
         this.mouseDownHandler = e => this.handleMouseDown(e);
         this.mouseUpHandler = () => this.cursor.classList.remove("active");
-        
+
         // 添加基本鼠标事件监听
         document.addEventListener('mousemove', this.mouseMoveHandler);
         document.addEventListener('mouseenter', this.mouseEnterHandler);
         document.addEventListener('mouseleave', this.mouseLeaveHandler);
         document.addEventListener('mousedown', this.mouseDownHandler);
         document.addEventListener('mouseup', this.mouseUpHandler);
-        
+
         // 为可悬停元素添加事件监听
         this.hoverElements = document.querySelectorAll('a, button, [data-hover]');
         this.hoverElements.forEach(el => {
@@ -127,14 +135,14 @@ class CrystalCursor {
             // 更新当前位置
             this.pos.curr = { x: e.clientX, y: e.clientY };
             this.cursor.classList.remove("hidden");
-            
+
             // 计算移动角度
             if (this.pos.prev) {
                 const dx = this.pos.curr.x - this.pos.prev.x;
                 const dy = this.pos.curr.y - this.pos.prev.y;
                 this.angle = Math.atan2(dy, dx);
             }
-            
+
             // 激活拖尾粒子
             this.activateTrailParticle();
             this.lastEmitTime = now;
@@ -143,6 +151,7 @@ class CrystalCursor {
 
     // 处理鼠标按下事件
     handleMouseDown(e) {
+        if (e.target.closest('#rightside')) { return; }
         this.cursor.classList.add("active");
         const scrollX = window.scrollX || window.pageXOffset;
         const scrollY = window.scrollY || window.pageYOffset;
@@ -153,6 +162,7 @@ class CrystalCursor {
 
     // 处理悬停进入事件
     handleHoverEnter(e) {
+        if (e.target.closest('#rightside')) { return; }
         this.setPointer('link');
         this.cursor.classList.add('hover');
         const rect = e.target.getBoundingClientRect();
@@ -205,13 +215,13 @@ class CrystalCursor {
             particle.el.style.height = `${particle.size * 1.5}px`;
             particle.el.style.opacity = '0.8';
             particle.el.style.borderRadius = '50%';
-            
+
             // 设置粒子角度
             if (this.angle) {
                 particle.angle = this.angle;
-                particle.el.style.transform = `translate(-50%, -50%) rotate(${particle.angle + Math.PI/2}rad)`;
+                particle.el.style.transform = `translate(-50%, -50%) rotate(${particle.angle + Math.PI / 2}rad)`;
             }
-            
+
             // 设置粒子颜色和发光效果
             const hue = 270 + Math.random() * 30 - 15;
             particle.el.style.background = `linear-gradient(to bottom, 
@@ -225,51 +235,59 @@ class CrystalCursor {
     createCrystalBurst(x, y) {
         const colors = ['#8a2be2', '#9932cc', '#ba55d3', '#da70d6', '#d8bfd8'];
         const count = 50; // 爆炸粒子数量
-        
+        let createdCount = 0;
+
         for (let i = 0; i < count; i++) {
+            // 检查是否可以再创建粒子
+            if (this.activeClickParticles >= this.maxClickParticles) {
+                // console.log("Reached max click particles, waiting...");
+                // 这里可以选择不创建，或者稍后重试
+                break; // 停止生成
+            }
             const crystal = document.createElement('div');
             crystal.className = 'crystal-burst';
             crystal.style.left = `${x}px`;
             crystal.style.top = `${y}px`;
             crystal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
             document.body.appendChild(crystal);
-            
+            this.activeClickParticles++; // 增加计数
             // 设置粒子动画属性
             const angle = Math.random() * Math.PI * 2;
             const velocity = 0.5 + Math.random() * 2;
             const lifetime = 800 + Math.random() * 400;
             const size = 2 + Math.random() * 12;
             const rotation = Math.random() * 360;
-            
+
             crystal.style.width = `${size}px`;
             crystal.style.height = `${size}px`;
             crystal.style.transform = `rotate(${rotation}deg)`;
             crystal.style.clipPath = 'polygon(50% 0%, 0% 100%, 100% 100%)';
-            
+
             // 粒子动画函数
             const animate = (startTime) => {
                 const now = Date.now();
                 const progress = (now - startTime) / lifetime;
-                
+
                 if (progress >= 1) {
                     crystal.remove();
+                    this.activeClickParticles--; // 减少计数
                     return;
                 }
-                
+
                 // 计算粒子当前位置和状态
                 const distance = velocity * progress * 50;
                 const currentX = x + Math.cos(angle) * distance;
                 const currentY = y + Math.sin(angle) * distance;
                 const opacity = 1 - progress;
                 const scale = 0.5 + progress * 0.5;
-                
+
                 // 更新粒子样式
                 crystal.style.transform = `translate(${currentX - x}px, ${currentY - y}px) rotate(${rotation + progress * 360}deg) scale(${scale})`;
                 crystal.style.opacity = opacity;
-                
+
                 requestAnimationFrame(() => animate(startTime));
             };
-            
+
             requestAnimationFrame(() => animate(Date.now()));
         }
     }
@@ -281,32 +299,32 @@ class CrystalCursor {
         wave.style.left = `${x}px`;
         wave.style.top = `${y}px`;
         document.body.appendChild(wave);
-        
+
         const startTime = Date.now();
         const duration = 600;
-        
+
         // 冲击波动画函数
         const animate = () => {
             const now = Date.now();
             const progress = (now - startTime) / duration;
-            
+
             if (progress >= 1) {
                 wave.remove();
                 return;
             }
-            
+
             // 计算冲击波大小和透明度
             const size = progress * 50;
             const opacity = 1 - progress;
-            
+
             wave.style.width = `${size}px`;
             wave.style.height = `${size}px`;
             wave.style.opacity = opacity;
             wave.style.borderWidth = `${1 - progress * 1}px`;
-            
+
             requestAnimationFrame(animate);
         };
-        
+
         requestAnimationFrame(animate);
     }
 
@@ -316,10 +334,10 @@ class CrystalCursor {
         const scrollY = window.scrollY || window.pageYOffset;
         const ripple = document.createElement('div');
         ripple.className = 'ripple-effect';
-        ripple.style.left = `${rect.left + rect.width/2 + scrollX}px`;
-        ripple.style.top = `${rect.top + rect.height/2 + scrollY}px`;
+        ripple.style.left = `${rect.left + rect.width / 2 + scrollX}px`;
+        ripple.style.top = `${rect.top + rect.height / 2 + scrollY}px`;
         document.body.appendChild(ripple);
-        
+
         // 1秒后移除涟漪元素
         setTimeout(() => {
             ripple.remove();
@@ -333,36 +351,36 @@ class CrystalCursor {
             this.pos.prev.x = this.lerp(this.pos.prev.x, this.pos.curr.x, 0.2);
             this.pos.prev.y = this.lerp(this.pos.prev.y, this.pos.curr.y, 0.2);
             this.move(this.pos.prev.x - 6, this.pos.prev.y - 6);
-            
+
             // 更新拖尾粒子
             this.trailParticles.forEach((p) => {
                 if (p.life > 0) {
                     p.life -= p.speed * 0.02;
-                    
+
                     // 根据角度移动粒子
                     const distance = (1 - p.life) * 15;
                     p.pos.x += Math.cos(p.angle) * distance * 0.1;
                     p.pos.y += Math.sin(p.angle) * distance * 0.1;
-                    
+
                     // 更新粒子位置和透明度
                     p.el.style.left = `${p.pos.x}px`;
                     p.el.style.top = `${p.pos.y}px`;
                     p.el.style.opacity = p.life * 0.8;
-                    
+
                     // 粒子拖尾长度变化
                     const tailLength = 3 + (1 - p.life) * 2.5;
                     p.el.style.height = `${p.size * tailLength}px`;
-                    
+
                     if (p.life <= 0) {
                         p.el.style.opacity = '0';
                     }
                 }
             });
-            
+
             // 月亮发光强度变化
             const glowIntensity = Math.abs(Math.sin(Date.now() * 0.003)) * 0.3 + 0.7;
             this.cursor.querySelector('.moon-glow').style.opacity = glowIntensity;
-            
+
             // 光环脉动效果
             const pulse = Math.abs(Math.sin(Date.now() * 0.002)) * 0.2 + 0.8;
             this.cursor.querySelector('.ring-1').style.transform = `translate(-50%, -50%) scale(${pulse})`;
@@ -371,7 +389,7 @@ class CrystalCursor {
         } else {
             this.pos.prev = this.pos.curr;
         }
-        
+
         // 继续渲染循环
         this.raf = requestAnimationFrame(() => this.render());
     }
@@ -379,34 +397,34 @@ class CrystalCursor {
     // 销毁方法，清理所有资源和事件监听
     destroy() {
         cancelAnimationFrame(this.raf);
-        
+
         // 移除所有事件监听
         document.removeEventListener('mousemove', this.mouseMoveHandler);
         document.removeEventListener('mouseenter', this.mouseEnterHandler);
         document.removeEventListener('mouseleave', this.mouseLeaveHandler);
         document.removeEventListener('mousedown', this.mouseDownHandler);
         document.removeEventListener('mouseup', this.mouseUpHandler);
-        
+
         this.hoverElements.forEach(el => {
             el.removeEventListener('mouseenter', this.handleHoverEnter);
             el.removeEventListener('mouseleave', this.handleHoverLeave);
         });
-        
+
         this.textElements.forEach(el => {
             el.removeEventListener('mouseenter', () => this.setPointer('text'));
             el.removeEventListener('mouseleave', () => this.setPointer('normal'));
         });
-        
+
         this.disabledElements.forEach(el => {
             el.removeEventListener('mouseenter', () => this.setPointer('unavailable'));
             el.removeEventListener('mouseleave', () => this.setPointer('normal'));
         });
-        
+
         this.draggableElements.forEach(el => {
             el.removeEventListener('mouseenter', () => this.setPointer('move'));
             el.removeEventListener('mouseleave', () => this.setPointer('normal'));
         });
-        
+
         // 移除所有DOM元素
         this.cursor.remove();
         this.trailParticles.forEach(p => p.el.remove());
