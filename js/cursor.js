@@ -1,6 +1,6 @@
 /**
  * CrystalCursor - 增加拖尾粒子数量并在忽略拖拽时清除粒子和动画
- * 修改：在_ignoreDrag时清除所有粒子和动画
+ * 修改：在_ignoreDrag时清除所有粒子和动画，松手后精确同步鼠标位置，支持文本拖拽
  */
 
 // 工具函数
@@ -518,6 +518,7 @@ class CrystalCursor {
         this.activeParticles = 0;
         this.lastEmitTime = 0;
         this.angle = 0;
+        this.isDragging = false; // 新增：标记是否在拖拽状态
 
         this.pos = { curr: null, prev: null };
 
@@ -605,6 +606,14 @@ class CrystalCursor {
         this.activeParticles = 0;
     }
 
+    // 新增：强制同步位置到当前鼠标位置
+    syncToMousePosition(x, y) {
+        this.pos.curr = { x, y };
+        this.pos.prev = { x, y };
+        this.move(x - 8, y - 8);
+        this.cursor.classList.remove("hidden");
+    }
+
     handleMouseMove(e) {
         if (this._ignoreDrag) return;
         this.pos.curr = { x: e.clientX, y: e.clientY };
@@ -642,12 +651,42 @@ class CrystalCursor {
         this.createShockwave(e.clientX, e.clientY);
     }
 
-    handleMouseUp() {
+    handleMouseUp(e) {
         this.cursor.classList.remove("active");
+
+        // 松手后同步位置
+        if (e) {
+            this.syncToMousePosition(e.clientX, e.clientY);
+        }
+
         // 只有在不是滚动条拖拽时才恢复
         if (!this.isScrollbarDrag) {
             this._ignoreDrag = false;
         }
+    }
+
+    // 新增：处理拖拽开始事件
+    handleDragStart(e) {
+        this.isDragging = true;
+        this._ignoreDrag = true;
+        this.clearAllParticlesAndAnimations();
+    }
+
+    // 新增：处理拖拽结束事件
+    handleDragEnd(e) {
+        this.isDragging = false;
+        this._ignoreDrag = false;
+
+        // 拖拽结束后同步位置到当前鼠标位置
+        if (e) {
+            this.syncToMousePosition(e.clientX, e.clientY);
+        }
+    }
+
+    // 新增：处理拖拽过程事件
+    handleDrag(e) {
+        // 在拖拽过程中隐藏月亮
+        this.cursor.classList.add("hidden");
     }
 
     handleMouseEnter() {
@@ -701,13 +740,23 @@ class CrystalCursor {
         this.mouseEnterHandler = () => this.handleMouseEnter();
         this.mouseLeaveHandler = () => this.handleMouseLeave();
         this.mouseDownHandler = (e) => this.handleMouseDown(e);
-        this.mouseUpHandler = () => this.handleMouseUp();
+        this.mouseUpHandler = (e) => this.handleMouseUp(e);
+
+        // 新增：拖拽相关事件处理器
+        this.dragStartHandler = (e) => this.handleDragStart(e);
+        this.dragEndHandler = (e) => this.handleDragEnd(e);
+        this.dragHandler = (e) => this.handleDrag(e);
 
         document.addEventListener('mousemove', this.mouseMoveHandler);
         document.addEventListener('mouseenter', this.mouseEnterHandler);
         document.addEventListener('mouseleave', this.mouseLeaveHandler);
         document.addEventListener('mousedown', this.mouseDownHandler);
         document.addEventListener('mouseup', this.mouseUpHandler);
+
+        // 新增：添加拖拽事件监听
+        document.addEventListener('dragstart', this.dragStartHandler);
+        document.addEventListener('dragend', this.dragEndHandler);
+        document.addEventListener('drag', this.dragHandler);
 
         this.addHoverListeners();
     }
@@ -729,6 +778,11 @@ class CrystalCursor {
         document.removeEventListener('mouseleave', this.mouseLeaveHandler);
         document.removeEventListener('mousedown', this.mouseDownHandler);
         document.removeEventListener('mouseup', this.mouseUpHandler);
+
+        // 移除拖拽事件监听
+        document.removeEventListener('dragstart', this.dragStartHandler);
+        document.removeEventListener('dragend', this.dragEndHandler);
+        document.removeEventListener('drag', this.dragHandler);
 
         this.cursor?.remove();
 
