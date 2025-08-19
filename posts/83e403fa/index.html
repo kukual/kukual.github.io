@@ -1,0 +1,804 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>网络安全术语中英文表 | kukualのblog</title><meta name="author" content="kukual"><meta name="copyright" content="kukual"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f5f0fa"><meta name="description" content="按A-Z顺序给出网络安全核心概念的中英文对照，适合快速检索、统一用语并辅助学习或报告撰写。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络安全术语中英文表">
+<meta property="og:url" content="https://kukual.github.io/posts/83e403fa/index.html">
+<meta property="og:site_name" content="kukualのblog">
+<meta property="og:description" content="按A-Z顺序给出网络安全核心概念的中英文对照，适合快速检索、统一用语并辅助学习或报告撰写。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://kukual.github.io/img/102.jpeg">
+<meta property="article:published_time" content="2025-04-13T20:52:00.000Z">
+<meta property="article:modified_time" content="2025-04-13T20:52:11.000Z">
+<meta property="article:author" content="kukual">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kukual.github.io/img/102.jpeg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "网络安全术语中英文表",
+  "url": "https://kukual.github.io/posts/83e403fa/",
+  "image": "https://kukual.github.io/img/102.jpeg",
+  "datePublished": "2025-04-13T20:52:00.000Z",
+  "dateModified": "2025-04-13T20:52:11.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "kukual",
+      "url": "https://kukual.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/01.png"><link rel="canonical" href="https://kukual.github.io/posts/83e403fa/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#2d0a3d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f5f0fa')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&amp;family=Ma+Shan+Zheng&amp;family=Fredoka+One&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":"ture","top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":true,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":300,"languages":{"author":"作者: kukual","link":"链接: ","source":"来源: kukualのblog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '网络安全术语中英文表',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Chewy&family=Fredoka+One&family=Caveat:wght@400;700&family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@300;500;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="/css/categorybar.css"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250819223546030.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/02.jpg" onerror="this.onerror=null;this.src='/img/05.jpg'" alt="avatar"></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/101.jpeg);"><nav id="nav"><!-- 左侧博客信息区域--><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/01.png" alt="Logo"><span class="site-name">kukualのblog</span></a><a class="nav-page-title" href="/"><span class="site-name">网络安全术语中英文表</span></a></span><!-- 新增的导航菜单容器（居中布局关键）--><div id="nav-menus-container"><!-- 菜单主体部分--><div id="menus"><!-- 搜索按钮--><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><!-- 菜单项--><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div><!-- 移动端汉堡菜单按钮（保持原位置）--><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">网络安全术语中英文表</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-04-13T20:52:00.000Z" title="发表于 2025-04-14 04:52:00">2025-04-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-04-13T20:52:11.000Z" title="更新于 2025-04-14 04:52:11">2025-04-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AC%94%E8%AE%B0%E6%9D%82%E8%AE%B0/">笔记杂记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>24分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id data-flag-title><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;本文最后更新于&quot;,&quot;messageNext&quot;:&quot;天前，部分内容可能已失效&quot;,&quot;postUpdate&quot;:&quot;2025-04-14 04:52:11&quot;}" hidden></div><h1 id="网络安全术语中英文表"><a href="#网络安全术语中英文表" class="headerlink" title="网络安全术语中英文表"></a>网络安全术语中英文表</h1><p>按字母 A-Z 顺序排列，用简单的中英文解释，让你了解到最全的网络安全术语。</p>
+<h1 id="1-A"><a href="#1-A" class="headerlink" title="1 A"></a>1 A</h1><h2 id="1-1-高级持久威胁APT"><a href="#1-1-高级持久威胁APT" class="headerlink" title="1.1 高级持久威胁APT"></a>1.1 高级持久威胁APT</h2><ul>
+<li>一种网络攻击，使用复杂的技术持续对目标政府和公司进行网络间谍活动或其他恶意活 动。通常由具有丰富专业知识和大量资源的对手进行-通常与民族国家参与者相关。</li>
+<li>这些攻击往往来自多个入口点，并且可能使用多个攻击媒介例如，网络攻击，物理攻 击，欺骗攻击。一旦系统遭到破坏，结束攻击可能非常困难。</li>
+</ul>
+<h2 id="1-2-警报Alert"><a href="#1-2-警报Alert" class="headerlink" title="1.2 警报Alert"></a>1.2 警报Alert</h2><ul>
+<li>关于已检测到或正在进行信息系统网络安全威胁的通知。</li>
+</ul>
+<h2 id="1-3-防毒软件Antivirus"><a href="#1-3-防毒软件Antivirus" class="headerlink" title="1.3 防毒软件Antivirus"></a>1.3 防毒软件Antivirus</h2><ul>
+<li>防病毒软件用于监视计算机或网络，以检测从恶意代码到恶意软件的网络安全威胁。防 病毒程序不仅可以警告您威胁的存在，还可以删除或消除恶意代码。</li>
+</ul>
+<h2 id="1-4-攻击特征Attack-signature"><a href="#1-4-攻击特征Attack-signature" class="headerlink" title="1.4 攻击特征Attack signature"></a>1.4 攻击特征Attack signature</h2><ul>
+<li>一种特征性或独特性模式，可以帮助将一种攻击与另一种攻击联系起来，从而确定可能 的参与者和解决方案。</li>
+</ul>
+<h2 id="1-5-攻击者Attacker"><a href="#1-5-攻击者Attacker" class="headerlink" title="1.5 攻击者Attacker"></a>1.5 攻击者Attacker</h2><ul>
+<li>威胁的诱因：恶意角色，他们试图更改，破坏，窃取或禁用计算机系统上保存的信息， 然后利用其结果。</li>
+</ul>
+<h2 id="1-6-认证方式Authentication"><a href="#1-6-认证方式Authentication" class="headerlink" title="1.6 认证方式Authentication"></a>1.6 认证方式Authentication</h2><ul>
+<li>验证用户，进程或设备的身份或其他属性的过程。</li>
+</ul>
+<h1 id="2-B"><a href="#2-B" class="headerlink" title="2 B"></a>2 B</h1><h2 id="2-1-行为监控Behaviour-monitoring"><a href="#2-1-行为监控Behaviour-monitoring" class="headerlink" title="2.1 行为监控Behaviour monitoring"></a>2.1 行为监控Behaviour monitoring</h2><ul>
+<li>观察用户，信息系统和流程的活动。可用于根据组织政策和规则， 正常活动的基准，阈 值和趋势来衡量这些活动。</li>
+</ul>
+<h2 id="2-2-黑名单Blacklist"><a href="#2-2-黑名单Blacklist" class="headerlink" title="2.2 黑名单Blacklist"></a>2.2 黑名单Blacklist</h2><ul>
+<li>实体用户，设备被阻止，拒绝特权或访问的列表。</li>
+</ul>
+<h2 id="2-3-蓝队Blue-team"><a href="#2-3-蓝队Blue-team" class="headerlink" title="2.3 蓝队Blue team"></a>2.3 蓝队Blue team</h2><ul>
+<li>模拟网络安全攻击中的防御小组。蓝队在红队攻击时捍卫企业的信息系统。这些模拟攻 击通常是由中立组织怀特White Team建立和监控的业务演习的一部分。</li>
+</ul>
+<h2 id="2-4-机器人bot"><a href="#2-4-机器人bot" class="headerlink" title="2.4 机器人bot"></a>2.4 机器人bot</h2><ul>
+<li>连接到 Internet 的计算机，该计算机已受到恶意逻辑的破坏，无法在远程管理员的命令 和控制下进行活动。</li>
+</ul>
+<h2 id="2-5-僵尸网络-Botnet"><a href="#2-5-僵尸网络-Botnet" class="headerlink" title="2.5 僵尸网络 Botnet"></a>2.5 僵尸网络 Botnet</h2><ul>
+<li>连接到 Internet 的受感染设备网络过去常常在所有者不知情的情况下进行协调的网络 攻击。</li>
+</ul>
+<h2 id="2-6-违反Breach"><a href="#2-6-违反Breach" class="headerlink" title="2.6 违反Breach"></a>2.6 违反Breach</h2><ul>
+<li>未经授权访问数据，计算机系统或网络。</li>
+</ul>
+<h2 id="2-7-带上自己的设备BYOD"><a href="#2-7-带上自己的设备BYOD" class="headerlink" title="2.7 带上自己的设备BYOD"></a>2.7 带上自己的设备BYOD</h2><ul>
+<li>组织允许员工将其个人设备用于工作目的的策略或政策。</li>
+</ul>
+<h2 id="2-8-蛮力攻击Brute-force-attack"><a href="#2-8-蛮力攻击Brute-force-attack" class="headerlink" title="2.8 蛮力攻击Brute force attack"></a>2.8 蛮力攻击Brute force attack</h2><ul>
+<li>利用计算能力自动输入大量数字组合以发现密码并获得访问权限的攻击</li>
+</ul>
+<h2 id="2-9-缺陷-bug"><a href="#2-9-缺陷-bug" class="headerlink" title="2.9 缺陷 bug"></a>2.9 缺陷 bug</h2><ul>
+<li>信息系统或设备中相对较小的缺陷或缺陷。</li>
+</ul>
+<h1 id="3-C"><a href="#3-C" class="headerlink" title="3 C"></a>3 C</h1><h2 id="3-1-证书Certificate"><a href="#3-1-证书Certificate" class="headerlink" title="3.1 证书Certificate"></a>3.1 证书Certificate</h2><ul>
+<li>数字证书是数字身份验证的一种形式，它允许计算机，用户或组织安全地交换信息。</li>
+</ul>
+<h2 id="3-2-认证信息系统审核员CISA"><a href="#3-2-认证信息系统审核员CISA" class="headerlink" title="3.2 认证信息系统审核员CISA"></a>3.2 认证信息系统审核员CISA</h2><ul>
+<li>监视，审计，控制和评估信息系统的专业人员的认证。</li>
+</ul>
+<h2 id="3-3-认证信息系统安全经理CISM"><a href="#3-3-认证信息系统安全经理CISM" class="headerlink" title="3.3 认证信息系统安全经理CISM"></a>3.3 认证信息系统安全经理CISM</h2><ul>
+<li>ISACA 的高级认证，适用于具有开发和管理企业信息安全计划的知识和经验的专业人员。</li>
+</ul>
+<h2 id="3-4-信息系统安全认证专家CISSP"><a href="#3-4-信息系统安全认证专家CISSP" class="headerlink" title="3.4 信息系统安全认证专家CISSP"></a>3.4 信息系统安全认证专家CISSP</h2><ul>
+<li>针对 CISO 和其他信息安全领导者的管理认证。</li>
+</ul>
+<h2 id="3-5-密码Cipher"><a href="#3-5-密码Cipher" class="headerlink" title="3.5 密码Cipher"></a>3.5 密码Cipher</h2><ul>
+<li>一种用于加密和解密数据的算法。有时与“代码”一词互换使用。</li>
+</ul>
+<h2 id="3-6-计算机事件响应小组CIRT"><a href="#3-6-计算机事件响应小组CIRT" class="headerlink" title="3.6 计算机事件响应小组CIRT"></a>3.6 计算机事件响应小组CIRT</h2><ul>
+<li>一个调查人员团队专注于网络安全漏洞。他们的作用是分析事件的发生方式以及受影响 &#x2F;丢失的信息。然后，他们使用此洞察力做出回应。</li>
+</ul>
+<h2 id="3-7-计算机网络防御CND"><a href="#3-7-计算机网络防御CND" class="headerlink" title="3.7 计算机网络防御CND"></a>3.7 计算机网络防御CND</h2><ul>
+<li>CND 通常应用于军事和政府安全，是指为保护信息系统和网络免受网络攻击和入侵而 采取的措施。</li>
+</ul>
+<h2 id="3-8-信息和相关技术的控制目标COBIT"><a href="#3-8-信息和相关技术的控制目标COBIT" class="headerlink" title="3.8 信息和相关技术的控制目标COBIT"></a>3.8 信息和相关技术的控制目标COBIT</h2><ul>
+<li>由 ISACA 开发并不断更新的业务框架，包括用于信息技术的管理和治理的实践，工具和 模型，包括风险管理和合规性。</li>
+</ul>
+<h2 id="3-9-证书Credentials"><a href="#3-9-证书Credentials" class="headerlink" title="3.9 证书Credentials"></a>3.9 证书Credentials</h2><ul>
+<li>用于验证用户身份的信息，例如密码，令牌，证书。</li>
+</ul>
+<h2 id="3-10跨站点脚本XSS"><a href="#3-10跨站点脚本XSS" class="headerlink" title="3.10跨站点脚本XSS"></a>3.10跨站点脚本XSS</h2><ul>
+<li>跨站点脚本XSS是通常在 Web 应用程序中发现的软件漏洞，它使在线犯罪分子可以 将客户端脚本注入其他用户查看的页面中。</li>
+<li>攻击者可以同时利用跨站点脚本漏洞来覆盖访问控制。除非网络管理员或网站所有者未 采取必要的安全措施，否则此问题可能会成为严重的安全风险。</li>
+</ul>
+<h2 id="3-11密码学Cryptography"><a href="#3-11密码学Cryptography" class="headerlink" title="3.11密码学Cryptography"></a>3.11密码学Cryptography</h2><ul>
+<li>编码研究。同样，使用代码&#x2F;密码&#x2F;数学技术来保护数据并提供实体和数据的身份验证。</li>
+</ul>
+<h2 id="3-12网络攻击-Cyber-attack"><a href="#3-12网络攻击-Cyber-attack" class="headerlink" title="3.12网络攻击 Cyber attack"></a>3.12网络攻击 Cyber attack</h2><ul>
+<li>故意和恶意尝试通过网络手段破坏，破坏或访问计算机系统，网络或设备。</li>
+</ul>
+<h2 id="3-13网络基础-Cyber-Essentials"><a href="#3-13网络基础-Cyber-Essentials" class="headerlink" title="3.13网络基础 Cyber Essentials"></a>3.13网络基础 Cyber Essentials</h2><ul>
+<li>英国政府支持的自我评估证书，可帮助您防御网络攻击，同时还向其他人证明您的组织 正在采取措施打击网络犯罪。</li>
+</ul>
+<h2 id="3-14网络事件Cyber-incident"><a href="#3-14网络事件Cyber-incident" class="headerlink" title="3.14网络事件Cyber incident"></a>3.14网络事件Cyber incident</h2><ul>
+<li>违反系统或服务的安全策略-最常见的情况是： 试图获得对系统和&#x2F;或数据的未授权访问。</li>
+<li>未经授权使用系统来处理或存储数据。</li>
+<li>未经系统所有者同意，更改系统的固件，软件或硬件。 恶意破坏和&#x2F;或拒绝服务。</li>
+</ul>
+<h2 id="3-15网络安全Cyber-security"><a href="#3-15网络安全Cyber-security" class="headerlink" title="3.15网络安全Cyber security"></a>3.15网络安全Cyber security</h2><ul>
+<li>网络安全是一个集体术语，用于描述针对电子和计算机网络，程序和数据的保护，以防 止恶意攻击和未经授权的访问。</li>
+</ul>
+<h1 id="4-D"><a href="#4-D" class="headerlink" title="4 D"></a>4 D</h1><h2 id="4-1-静止数据Data-at-rest"><a href="#4-1-静止数据Data-at-rest" class="headerlink" title="4.1 静止数据Data at rest"></a>4.1 静止数据Data at rest</h2><ul>
+<li>持久存储中的数据，即无论设备是否连接到电源，仍保留在设备上的数据，例如硬盘， 可移动媒体或备份。</li>
+</ul>
+<h2 id="4-2-数据泄露Data-breach"><a href="#4-2-数据泄露Data-breach" class="headerlink" title="4.2 数据泄露Data breach"></a>4.2 数据泄露Data breach</h2><ul>
+<li>未经授权的移动或泄露信息，通常是向组织外部的一方。</li>
+<li>3 数据的完整性Data integrity</li>
+<li>完整和可信的数据质量，未经未经授权或意外的方式修改或破坏的数据质量。</li>
+</ul>
+<h2 id="4-4-资料遗失Data-loss"><a href="#4-4-资料遗失Data-loss" class="headerlink" title="4.4 资料遗失Data loss"></a>4.4 资料遗失Data loss</h2><ul>
+<li>不再有数据，无论是因为它被盗，删除还是忘记了位置。</li>
+</ul>
+<h2 id="4-5-防止数据丢失DLP"><a href="#4-5-防止数据丢失DLP" class="headerlink" title="4.5 防止数据丢失DLP"></a>4.5 防止数据丢失DLP</h2><ul>
+<li>防止敏感数据通过安全边界的安全策略和相关程序。</li>
+</ul>
+<h2 id="4-6-数据安全Data-security"><a href="#4-6-数据安全Data-security" class="headerlink" title="4.6 数据安全Data security"></a>4.6 数据安全Data security</h2><ul>
+<li>为保护机密数据并防止其被意外或故意泄露，破坏，破坏或破坏而采取的措施。</li>
+</ul>
+<h2 id="4-7-解密Decryption"><a href="#4-7-解密Decryption" class="headerlink" title="4.7 解密Decryption"></a>4.7 解密Decryption</h2><ul>
+<li>将编码文本解密为原始原始格式的过程。</li>
+</ul>
+<h2 id="4-8-拒绝服务DoS"><a href="#4-8-拒绝服务DoS" class="headerlink" title="4.8 拒绝服务DoS"></a>4.8 拒绝服务DoS</h2><ul>
+<li>这是一种网络攻击类型，通常会通过使服务超载请求来阻止信息系统服务或资源的授权 使用或损害访问。</li>
+</ul>
+<h2 id="4-9-字典攻击Dictionary-attack"><a href="#4-9-字典攻击Dictionary-attack" class="headerlink" title="4.9 字典攻击Dictionary attack"></a>4.9 字典攻击Dictionary attack</h2><ul>
+<li>攻击者使用已知的词典单词，短语或常用密码来访问您的信息系统。这是一种蛮力攻击。</li>
+</ul>
+<h2 id="4-10分布式拒绝服务DDoS"><a href="#4-10分布式拒绝服务DDoS" class="headerlink" title="4.10分布式拒绝服务DDoS"></a>4.10分布式拒绝服务DDoS</h2><ul>
+<li>一种拒绝服务技术，其中使用多个系统执行攻击，使服务不堪重负。</li>
+</ul>
+<h2 id="4-11下载攻击Download-attack"><a href="#4-11下载攻击Download-attack" class="headerlink" title="4.11下载攻击Download attack"></a>4.11下载攻击Download attack</h2><ul>
+<li>未经用户知情或同意而在设备上安装的恶意软件或病毒-有时称为“过马路下载”。</li>
+</ul>
+<h1 id="5-E"><a href="#5-E" class="headerlink" title="5 E"></a>5 E</h1><h2 id="5-1-电子战EW"><a href="#5-1-电子战EW" class="headerlink" title="5.1 电子战EW"></a>5.1 电子战EW</h2><ul>
+<li>利用无线电波或激光等能量破坏或破坏敌人的电子设备。一个示例是频率干扰以禁用通 信设备。</li>
+</ul>
+<h2 id="5-2-编码Encode"><a href="#5-2-编码Encode" class="headerlink" title="5.2 编码Encode"></a>5.2 编码Encode</h2><ul>
+<li>使用代码将纯文本转换为密文。</li>
+</ul>
+<h2 id="5-3-加密Encryption"><a href="#5-3-加密Encryption" class="headerlink" title="5.3 加密Encryption"></a>5.3 加密Encryption</h2><ul>
+<li>使用密码来保护信息，这使任何没有密钥对其解密的人都无法读取。</li>
+</ul>
+<h2 id="5-4-终端Endpoint"><a href="#5-4-终端Endpoint" class="headerlink" title="5.4 终端Endpoint"></a>5.4 终端Endpoint</h2><ul>
+<li>连接到网络的具有互联网功能的计算机设备的统称-例如，现代智能手机，笔记本电脑 和平板电脑都是端点。</li>
+</ul>
+<h2 id="5-5-道德黑客Ethical-hacking"><a href="#5-5-道德黑客Ethical-hacking" class="headerlink" title="5.5 道德黑客Ethical hacking"></a>5.5 道德黑客Ethical hacking</h2><ul>
+<li>出于合法目的使用黑客技术-即识别和测试网络安全漏洞。在这种情况下，演员有时被 称为“白帽黑客”。</li>
+</ul>
+<h2 id="5-6-渗出Exfiltration"><a href="#5-6-渗出Exfiltration" class="headerlink" title="5.6 渗出Exfiltration"></a>5.6 渗出Exfiltration</h2><ul>
+<li>未经同意即从系统传输信息。</li>
+</ul>
+<h2 id="5-7-利用Exploit"><a href="#5-7-利用Exploit" class="headerlink" title="5.7 利用Exploit"></a>5.7 利用Exploit</h2><ul>
+<li>利用信息系统中的漏洞的行为。也用于描述一种用于破坏网络安全性的技术。</li>
+</ul>
+<h2 id="5-8-漏洞利用工具Exploit-kit"><a href="#5-8-漏洞利用工具Exploit-kit" class="headerlink" title="5.8 漏洞利用工具Exploit kit"></a>5.8 漏洞利用工具Exploit kit</h2><ul>
+<li>设计用于发现软件应用程序中的漏洞并使用它们来访问系统或网络的计算机程序。一旦 他们渗透到系统中，他们将向其提供有害代码。</li>
+</ul>
+<h1 id="6-F"><a href="#6-F" class="headerlink" title="6 F"></a>6 F</h1><h2 id="6-1-防火墙功能Firewall"><a href="#6-1-防火墙功能Firewall" class="headerlink" title="6.1 防火墙功能Firewall"></a>6.1 防火墙功能Firewall</h2><ul>
+<li>网络或设备周围的虚拟边界，用于保护网络或设备免受不必要的访问。可以是硬件或软 件。</li>
+</ul>
+<h1 id="7-G"><a href="#7-G" class="headerlink" title="7 G"></a>7 G</h1><h2 id="7-1-GCHQ"><a href="#7-1-GCHQ" class="headerlink" title="7.1 GCHQ"></a>7.1 GCHQ</h2><ul>
+<li>政府通讯总部。该组织利用外国情报来帮助打击恐怖主义，网络犯罪和儿童色情制品。</li>
+</ul>
+<h2 id="7-2-GDPR"><a href="#7-2-GDPR" class="headerlink" title="7.2 GDPR"></a>7.2 GDPR</h2><ul>
+<li>通用数据保护条例。欧洲立法旨在通过使个人更好地控制其个人信息在网上的使用方式 来防止数据滥用。</li>
+</ul>
+<h2 id="7-3-治理，风险管理与合规GRC"><a href="#7-3-治理，风险管理与合规GRC" class="headerlink" title="7.3 治理，风险管理与合规GRC"></a>7.3 治理，风险管理与合规GRC</h2><ul>
+<li>组织管理的三个方面旨在确保组织及其人员的行为规范，有效管理组织，采取适当措施 降低风险并保持对内部政策和外部法规的遵守。</li>
+</ul>
+<h1 id="8-H"><a href="#8-H" class="headerlink" title="8 H"></a>8 H</h1><h2 id="8-1-黑客Hacker"><a href="#8-1-黑客Hacker" class="headerlink" title="8.1 黑客Hacker"></a>8.1 黑客Hacker</h2><ul>
+<li>闯入计算机，系统和网络的人。</li>
+</ul>
+<h2 id="8-2-散列Hashing"><a href="#8-2-散列Hashing" class="headerlink" title="8.2 散列Hashing"></a>8.2 散列Hashing</h2><ul>
+<li>使用数学算法来伪装一条数据。</li>
+</ul>
+<h2 id="8-3-蜜罐蜜网Honeypot-honeynet"><a href="#8-3-蜜罐蜜网Honeypot-honeynet" class="headerlink" title="8.3 蜜罐蜜网Honeypot honeynet"></a>8.3 蜜罐蜜网Honeypot honeynet</h2><ul>
+<li>诱骗系统或网络，用于吸引潜在的攻击者，通过检测攻击或使攻击发生偏转来保护实际 系统。一个学习攻击方式的好工具。多个蜜罐组成一个蜜网。</li>
+</ul>
+<h1 id="9-I"><a href="#9-I" class="headerlink" title="9 I"></a>9 I</h1><h2 id="9-1-事件Incident"><a href="#9-1-事件Incident" class="headerlink" title="9.1 事件Incident"></a>9.1 事件Incident</h2><ul>
+<li>任何违反系统或服务安全性规则的行为。这包括尝试获得未经授权的访问， 未经授权使 用系统来处理或存储数据，恶意破坏或拒绝服务以及未经所有者同意而更改系统的固件，软 件或硬件。</li>
+</ul>
+<h2 id="9-2-事件响应计划Incident-response-plan"><a href="#9-2-事件响应计划Incident-response-plan" class="headerlink" title="9.2 事件响应计划Incident response plan"></a>9.2 事件响应计划Incident response plan</h2><ul>
+<li>在发生网络事件时要采取的预定行动计划。</li>
+</ul>
+<h2 id="9-3-指示符Indicator"><a href="#9-3-指示符Indicator" class="headerlink" title="9.3 指示符Indicator"></a>9.3 指示符Indicator</h2><ul>
+<li>表示可能已经发生或正在进行中的网络事件的信号。</li>
+</ul>
+<h2 id="9-4-工业控制系统ICS"><a href="#9-4-工业控制系统ICS" class="headerlink" title="9.4 工业控制系统ICS"></a>9.4 工业控制系统ICS</h2><ul>
+<li>用于控制工业过程或基础设施资产的信息系统。常见于制造业，产品处理，生产和分销。</li>
+</ul>
+<h2 id="9-5-信息安全政策Information-security-policy"><a href="#9-5-信息安全政策Information-security-policy" class="headerlink" title="9.5 信息安全政策Information security policy"></a>9.5 信息安全政策Information security policy</h2><ul>
+<li>构成组织用于管理，保护和分发信息的策略的指令，法规，规则和实践。</li>
+</ul>
+<h2 id="9-6-国际标准化组织ISO"><a href="#9-6-国际标准化组织ISO" class="headerlink" title="9.6 国际标准化组织ISO"></a>9.6 国际标准化组织ISO</h2><ul>
+<li>制定自愿性行业标准包括两个主要信息安全管理标准的独立机构：ISO 27001 和 ISO 27002。</li>
+</ul>
+<h2 id="9-7-物联网IoT"><a href="#9-7-物联网IoT" class="headerlink" title="9.7 物联网IoT"></a>9.7 物联网IoT</h2><ul>
+<li>日常用品例如水壶，冰箱和电视连接到互联网的能力。</li>
+</ul>
+<h2 id="9-8-入侵检测系统-入侵检测与防御IDS-IDP"><a href="#9-8-入侵检测系统-入侵检测与防御IDS-IDP" class="headerlink" title="9.8 入侵检测系统&#x2F;入侵检测与防御IDS &#x2F; IDP"></a>9.8 入侵检测系统&#x2F;入侵检测与防御IDS &#x2F; IDP</h2><ul>
+<li>查找并帮助防止公司网络上的恶意活动的硬件或软件。</li>
+</ul>
+<h2 id="9-9-IP-欺骗IP-spoofing"><a href="#9-9-IP-欺骗IP-spoofing" class="headerlink" title="9.9 IP 欺骗IP spoofing"></a>9.9 IP 欺骗IP spoofing</h2><ul>
+<li>攻击者用来提供虚假 IP 地址的策略，试图诱骗用户或网络安全解决方案，使其认为自 己是合法行为者。</li>
+</ul>
+<h2 id="9-10ISO-27001"><a href="#9-10ISO-27001" class="headerlink" title="9.10ISO 27001"></a>9.10ISO 27001</h2><ul>
+<li>信息安全管理系统ISMS的金标准，证明了最高的认证水平。</li>
+</ul>
+<h1 id="10J"><a href="#10J" class="headerlink" title="10J"></a>10J</h1><h2 id="10-1越狱Jailbreak"><a href="#10-1越狱Jailbreak" class="headerlink" title="10.1越狱Jailbreak"></a>10.1越狱Jailbreak</h2><ul>
+<li>取消了设备的安全限制，目的是安装非官方应用程序并对系统进行修改。通常应用于手 机。</li>
+</ul>
+<h1 id="11K"><a href="#11K" class="headerlink" title="11K"></a>11K</h1><h2 id="11-1键Key"><a href="#11-1键Key" class="headerlink" title="11.1键Key"></a>11.1键Key</h2><ul>
+<li>用于加密和解密密文的数值。</li>
+</ul>
+<h2 id="11-2键盘记录器Keylogger"><a href="#11-2键盘记录器Keylogger" class="headerlink" title="11.2键盘记录器Keylogger"></a>11.2键盘记录器Keylogger</h2><ul>
+<li>一种跟踪按键和键盘事件以监视用户活动的软件或硬件。</li>
+</ul>
+<h1 id="12L"><a href="#12L" class="headerlink" title="12L"></a>12L</h1><h2 id="12-1逻辑炸弹Logic-bomb"><a href="#12-1逻辑炸弹Logic-bomb" class="headerlink" title="12.1逻辑炸弹Logic bomb"></a>12.1逻辑炸弹Logic bomb</h2><ul>
+<li>一段带有一组秘密指令的代码。它被插入系统并由特定操作触发。该代码通常执行恶意 操作，例如删除文件。</li>
+</ul>
+<h1 id="13M"><a href="#13M" class="headerlink" title="13M"></a>13M</h1><h2 id="13-1宏病毒Macro-virus"><a href="#13-1宏病毒Macro-virus" class="headerlink" title="13.1宏病毒Macro virus"></a>13.1宏病毒Macro virus</h2><ul>
+<li>一种恶意代码，使用文档应用程序的宏编程功能来执行不当行为，自我复制并在整个系 统中传播。</li>
+</ul>
+<h2 id="13-2恶意代码Malicious-code"><a href="#13-2恶意代码Malicious-code" class="headerlink" title="13.2恶意代码Malicious code"></a>13.2恶意代码Malicious code</h2><ul>
+<li>专为邪恶而设计的程序代码。旨在损害信息系统的机密性，完整性或可用性。</li>
+</ul>
+<h2 id="13-3恶意广告Malvertising"><a href="#13-3恶意广告Malvertising" class="headerlink" title="13.3恶意广告Malvertising"></a>13.3恶意广告Malvertising</h2><ul>
+<li>使用在线广告投放恶意软件。</li>
+</ul>
+<h2 id="13-4恶意软件Malware"><a href="#13-4恶意软件Malware" class="headerlink" title="13.4恶意软件Malware"></a>13.4恶意软件Malware</h2><ul>
+<li>恶意软件的简称。任何可能对组织或个人造成不利影响的病毒， 特洛伊木马，蠕虫，代 码或内容。</li>
+</ul>
+<h2 id="13-5中间人攻击MitM"><a href="#13-5中间人攻击MitM" class="headerlink" title="13.5中间人攻击MitM"></a>13.5中间人攻击MitM</h2><ul>
+<li>网络罪犯将自己置于受害者和受害者试图访问的网站之间，以获取正在传输的信息或对 其进行更改。有时缩写为 MITM ，MIM ，MiM 或 MITMA。</li>
+</ul>
+<h2 id="13-6减轻Mitigation"><a href="#13-6减轻Mitigation" class="headerlink" title="13.6减轻Mitigation"></a>13.6减轻Mitigation</h2><ul>
+<li>为最小化和解决网络安全风险而采取的步骤。</li>
+</ul>
+<h2 id="13-7移动设备管理MDM"><a href="#13-7移动设备管理MDM" class="headerlink" title="13.7移动设备管理MDM"></a>13.7移动设备管理MDM</h2><ul>
+<li>移动设备管理MDM是一种安全软件，专门用于监视，管理和保护移动设备，平板电 脑和其他设备，从而允许对设备进行远程管理。</li>
+</ul>
+<h1 id="14N"><a href="#14N" class="headerlink" title="14N"></a>14N</h1><h2 id="14-1国家网络安全中心NCSC"><a href="#14-1国家网络安全中心NCSC" class="headerlink" title="14.1国家网络安全中心NCSC"></a>14.1国家网络安全中心NCSC</h2><ul>
+<li>GCHQ 的一部分。英国政府组织成立，旨在帮助保护关键服务免受网络攻击。</li>
+</ul>
+<h2 id="14-2美国国家标准技术研究院NIST"><a href="#14-2美国国家标准技术研究院NIST" class="headerlink" title="14.2美国国家标准技术研究院NIST"></a>14.2美国国家标准技术研究院NIST</h2><ul>
+<li>美国联邦机构。负责“改善关键基础设施网络安全的框架” –组织用于管理其安全风 险的自愿性准则。</li>
+</ul>
+<h2 id="14-3NIST-网络安全标准"><a href="#14-3NIST-网络安全标准" class="headerlink" title="14.3NIST 网络安全标准"></a>14.3NIST 网络安全标准</h2><ul>
+<li>美国使用的一种框架，可帮助企业为防御网络犯罪做好准备。</li>
+</ul>
+<h1 id="15P"><a href="#15P" class="headerlink" title="15P"></a>15P</h1><h2 id="15-1数据包嗅探器Packetsniffer"><a href="#15-1数据包嗅探器Packetsniffer" class="headerlink" title="15.1数据包嗅探器Packetsniffer"></a>15.1数据包嗅探器Packetsniffer</h2><ul>
+<li>用于监视和记录网络流量的软件。它可以用于善恶 –用于运行诊断和解决问题，或侦听 私人数据交换，例如浏览历史记录，下载等。</li>
+</ul>
+<h2 id="15-2被动攻击Passive-attack"><a href="#15-2被动攻击Passive-attack" class="headerlink" title="15.2被动攻击Passive attack"></a>15.2被动攻击Passive attack</h2><ul>
+<li>攻击者试图获取机密信息以将其提取。因为他们不尝试更改数据， 所以这种类型的攻击 更难检测-因此称为“被动”。</li>
+</ul>
+<h2 id="15-3密码嗅探Password-sniffing"><a href="#15-3密码嗅探Password-sniffing" class="headerlink" title="15.3密码嗅探Password sniffing"></a>15.3密码嗅探Password sniffing</h2><ul>
+<li>通过监视或监听网络流量以检索密码数据来收集密码的技术。</li>
+</ul>
+<h2 id="15-4补丁管理Patch-management"><a href="#15-4补丁管理Patch-management" class="headerlink" title="15.4补丁管理Patch management"></a>15.4补丁管理Patch management</h2><ul>
+<li>开发人员提供了补丁更新来修复软件中的缺陷。补丁程序管理是为网络及其中的系 统获取，测试和安装软件补丁程序的活动。</li>
+</ul>
+<h2 id="15-5打补丁Patching"><a href="#15-5打补丁Patching" class="headerlink" title="15.5打补丁Patching"></a>15.5打补丁Patching</h2><ul>
+<li>将更新补丁应用于固件或软件，以提高安全性或增强性能。</li>
+</ul>
+<h2 id="15-6有效载荷Payload"><a href="#15-6有效载荷Payload" class="headerlink" title="15.6有效载荷Payload"></a>15.6有效载荷Payload</h2><ul>
+<li>执行恶意操作的恶意软件元素 – 网络安全性等同于导弹的爆炸性电荷。通常说来是造成 破坏的。</li>
+</ul>
+<h2 id="15-7支付卡行业数据安全标准PCI-DSS"><a href="#15-7支付卡行业数据安全标准PCI-DSS" class="headerlink" title="15.7支付卡行业数据安全标准PCI-DSS"></a>15.7支付卡行业数据安全标准PCI-DSS</h2><ul>
+<li>全球支付卡行业的安全实践。接受卡付款借记和贷记的零售商和服务提供商必须遵 守 PCI-DSS。</li>
+</ul>
+<h2 id="15-8笔测Pen-test-pentest"><a href="#15-8笔测Pen-test-pentest" class="headerlink" title="15.8笔测Pen test&#x2F;pentest"></a>15.8笔测Pen test&#x2F;pentest</h2><ul>
+<li>渗透测试或渗透测试的语。</li>
+</ul>
+<h2 id="15-9渗透测试Penetration-testing"><a href="#15-9渗透测试Penetration-testing" class="headerlink" title="15.9渗透测试Penetration testing"></a>15.9渗透测试Penetration testing</h2><ul>
+<li>一种旨在探查和暴露信息系统中的安全性弱点以便对其进行修复的测试。</li>
+</ul>
+<h2 id="15-10-个人身份信息PII"><a href="#15-10-个人身份信息PII" class="headerlink" title="15.10 个人身份信息PII"></a>15.10 个人身份信息PII</h2><ul>
+<li>可以识别个人的数据。</li>
+</ul>
+<h2 id="15-11-制药-Pharming"><a href="#15-11-制药-Pharming" class="headerlink" title="15.11 制药 Pharming"></a>15.11 制药 Pharming</h2><ul>
+<li>对网络基础结构的攻击，尽管用户输入了正确的地址，但仍将用户复位向到非法网站。</li>
+</ul>
+<h2 id="15-12-网络钓鱼Phishing"><a href="#15-12-网络钓鱼Phishing" class="headerlink" title="15.12 网络钓鱼Phishing"></a>15.12 网络钓鱼Phishing</h2><ul>
+<li>大量电子邮件要求提供敏感信息或将其推送到假网站。这些电子邮件通常没有针对性。</li>
+</ul>
+<h2 id="15-13-代理服务器Proxy-server"><a href="#15-13-代理服务器Proxy-server" class="headerlink" title="15.13 代理服务器Proxy server"></a>15.13 代理服务器Proxy server</h2><ul>
+<li>介于计算机和互联网之间的网络，用于通过阻止攻击者直接访问计算机或专用网络来增 强网络安全性。</li>
+</ul>
+<h1 id="16R"><a href="#16R" class="headerlink" title="16R"></a>16R</h1><h2 id="16-1勒索软件Ransomware"><a href="#16-1勒索软件Ransomware" class="headerlink" title="16.1勒索软件Ransomware"></a>16.1勒索软件Ransomware</h2><ul>
+<li>勒索软件是一种恶意软件恶意软件，它对 PC 或移动设备上的所有数据进行加密，从 而阻止数据所有者对其进行访问。</li>
+<li>感染发生后，受害者会收到一条消息，告知他&#x2F;她必须支付一定数量的钱通常以比特 币支付才能获得解密密钥。通常， 支付赎金也有时间限制。如果受害者支付赎金， 则不能 保证解密密钥会被移交。最可靠的解决方案是至少在三个不同的位置备份数据以确保冗 余，并使这些备份保持最新状态，这样您就不会失去重要的进展。</li>
+</ul>
+<h2 id="16-2红队Red-team"><a href="#16-2红队Red-team" class="headerlink" title="16.2红队Red team"></a>16.2红队Red team</h2><ul>
+<li>一个授权并组织起来的团体，可以模仿潜在对手对企业网络安全状况的攻击或利用能力。</li>
+</ul>
+<h2 id="16-3冗余Redundancy"><a href="#16-3冗余Redundancy" class="headerlink" title="16.3冗余Redundancy"></a>16.3冗余Redundancy</h2><ul>
+<li>在另一个系统，子系统，资产或过程丢失或发生故障的情况下，保持一定程度的整体功 能的其他或替代系统，子系统，资产或过程。</li>
+</ul>
+<h2 id="16-4远程访问木马RAT"><a href="#16-4远程访问木马RAT" class="headerlink" title="16.4远程访问木马RAT"></a>16.4远程访问木马RAT</h2><ul>
+<li>远程访问木马RAT使用受害者的访问权限并感染计算机，从而使网络攻击者可以不 受限制地访问 PC 上的数据。</li>
+<li>网络罪犯可以使用 RAT 窃取机密信息。RAT 包括进入计算机系统的后门，可以使 PC 成 为僵尸网络，同时还可以传播到其他设备。当前的 RAT 可以绕过强身份验证，并且可以访问 敏感的应用程序，这些应用程序随后用于将信息泄露给网络犯罪控制的服务器和网站。</li>
+</ul>
+<h2 id="16-5根套件Rootkit"><a href="#16-5根套件Rootkit" class="headerlink" title="16.5根套件Rootkit"></a>16.5根套件Rootkit</h2><ul>
+<li>在信息系统上安装了一组具有管理员级别访问权限的软件工具，这些软件工具旨在隐藏 工具的存在，维护访问权限以及隐藏工具执行的活动。</li>
+</ul>
+<h1 id="17S"><a href="#17S" class="headerlink" title="17S"></a>17S</h1><h2 id="17-1密钥Secret-key"><a href="#17-1密钥Secret-key" class="headerlink" title="17.1密钥Secret key"></a>17.1密钥Secret key</h2><ul>
+<li>用于加密和解密的加密密钥，使对称密钥加密方案能够运行。</li>
+</ul>
+<h2 id="17-2安全自动化Security-automation"><a href="#17-2安全自动化Security-automation" class="headerlink" title="17.2安全自动化Security automation"></a>17.2安全自动化Security automation</h2><ul>
+<li>使用信息技术代替手动过程来进行网络事件响应和管理。</li>
+</ul>
+<h2 id="17-3安全信息和事件管理SIEM"><a href="#17-3安全信息和事件管理SIEM" class="headerlink" title="17.3安全信息和事件管理SIEM"></a>17.3安全信息和事件管理SIEM</h2><ul>
+<li>用于监视，记录，提供警报和分析安全事件以支持威胁检测和事件响应的软件。</li>
+</ul>
+<h2 id="17-4安全监控Security-monitoring"><a href="#17-4安全监控Security-monitoring" class="headerlink" title="17.4安全监控Security monitoring"></a>17.4安全监控Security monitoring</h2><ul>
+<li>从一系列安全系统中收集数据，并将这些信息与威胁情报进行关联和分析，以识别出受 到威胁的迹象。</li>
+</ul>
+<h2 id="17-5安全运营中心SOC"><a href="#17-5安全运营中心SOC" class="headerlink" title="17.5安全运营中心SOC"></a>17.5安全运营中心SOC</h2><ul>
+<li>组织中的中央部门，负责监视，评估和防御安全问题。</li>
+</ul>
+<h2 id="17-6安全周边Security-perimeter"><a href="#17-6安全周边Security-perimeter" class="headerlink" title="17.6安全周边Security perimeter"></a>17.6安全周边Security perimeter</h2><ul>
+<li>一个明确定义的边界，可在其中执行安全控制。</li>
+</ul>
+<h2 id="17-7安全政策Security-policy"><a href="#17-7安全政策Security-policy" class="headerlink" title="17.7安全政策Security policy"></a>17.7安全政策Security policy</h2><ul>
+<li>将组织的信息和服务的可接受使用控制在可接受的风险水平以及保护组织的信息资产 的手段的规则或一组规则。</li>
+</ul>
+<h2 id="17-8单点登录SSO"><a href="#17-8单点登录SSO" class="headerlink" title="17.8单点登录SSO"></a>17.8单点登录SSO</h2><ul>
+<li>一种软件过程，使计算机用户可以使用一组凭据例如用户名和密码访问多个应用程 序。</li>
+</ul>
+<h2 id="17-9Smishing"><a href="#17-9Smishing" class="headerlink" title="17.9Smishing"></a>17.9Smishing</h2><ul>
+<li>通过 SMS 进行网络钓鱼：向用户发送大量短信，要求他们提供敏感信息例如银行详 细信息或鼓励他们访问假网站。</li>
+</ul>
+<h2 id="17-10-社会工程学Social-engineering"><a href="#17-10-社会工程学Social-engineering" class="headerlink" title="17.10 社会工程学Social engineering"></a>17.10 社会工程学Social engineering</h2><ul>
+<li>操纵人们执行特定的动作或泄露对攻击者有用的信息。操纵策略包括谎言，心理技巧， 贿赂，勒索，假冒和其他类型的威胁。社交工程通常用于提取数据并获得对信息系统的未授 权访问，这些信息系统可以是单个私人用户，也可以是组织的信息系统。</li>
+</ul>
+<h2 id="17-11-软件即服务SaaS"><a href="#17-11-软件即服务SaaS" class="headerlink" title="17.11 软件即服务SaaS"></a>17.11 软件即服务SaaS</h2><ul>
+<li>描述一种消费者通过 Internet 访问集中托管的软件应用程序的业务模型。</li>
+</ul>
+<h2 id="17-12-垃圾邮件Spam"><a href="#17-12-垃圾邮件Spam" class="headerlink" title="17.12 垃圾邮件Spam"></a>17.12 垃圾邮件Spam</h2><ul>
+<li>滥用电子消息传递系统来随意发送未经请求的批量消息。</li>
+</ul>
+<h2 id="17-13-鱼叉式网络钓鱼Spear-phishing"><a href="#17-13-鱼叉式网络钓鱼Spear-phishing" class="headerlink" title="17.13 鱼叉式网络钓鱼Spear phishing"></a>17.13 鱼叉式网络钓鱼Spear phishing</h2><ul>
+<li>鱼叉式网络钓鱼是一种网络攻击，旨在使用一种非常具体且个性化的消息从受害者中提 取敏感数据，这些消息的设计看起来像是来自收件人认识和&#x2F;或信任的人的消息。</li>
+<li>该消息通常发送给个人或公司，并且由于计划周密，因此非常有效。攻击者花费时间和资源来收集有关受害者的信息兴趣，活动，个人历史等，以创建鱼叉式网络钓鱼消息通 常是电子邮件。鱼叉式网络钓鱼使用紧迫感和熟悉感似乎来自您认识的人来操纵受害 者，因此目标用户没有时间仔细检查信息。</li>
+</ul>
+<h2 id="17-14-欺骗Spoofing"><a href="#17-14-欺骗Spoofing" class="headerlink" title="17.14 欺骗Spoofing"></a>17.14 欺骗Spoofing</h2><ul>
+<li>伪造传输的发送地址以获得未经授权的进入安全系统。</li>
+</ul>
+<h2 id="17-15-间谍软件Spyware"><a href="#17-15-间谍软件Spyware" class="headerlink" title="17.15 间谍软件Spyware"></a>17.15 间谍软件Spyware</h2><ul>
+<li>间谍软件是一种恶意软件，旨在在受害者不知情的情况下收集和窃取受害者的敏感信息。 木马，广告软件和系统监视器是不同类型的间谍软件。间谍软件监视并存储受害者的 Internet 活动击键，浏览器历史记录等，还可以获取用户名，密码，财务信息等。它还可以将此 机密数据发送到网络罪犯操作的服务器，以便可以在随后的网络攻击中使用。</li>
+</ul>
+<h2 id="17-16-SQL-注入SQL-injection"><a href="#17-16-SQL-注入SQL-injection" class="headerlink" title="17.16 SQL 注入SQL injection"></a>17.16 SQL 注入SQL injection</h2><ul>
+<li>这是一种使用代码注入来攻击由数据驱动的应用程序的策略。恶意注入的 SQL 代码可 以执行多种操作，包括将所有数据转储到攻击者控制的位置的数据库中。通过这种攻击， 恶 意黑客可以欺骗身份，修改数据或篡改数据，泄露机密数据，删除和销毁数据或使其不可用。 他们还可以完全控制数据库。</li>
+</ul>
+<h2 id="17-17-SSL-安全套接字层"><a href="#17-17-SSL-安全套接字层" class="headerlink" title="17.17 SSL &#x2F;安全套接字层"></a>17.17 SSL &#x2F;安全套接字层</h2><ul>
+<li>这是一种加密方法，可确保从用户发送到特定网站以及返回的数据的安全性。加密此数 据传输可确保没有人可以窥探传输并获得机密信息例如，在线购物时的卡详细信息的访 问权限。合法网站使用 SSL以 https 开头。用户应避免在不使用 SSL 的网站中输入数据。</li>
+</ul>
+<h2 id="17-18-隐写术Steganography"><a href="#17-18-隐写术Steganography" class="headerlink" title="17.18 隐写术Steganography"></a>17.18 隐写术Steganography</h2><ul>
+<li>一种加密数据，将其隐藏在文本或图像中的方法，通常是出于恶意目的。</li>
+</ul>
+<h2 id="17-19-对称密钥Symmetric-key"><a href="#17-19-对称密钥Symmetric-key" class="headerlink" title="17.19 对称密钥Symmetric key"></a>17.19 对称密钥Symmetric key</h2><ul>
+<li>用于执行加密操作及其相反操作的加密密钥，例如，用于加密纯文本和解密密文，或创 建消息身份验证代码并验证该代码。</li>
+</ul>
+<h1 id="18T"><a href="#18T" class="headerlink" title="18T"></a>18T</h1><h2 id="18-1威胁分析Threat-analysis"><a href="#18-1威胁分析Threat-analysis" class="headerlink" title="18.1威胁分析Threat analysis"></a>18.1威胁分析Threat analysis</h2><ul>
+<li>对单个威胁的特征进行详细评估。</li>
+</ul>
+<h2 id="18-2威胁评估Threat-assessment"><a href="#18-2威胁评估Threat-assessment" class="headerlink" title="18.2威胁评估Threat assessment"></a>18.2威胁评估Threat assessment</h2><ul>
+<li>识别或评估具有或表明可能危害生命，信息，操作和&#x2F;或财产的实体，动作或事件自 然或人为的产品或过程。</li>
+</ul>
+<h2 id="18-3威胁搜寻Threat-hunting"><a href="#18-3威胁搜寻Threat-hunting" class="headerlink" title="18.3威胁搜寻Threat hunting"></a>18.3威胁搜寻Threat hunting</h2><ul>
+<li>网络威胁搜寻是在网络和端点之间进行主动搜索以识别逃避现有安全控制措施的威胁 的过程。</li>
+</ul>
+<h2 id="18-4威胁管理Threat-management"><a href="#18-4威胁管理Threat-management" class="headerlink" title="18.4威胁管理Threat management"></a>18.4威胁管理Threat management</h2><ul>
+<li>没有防止 100％的网络威胁的灵丹妙药。成功的威胁管理需要包含预防， 检测，响应和 恢复的多层方法。</li>
+</ul>
+<h2 id="18-5威胁监控Threat-monitoring"><a href="#18-5威胁监控Threat-monitoring" class="headerlink" title="18.5威胁监控Threat monitoring"></a>18.5威胁监控Threat monitoring</h2><ul>
+<li>在此过程中，将收集，分析和检查此类别中的安全审核和其他信息，以查看信息系统中 的某些事件是否会危害系统的安全性。这是一个连续的过程。</li>
+</ul>
+<h2 id="18-6票Ticket"><a href="#18-6票Ticket" class="headerlink" title="18.6票Ticket"></a>18.6票Ticket</h2><ul>
+<li>在访问控制中，票证是对客户端或服务的身份进行身份验证的数据，并与临时加密密钥 会话密钥一起形成凭据。</li>
+<li>代币Token在安全性方面，令牌是用于验证用户身份的物理电子设备。令牌通常是 两因素或多因素身份验证机制的一部分。在某些情况下， 令牌也可以代替密码，并且可以通 过密钥卡，USB ，ID 卡或智能卡的形式找到。</li>
+</ul>
+<h2 id="18-7交通灯协议Traffic-light-protocol"><a href="#18-7交通灯协议Traffic-light-protocol" class="headerlink" title="18.7交通灯协议Traffic light protocol"></a>18.7交通灯协议Traffic light protocol</h2><ul>
+<li>一组使用四种颜色红色，琥珀色，绿色和白色的名称，用于确保与正确的受众共享 敏感信息。</li>
+</ul>
+<h2 id="18-8特洛伊木马Trojan-horse"><a href="#18-8特洛伊木马Trojan-horse" class="headerlink" title="18.8特洛伊木马Trojan horse"></a>18.8特洛伊木马Trojan horse</h2><ul>
+<li>计算机程序似乎具有有用的功能，但也具有躲避安全机制的隐藏的潜在恶意功能，有时 是通过利用调用程序的系统实体的合法授权来实现的。</li>
+</ul>
+<h2 id="18-9两因素验证2FA"><a href="#18-9两因素验证2FA" class="headerlink" title="18.9两因素验证2FA"></a>18.9两因素验证2FA</h2><ul>
+<li>使用两个不同的组件来验证用户声明的身份。也称为多因素身份验证。</li>
+</ul>
+<h2 id="18-10-广告软件Typhoid-adware"><a href="#18-10-广告软件Typhoid-adware" class="headerlink" title="18.10 广告软件Typhoid adware"></a>18.10 广告软件Typhoid adware</h2><ul>
+<li>这是一种网络安全威胁，它利用中间人攻击，目的是在用户使用公用网络例如公用的 非加密 WiFi 热点访问的某些网页中注入广告。在这种情况下，使用的计算机不需要上面 装有广告软件，因此安装传统的防病毒软件无法抵御威胁。尽管广告本身可能是非恶意的， 但它们可能会使用户面临其他威胁。例如， 广告可以宣传实际上是恶意软件或网络钓鱼攻击 的伪造防病毒软件。</li>
+<li>Typhoid adware 原义是“伤寒广告软件”， 而Typhoid 一词是来自一个传染病病例典故，全称为“Typhoid Mary”伤寒玛丽。“伤寒玛 丽”Typhoid Mary，是美国发现的第一位无症状伤寒杆菌带菌者，她本名叫玛丽·梅伦Mary Mallon，1869 年9 月23 日——1938 年11月11 日，生于爱尔兰，15 岁时移民美国。起初， 她给人当女佣。后来，她发现自己很有烹调才能，于是转行当了厨师，每月能赚到比做女佣 高出很多的薪水。玛丽虽然身体一直健康，却携带伤寒杆菌。后来玛丽相继传染多人，最终 被隔离在纽约附近的北兄弟岛North Brother Island上的传染病房。医生对隔离中的玛丽 使用了可以治疗伤寒病的所有药物，但伤寒病菌却一直顽强地存在于她的体内。最终玛丽于 1938 年11月11 日死于肺炎，而非伤寒，享年69 岁，推测感染肺炎的原因是死前六个月中 风导致她瘫痪在床。</li>
+<li>“伤寒玛丽“的病例特点是，她自己感染病菌，却没有任何症状，但可以传染别人，而 Typhoid adware 恶意软件的特点与此类似，the adware may run from an infected computer whose owner would not see any manifestations, yet will affect neighboring ones. For the latter peculiarity it was named in an analogy with Typhoid Mary Mary Mallon, the first identified person who never experienced any symptoms yet spread infection. 感染的广告软件可以在被感染 的计算机上运行，但其计算机所有者看不到任何感染表现，但会影响感染给邻近的计算 机。由于这种恶意软件的特殊性，它被命名为伤寒玛丽Mary Mallon，伤寒玛丽是美国第 一个被确诊，却没有任何症状，但能传播病菌的人。</li>
+<li>因为很少有中国人知道这个传染病的典故，为了防止歧义误解，此处根据原文采用了意 译“广告软件”，而不是“伤寒广告软件”。</li>
+</ul>
+<h1 id="19U"><a href="#19U" class="headerlink" title="19U"></a>19U</h1><h2 id="19-1未经授权的访问Unauthorised-access"><a href="#19-1未经授权的访问Unauthorised-access" class="headerlink" title="19.1未经授权的访问Unauthorised access"></a>19.1未经授权的访问Unauthorised access</h2><ul>
+<li>违反规定的安全策略的任何访问。</li>
+</ul>
+<h2 id="19-2URL-注入"><a href="#19-2URL-注入" class="headerlink" title="19.2URL 注入"></a>19.2URL 注入</h2><ul>
+<li>URL或链接注入是指网络罪犯在其他人拥有的网站上创建包含垃圾邮件单词或链接 的新页面时。有时， 这些页面还包含恶意代码，这些恶意代码会将您的用户复位向到其他网 页，或者使网站的 Web 服务器参与 DDoS 攻击。URL 注入通常是由于服务器目录或用于操作 网站的软件中的漏洞例如过时的 WordPress 或插件而发生的。</li>
+</ul>
+<h1 id="20V"><a href="#20V" class="headerlink" title="20V"></a>20V</h1><h2 id="20-1虚拟专用网VPN"><a href="#20-1虚拟专用网VPN" class="headerlink" title="20.1虚拟专用网VPN"></a>20.1虚拟专用网VPN</h2><ul>
+<li>通常创建一个加密网络，以允许远程用户进行安全连接，例如，在一个办公室中有多个 位置的组织中。</li>
+</ul>
+<h2 id="20-2病毒Virus"><a href="#20-2病毒Virus" class="headerlink" title="20.2病毒Virus"></a>20.2病毒Virus</h2><ul>
+<li>可以自我复制并被设计为感染合法软件程序或系统的程序。一种恶意软件。</li>
+</ul>
+<h2 id="20-3脆弱性Vulnerability"><a href="#20-3脆弱性Vulnerability" class="headerlink" title="20.3脆弱性Vulnerability"></a>20.3脆弱性Vulnerability</h2><ul>
+<li>软件，系统或过程中的弱点或缺陷。攻击者可能试图利用漏洞来获得对系统的未经授权 的访问。</li>
+</ul>
+<h1 id="21W"><a href="#21W" class="headerlink" title="21W"></a>21W</h1><h2 id="21-1wabbits"><a href="#21-1wabbits" class="headerlink" title="21.1wabbits"></a>21.1wabbits</h2><ul>
+<li>兔子是病毒，蠕虫和特洛伊木马中的四种主要恶意软件之一。这是一种计算机程序，可 以在本地系统上重复复制。可以对 Wabbits 进行编程，使其具有恶意副作用。叉子炸弹就是 一个兔子的例子：这是对使用叉子功能的计算机的 DoS 攻击形式。叉子炸弹会迅速创建大 量进程，最终导致系统崩溃。Wabbits 不会尝试通过网络传播到其他计算机。</li>
+</ul>
+<h2 id="21-2水坑水坑攻击Water-holing-watering-hole-attack"><a href="#21-2水坑水坑攻击Water-holing-watering-hole-attack" class="headerlink" title="21.2水坑水坑攻击Water-holing watering hole attack"></a>21.2水坑水坑攻击Water-holing watering hole attack</h2><ul>
+<li>建立一个虚假网站或破坏一个真实的网站以利用访问用户。</li>
+</ul>
+<h2 id="21-3水坑Watering-hole"><a href="#21-3水坑Watering-hole" class="headerlink" title="21.3水坑Watering hole"></a>21.3水坑Watering hole</h2><ul>
+<li>水坑是最早在 2009 年和 2010 年发现的计算机攻击策略的名称。</li>
+<li>受害者是一个特定的，非常有针对性的团体，例如公司，组织，代理机构，行业等。攻 击者花费时间获取有关目标的战略信息：例如，观察哪些合法网站更常被目标用户访问。组。 然后，攻击者利用一个漏洞，并在站点所有者不知情的情况下用恶意软件感染了这些受信任 的网站之一。</li>
+<li>最终，来自该组织的某人将陷入陷阱并感染其计算机，从而使攻击者可以访问目标的整 个网络。这些攻击之所以有效， 是因为网站技术始终存在漏洞，即使使用最流行的系统例 如 WordPress，也比以往任何时候都更容易对网站进行入侵而不会引起注意。</li>
+</ul>
+<h2 id="21-4捕鲸Whaling"><a href="#21-4捕鲸Whaling" class="headerlink" title="21.4捕鲸Whaling"></a>21.4捕鲸Whaling</h2><ul>
+<li>针对高级管理人员的针对性强的网络钓鱼攻击伪装成合法电子邮件。</li>
+</ul>
+<h2 id="21-5白队White-team"><a href="#21-5白队White-team" class="headerlink" title="21.5白队White team"></a>21.5白队White team</h2><ul>
+<li>一个负责裁判模拟攻击者红队和信息系统实际防御者蓝队之间的交战的小组。</li>
+</ul>
+<h2 id="21-6白名单Whitelist"><a href="#21-6白名单Whitelist" class="headerlink" title="21.6白名单Whitelist"></a>21.6白名单Whitelist</h2><ul>
+<li>实体列表，这些实体被认为是可信任的，并被授予访问权限或特权。</li>
+</ul>
+<h2 id="21-7蠕虫Worm"><a href="#21-7蠕虫Worm" class="headerlink" title="21.7蠕虫Worm"></a>21.7蠕虫Worm</h2><ul>
+<li>一个自我复制，自我传播，独立的程序，使用网络机制进行自我传播。</li>
+</ul>
+<h1 id="22Z"><a href="#22Z" class="headerlink" title="22Z"></a>22Z</h1><h2 id="22-1Zero-day"><a href="#22-1Zero-day" class="headerlink" title="22.1Zero-day"></a>22.1Zero-day</h2><ul>
+<li>黑客可以利用的，最近发现的漏洞或错误，对于供应商或防病毒公司而言尚不为人 所知。</li>
+</ul>
+<h2 id="22-2僵尸Zombie"><a href="#22-2僵尸Zombie" class="headerlink" title="22.2僵尸Zombie"></a>22.2僵尸Zombie</h2><ul>
+<li>僵尸计算机是连接到 Internet 的计算机，从外观上看，它可以正常运行，但是可以由具 有远程访问权限的黑客控制，该黑客通过开放端口发送命令。僵尸通常用于执行恶意任务， 例如将垃圾邮件或其他受感染的数据传播到其他计算机，或者发起 DoS拒绝服务攻击， 而所有者却不知道。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://kukual.github.io/">kukual</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://kukual.github.io/posts/83e403fa/">https://kukual.github.io/posts/83e403fa/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="external nofollow noopener noreferrer">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://kukual.github.io" target="_blank">kukualのblog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a></div><div class="post-share"><div class="social-share" data-image="/img/102.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>感谢您的支持！</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"></a><div class="post-qr-code-desc">微信</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/a5ecaa69/" title="网络安全术语"><img class="cover" src="/img/102.jpeg" onerror="onerror=null;src='/img/06.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">网络安全术语</div></div><div class="info-2"><div class="info-item-1">系统梳理网络安全攻击、防守、技术、工具及攻防演练所需的中英文术语，方便快速查阅与对照。</div></div></div></a><a class="pagination-related" href="/posts/a4b345c0/" title="安全见闻"><img class="cover" src="/img/102.jpeg" onerror="onerror=null;src='/img/06.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">安全见闻</div></div><div class="info-2"><div class="info-item-1">以费曼学习法切入，梳理渗透测试流程、语言选择、软件/网络/硬件/AI安全全景，并分享学习心得。</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/a5ecaa69/" title="网络安全术语"><img class="cover" src="/img/102.jpeg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-13</div><div class="info-item-2">网络安全术语</div></div><div class="info-2"><div class="info-item-1">系统梳理网络安全攻击、防守、技术、工具及攻防演练所需的中英文术语，方便快速查阅与对照。</div></div></div></a><a class="pagination-related" href="/posts/a4b345c0/" title="安全见闻"><img class="cover" src="/img/102.jpeg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-15</div><div class="info-item-2">安全见闻</div></div><div class="info-2"><div class="info-item-1">以费曼学习法切入，梳理渗透测试流程、语言选择、软件/网络/硬件/AI安全全景，并分享学习心得。</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/02.jpg" onerror="this.onerror=null;this.src='/img/05.jpg'" alt="avatar"></div><div class="author-info-name">kukual</div><div class="author-info-description">专注于网络安全技术研究 | 渗透测试实战案例 | CTF竞赛解析 | 漏洞复现分析</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" href="https://kukual.github.io/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/kukual" target="_blank" title="Github" rel="external nofollow noopener noreferrer"><i class="fab fa-github" style="color: #8a2be2;"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_74811095" target="_blank" title="CSDN" rel="external nofollow noopener noreferrer"><i class="fa-solid fa-code" style="color: #8a2be2;"></i></a><a class="social-icon" href="https://www.xiaohongshu.com/user/profile/5e8a0aae0000000001002ce4" target="_blank" title="redbook" rel="external nofollow noopener noreferrer"><i class="fa-solid fa-book" style="color: #8a2be2;"></i></a><a class="social-icon" href="https://space.bilibili.com/498478848" target="_blank" title="bilibili" rel="external nofollow noopener noreferrer"><i class="fab fa-bilibili" style="color: #8a2be2;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><style>
+.announcement-card {
+    --main-color: #ff00ff;
+    --secondary-color: #00ffff;
+    --highlight-color: #ff5500;
+    position: relative;
+    overflow: hidden;
+}
+.announcement-content {
+    font-size: 1rem; 
+    line-height: 1.2; 
+    color: #ffffff;
+    position: relative;
+}
+.keyword {
+    color: var(--secondary-color);
+    font-weight: 300;
+    font-size: 1.1rem; 
+}
+.highlight {
+    color: var(--main-color);
+    font-weight: 1000;
+    font-size: 1.2rem; 
+}
+.announcement-content ul {
+    list-style-type: none;
+    margin: 0.8rem 0; 
+    padding-left: 1.5rem;   
+}
+</style>
+<div class="announcement-card">
+    <div class="announcement-content">
+        <p><span class="highlight">欢迎来到「酷库阿洛」网络安全研习录</span>！🎉</p>
+        <p><strong>本平台专注于：</strong></p>
+        <ul>
+            <li><span class="keyword">> 网络安全技术研究</span></li>
+            <li><span class="keyword">> 渗透测试实战案例</span></li>
+            <li><span class="keyword">> CTF竞赛解析</span></li>
+            <li><span class="keyword">> 漏洞复现分析</span></li>
+        </ul>
+        <p>🌟 <strong>加入我们，一起探索网络安全奥秘，提升攻防实战能力，共同守护数字世界的安宁！</strong></p>
+    </div>
+</div>
+</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%9C%AF%E8%AF%AD%E4%B8%AD%E8%8B%B1%E6%96%87%E8%A1%A8"><span class="toc-number">1.</span> <span class="toc-text">网络安全术语中英文表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-A"><span class="toc-number">2.</span> <span class="toc-text">1 A</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E9%AB%98%E7%BA%A7%E6%8C%81%E4%B9%85%E5%A8%81%E8%83%81APT"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 高级持久威胁APT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E8%AD%A6%E6%8A%A5Alert"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 警报Alert</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E9%98%B2%E6%AF%92%E8%BD%AF%E4%BB%B6Antivirus"><span class="toc-number">2.3.</span> <span class="toc-text">1.3 防毒软件Antivirus</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E6%94%BB%E5%87%BB%E7%89%B9%E5%BE%81Attack-signature"><span class="toc-number">2.4.</span> <span class="toc-text">1.4 攻击特征Attack signature</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-%E6%94%BB%E5%87%BB%E8%80%85Attacker"><span class="toc-number">2.5.</span> <span class="toc-text">1.5 攻击者Attacker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6-%E8%AE%A4%E8%AF%81%E6%96%B9%E5%BC%8FAuthentication"><span class="toc-number">2.6.</span> <span class="toc-text">1.6 认证方式Authentication</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-B"><span class="toc-number">3.</span> <span class="toc-text">2 B</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E8%A1%8C%E4%B8%BA%E7%9B%91%E6%8E%A7Behaviour-monitoring"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 行为监控Behaviour monitoring</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E9%BB%91%E5%90%8D%E5%8D%95Blacklist"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 黑名单Blacklist</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E8%93%9D%E9%98%9FBlue-team"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 蓝队Blue team</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E6%9C%BA%E5%99%A8%E4%BA%BAbot"><span class="toc-number">3.4.</span> <span class="toc-text">2.4 机器人bot</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-%E5%83%B5%E5%B0%B8%E7%BD%91%E7%BB%9C-Botnet"><span class="toc-number">3.5.</span> <span class="toc-text">2.5 僵尸网络 Botnet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-%E8%BF%9D%E5%8F%8DBreach"><span class="toc-number">3.6.</span> <span class="toc-text">2.6 违反Breach</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-7-%E5%B8%A6%E4%B8%8A%E8%87%AA%E5%B7%B1%E7%9A%84%E8%AE%BE%E5%A4%87BYOD"><span class="toc-number">3.7.</span> <span class="toc-text">2.7 带上自己的设备BYOD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-8-%E8%9B%AE%E5%8A%9B%E6%94%BB%E5%87%BBBrute-force-attack"><span class="toc-number">3.8.</span> <span class="toc-text">2.8 蛮力攻击Brute force attack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-9-%E7%BC%BA%E9%99%B7-bug"><span class="toc-number">3.9.</span> <span class="toc-text">2.9 缺陷 bug</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-C"><span class="toc-number">4.</span> <span class="toc-text">3 C</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E8%AF%81%E4%B9%A6Certificate"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 证书Certificate</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E8%AE%A4%E8%AF%81%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%A1%E6%A0%B8%E5%91%98CISA"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 认证信息系统审核员CISA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E8%AE%A4%E8%AF%81%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%BB%8F%E7%90%86CISM"><span class="toc-number">4.3.</span> <span class="toc-text">3.3 认证信息系统安全经理CISM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E4%B8%93%E5%AE%B6CISSP"><span class="toc-number">4.4.</span> <span class="toc-text">3.4 信息系统安全认证专家CISSP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-%E5%AF%86%E7%A0%81Cipher"><span class="toc-number">4.5.</span> <span class="toc-text">3.5 密码Cipher</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BA%8B%E4%BB%B6%E5%93%8D%E5%BA%94%E5%B0%8F%E7%BB%84CIRT"><span class="toc-number">4.6.</span> <span class="toc-text">3.6 计算机事件响应小组CIRT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-7-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E9%98%B2%E5%BE%A1CND"><span class="toc-number">4.7.</span> <span class="toc-text">3.7 计算机网络防御CND</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-8-%E4%BF%A1%E6%81%AF%E5%92%8C%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E7%9A%84%E6%8E%A7%E5%88%B6%E7%9B%AE%E6%A0%87COBIT"><span class="toc-number">4.8.</span> <span class="toc-text">3.8 信息和相关技术的控制目标COBIT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-9-%E8%AF%81%E4%B9%A6Credentials"><span class="toc-number">4.9.</span> <span class="toc-text">3.9 证书Credentials</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-10%E8%B7%A8%E7%AB%99%E7%82%B9%E8%84%9A%E6%9C%ACXSS"><span class="toc-number">4.10.</span> <span class="toc-text">3.10跨站点脚本XSS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-11%E5%AF%86%E7%A0%81%E5%AD%A6Cryptography"><span class="toc-number">4.11.</span> <span class="toc-text">3.11密码学Cryptography</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-12%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB-Cyber-attack"><span class="toc-number">4.12.</span> <span class="toc-text">3.12网络攻击 Cyber attack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-13%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80-Cyber-Essentials"><span class="toc-number">4.13.</span> <span class="toc-text">3.13网络基础 Cyber Essentials</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-14%E7%BD%91%E7%BB%9C%E4%BA%8B%E4%BB%B6Cyber-incident"><span class="toc-number">4.14.</span> <span class="toc-text">3.14网络事件Cyber incident</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-15%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8Cyber-security"><span class="toc-number">4.15.</span> <span class="toc-text">3.15网络安全Cyber security</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-D"><span class="toc-number">5.</span> <span class="toc-text">4 D</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E9%9D%99%E6%AD%A2%E6%95%B0%E6%8D%AEData-at-rest"><span class="toc-number">5.1.</span> <span class="toc-text">4.1 静止数据Data at rest</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E6%95%B0%E6%8D%AE%E6%B3%84%E9%9C%B2Data-breach"><span class="toc-number">5.2.</span> <span class="toc-text">4.2 数据泄露Data breach</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-%E8%B5%84%E6%96%99%E9%81%97%E5%A4%B1Data-loss"><span class="toc-number">5.3.</span> <span class="toc-text">4.4 资料遗失Data loss</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-%E9%98%B2%E6%AD%A2%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1DLP"><span class="toc-number">5.4.</span> <span class="toc-text">4.5 防止数据丢失DLP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6-%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8Data-security"><span class="toc-number">5.5.</span> <span class="toc-text">4.6 数据安全Data security</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7-%E8%A7%A3%E5%AF%86Decryption"><span class="toc-number">5.6.</span> <span class="toc-text">4.7 解密Decryption</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-8-%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1DoS"><span class="toc-number">5.7.</span> <span class="toc-text">4.8 拒绝服务DoS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-9-%E5%AD%97%E5%85%B8%E6%94%BB%E5%87%BBDictionary-attack"><span class="toc-number">5.8.</span> <span class="toc-text">4.9 字典攻击Dictionary attack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-10%E5%88%86%E5%B8%83%E5%BC%8F%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1DDoS"><span class="toc-number">5.9.</span> <span class="toc-text">4.10分布式拒绝服务DDoS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-11%E4%B8%8B%E8%BD%BD%E6%94%BB%E5%87%BBDownload-attack"><span class="toc-number">5.10.</span> <span class="toc-text">4.11下载攻击Download attack</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-E"><span class="toc-number">6.</span> <span class="toc-text">5 E</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E7%94%B5%E5%AD%90%E6%88%98EW"><span class="toc-number">6.1.</span> <span class="toc-text">5.1 电子战EW</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E7%BC%96%E7%A0%81Encode"><span class="toc-number">6.2.</span> <span class="toc-text">5.2 编码Encode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E5%8A%A0%E5%AF%86Encryption"><span class="toc-number">6.3.</span> <span class="toc-text">5.3 加密Encryption</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-%E7%BB%88%E7%AB%AFEndpoint"><span class="toc-number">6.4.</span> <span class="toc-text">5.4 终端Endpoint</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5-%E9%81%93%E5%BE%B7%E9%BB%91%E5%AE%A2Ethical-hacking"><span class="toc-number">6.5.</span> <span class="toc-text">5.5 道德黑客Ethical hacking</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-6-%E6%B8%97%E5%87%BAExfiltration"><span class="toc-number">6.6.</span> <span class="toc-text">5.6 渗出Exfiltration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-7-%E5%88%A9%E7%94%A8Exploit"><span class="toc-number">6.7.</span> <span class="toc-text">5.7 利用Exploit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-8-%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7Exploit-kit"><span class="toc-number">6.8.</span> <span class="toc-text">5.8 漏洞利用工具Exploit kit</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-F"><span class="toc-number">7.</span> <span class="toc-text">6 F</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E9%98%B2%E7%81%AB%E5%A2%99%E5%8A%9F%E8%83%BDFirewall"><span class="toc-number">7.1.</span> <span class="toc-text">6.1 防火墙功能Firewall</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-G"><span class="toc-number">8.</span> <span class="toc-text">7 G</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-GCHQ"><span class="toc-number">8.1.</span> <span class="toc-text">7.1 GCHQ</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-GDPR"><span class="toc-number">8.2.</span> <span class="toc-text">7.2 GDPR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-%E6%B2%BB%E7%90%86%EF%BC%8C%E9%A3%8E%E9%99%A9%E7%AE%A1%E7%90%86%E4%B8%8E%E5%90%88%E8%A7%84GRC"><span class="toc-number">8.3.</span> <span class="toc-text">7.3 治理，风险管理与合规GRC</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-H"><span class="toc-number">9.</span> <span class="toc-text">8 H</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1-%E9%BB%91%E5%AE%A2Hacker"><span class="toc-number">9.1.</span> <span class="toc-text">8.1 黑客Hacker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2-%E6%95%A3%E5%88%97Hashing"><span class="toc-number">9.2.</span> <span class="toc-text">8.2 散列Hashing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3-%E8%9C%9C%E7%BD%90%E8%9C%9C%E7%BD%91Honeypot-honeynet"><span class="toc-number">9.3.</span> <span class="toc-text">8.3 蜜罐蜜网Honeypot honeynet</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-I"><span class="toc-number">10.</span> <span class="toc-text">9 I</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#9-1-%E4%BA%8B%E4%BB%B6Incident"><span class="toc-number">10.1.</span> <span class="toc-text">9.1 事件Incident</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-2-%E4%BA%8B%E4%BB%B6%E5%93%8D%E5%BA%94%E8%AE%A1%E5%88%92Incident-response-plan"><span class="toc-number">10.2.</span> <span class="toc-text">9.2 事件响应计划Incident response plan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-3-%E6%8C%87%E7%A4%BA%E7%AC%A6Indicator"><span class="toc-number">10.3.</span> <span class="toc-text">9.3 指示符Indicator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-4-%E5%B7%A5%E4%B8%9A%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9FICS"><span class="toc-number">10.4.</span> <span class="toc-text">9.4 工业控制系统ICS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-5-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%94%BF%E7%AD%96Information-security-policy"><span class="toc-number">10.5.</span> <span class="toc-text">9.5 信息安全政策Information security policy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-6-%E5%9B%BD%E9%99%85%E6%A0%87%E5%87%86%E5%8C%96%E7%BB%84%E7%BB%87ISO"><span class="toc-number">10.6.</span> <span class="toc-text">9.6 国际标准化组织ISO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-7-%E7%89%A9%E8%81%94%E7%BD%91IoT"><span class="toc-number">10.7.</span> <span class="toc-text">9.7 物联网IoT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-8-%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F-%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E4%B8%8E%E9%98%B2%E5%BE%A1IDS-IDP"><span class="toc-number">10.8.</span> <span class="toc-text">9.8 入侵检测系统&#x2F;入侵检测与防御IDS &#x2F; IDP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-9-IP-%E6%AC%BA%E9%AA%97IP-spoofing"><span class="toc-number">10.9.</span> <span class="toc-text">9.9 IP 欺骗IP spoofing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-10ISO-27001"><span class="toc-number">10.10.</span> <span class="toc-text">9.10ISO 27001</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10J"><span class="toc-number">11.</span> <span class="toc-text">10J</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#10-1%E8%B6%8A%E7%8B%B1Jailbreak"><span class="toc-number">11.1.</span> <span class="toc-text">10.1越狱Jailbreak</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#11K"><span class="toc-number">12.</span> <span class="toc-text">11K</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#11-1%E9%94%AEKey"><span class="toc-number">12.1.</span> <span class="toc-text">11.1键Key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-2%E9%94%AE%E7%9B%98%E8%AE%B0%E5%BD%95%E5%99%A8Keylogger"><span class="toc-number">12.2.</span> <span class="toc-text">11.2键盘记录器Keylogger</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#12L"><span class="toc-number">13.</span> <span class="toc-text">12L</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#12-1%E9%80%BB%E8%BE%91%E7%82%B8%E5%BC%B9Logic-bomb"><span class="toc-number">13.1.</span> <span class="toc-text">12.1逻辑炸弹Logic bomb</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13M"><span class="toc-number">14.</span> <span class="toc-text">13M</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#13-1%E5%AE%8F%E7%97%85%E6%AF%92Macro-virus"><span class="toc-number">14.1.</span> <span class="toc-text">13.1宏病毒Macro virus</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-2%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81Malicious-code"><span class="toc-number">14.2.</span> <span class="toc-text">13.2恶意代码Malicious code</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-3%E6%81%B6%E6%84%8F%E5%B9%BF%E5%91%8AMalvertising"><span class="toc-number">14.3.</span> <span class="toc-text">13.3恶意广告Malvertising</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-4%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6Malware"><span class="toc-number">14.4.</span> <span class="toc-text">13.4恶意软件Malware</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-5%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BBMitM"><span class="toc-number">14.5.</span> <span class="toc-text">13.5中间人攻击MitM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-6%E5%87%8F%E8%BD%BBMitigation"><span class="toc-number">14.6.</span> <span class="toc-text">13.6减轻Mitigation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-7%E7%A7%BB%E5%8A%A8%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86MDM"><span class="toc-number">14.7.</span> <span class="toc-text">13.7移动设备管理MDM</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#14N"><span class="toc-number">15.</span> <span class="toc-text">14N</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#14-1%E5%9B%BD%E5%AE%B6%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%AD%E5%BF%83NCSC"><span class="toc-number">15.1.</span> <span class="toc-text">14.1国家网络安全中心NCSC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-2%E7%BE%8E%E5%9B%BD%E5%9B%BD%E5%AE%B6%E6%A0%87%E5%87%86%E6%8A%80%E6%9C%AF%E7%A0%94%E7%A9%B6%E9%99%A2NIST"><span class="toc-number">15.2.</span> <span class="toc-text">14.2美国国家标准技术研究院NIST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-3NIST-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%A0%87%E5%87%86"><span class="toc-number">15.3.</span> <span class="toc-text">14.3NIST 网络安全标准</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#15P"><span class="toc-number">16.</span> <span class="toc-text">15P</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#15-1%E6%95%B0%E6%8D%AE%E5%8C%85%E5%97%85%E6%8E%A2%E5%99%A8Packetsniffer"><span class="toc-number">16.1.</span> <span class="toc-text">15.1数据包嗅探器Packetsniffer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-2%E8%A2%AB%E5%8A%A8%E6%94%BB%E5%87%BBPassive-attack"><span class="toc-number">16.2.</span> <span class="toc-text">15.2被动攻击Passive attack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-3%E5%AF%86%E7%A0%81%E5%97%85%E6%8E%A2Password-sniffing"><span class="toc-number">16.3.</span> <span class="toc-text">15.3密码嗅探Password sniffing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-4%E8%A1%A5%E4%B8%81%E7%AE%A1%E7%90%86Patch-management"><span class="toc-number">16.4.</span> <span class="toc-text">15.4补丁管理Patch management</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-5%E6%89%93%E8%A1%A5%E4%B8%81Patching"><span class="toc-number">16.5.</span> <span class="toc-text">15.5打补丁Patching</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-6%E6%9C%89%E6%95%88%E8%BD%BD%E8%8D%B7Payload"><span class="toc-number">16.6.</span> <span class="toc-text">15.6有效载荷Payload</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-7%E6%94%AF%E4%BB%98%E5%8D%A1%E8%A1%8C%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E6%A0%87%E5%87%86PCI-DSS"><span class="toc-number">16.7.</span> <span class="toc-text">15.7支付卡行业数据安全标准PCI-DSS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-8%E7%AC%94%E6%B5%8BPen-test-pentest"><span class="toc-number">16.8.</span> <span class="toc-text">15.8笔测Pen test&#x2F;pentest</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-9%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95Penetration-testing"><span class="toc-number">16.9.</span> <span class="toc-text">15.9渗透测试Penetration testing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-10-%E4%B8%AA%E4%BA%BA%E8%BA%AB%E4%BB%BD%E4%BF%A1%E6%81%AFPII"><span class="toc-number">16.10.</span> <span class="toc-text">15.10 个人身份信息PII</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-11-%E5%88%B6%E8%8D%AF-Pharming"><span class="toc-number">16.11.</span> <span class="toc-text">15.11 制药 Pharming</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-12-%E7%BD%91%E7%BB%9C%E9%92%93%E9%B1%BCPhishing"><span class="toc-number">16.12.</span> <span class="toc-text">15.12 网络钓鱼Phishing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-13-%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8Proxy-server"><span class="toc-number">16.13.</span> <span class="toc-text">15.13 代理服务器Proxy server</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16R"><span class="toc-number">17.</span> <span class="toc-text">16R</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#16-1%E5%8B%92%E7%B4%A2%E8%BD%AF%E4%BB%B6Ransomware"><span class="toc-number">17.1.</span> <span class="toc-text">16.1勒索软件Ransomware</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-2%E7%BA%A2%E9%98%9FRed-team"><span class="toc-number">17.2.</span> <span class="toc-text">16.2红队Red team</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-3%E5%86%97%E4%BD%99Redundancy"><span class="toc-number">17.3.</span> <span class="toc-text">16.3冗余Redundancy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-4%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE%E6%9C%A8%E9%A9%ACRAT"><span class="toc-number">17.4.</span> <span class="toc-text">16.4远程访问木马RAT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-5%E6%A0%B9%E5%A5%97%E4%BB%B6Rootkit"><span class="toc-number">17.5.</span> <span class="toc-text">16.5根套件Rootkit</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#17S"><span class="toc-number">18.</span> <span class="toc-text">17S</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#17-1%E5%AF%86%E9%92%A5Secret-key"><span class="toc-number">18.1.</span> <span class="toc-text">17.1密钥Secret key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-2%E5%AE%89%E5%85%A8%E8%87%AA%E5%8A%A8%E5%8C%96Security-automation"><span class="toc-number">18.2.</span> <span class="toc-text">17.2安全自动化Security automation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-3%E5%AE%89%E5%85%A8%E4%BF%A1%E6%81%AF%E5%92%8C%E4%BA%8B%E4%BB%B6%E7%AE%A1%E7%90%86SIEM"><span class="toc-number">18.3.</span> <span class="toc-text">17.3安全信息和事件管理SIEM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-4%E5%AE%89%E5%85%A8%E7%9B%91%E6%8E%A7Security-monitoring"><span class="toc-number">18.4.</span> <span class="toc-text">17.4安全监控Security monitoring</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-5%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5%E4%B8%AD%E5%BF%83SOC"><span class="toc-number">18.5.</span> <span class="toc-text">17.5安全运营中心SOC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-6%E5%AE%89%E5%85%A8%E5%91%A8%E8%BE%B9Security-perimeter"><span class="toc-number">18.6.</span> <span class="toc-text">17.6安全周边Security perimeter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-7%E5%AE%89%E5%85%A8%E6%94%BF%E7%AD%96Security-policy"><span class="toc-number">18.7.</span> <span class="toc-text">17.7安全政策Security policy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-8%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95SSO"><span class="toc-number">18.8.</span> <span class="toc-text">17.8单点登录SSO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-9Smishing"><span class="toc-number">18.9.</span> <span class="toc-text">17.9Smishing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-10-%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6Social-engineering"><span class="toc-number">18.10.</span> <span class="toc-text">17.10 社会工程学Social engineering</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-11-%E8%BD%AF%E4%BB%B6%E5%8D%B3%E6%9C%8D%E5%8A%A1SaaS"><span class="toc-number">18.11.</span> <span class="toc-text">17.11 软件即服务SaaS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-12-%E5%9E%83%E5%9C%BE%E9%82%AE%E4%BB%B6Spam"><span class="toc-number">18.12.</span> <span class="toc-text">17.12 垃圾邮件Spam</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-13-%E9%B1%BC%E5%8F%89%E5%BC%8F%E7%BD%91%E7%BB%9C%E9%92%93%E9%B1%BCSpear-phishing"><span class="toc-number">18.13.</span> <span class="toc-text">17.13 鱼叉式网络钓鱼Spear phishing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-14-%E6%AC%BA%E9%AA%97Spoofing"><span class="toc-number">18.14.</span> <span class="toc-text">17.14 欺骗Spoofing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-15-%E9%97%B4%E8%B0%8D%E8%BD%AF%E4%BB%B6Spyware"><span class="toc-number">18.15.</span> <span class="toc-text">17.15 间谍软件Spyware</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-16-SQL-%E6%B3%A8%E5%85%A5SQL-injection"><span class="toc-number">18.16.</span> <span class="toc-text">17.16 SQL 注入SQL injection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-17-SSL-%E5%AE%89%E5%85%A8%E5%A5%97%E6%8E%A5%E5%AD%97%E5%B1%82"><span class="toc-number">18.17.</span> <span class="toc-text">17.17 SSL &#x2F;安全套接字层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-18-%E9%9A%90%E5%86%99%E6%9C%AFSteganography"><span class="toc-number">18.18.</span> <span class="toc-text">17.18 隐写术Steganography</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-19-%E5%AF%B9%E7%A7%B0%E5%AF%86%E9%92%A5Symmetric-key"><span class="toc-number">18.19.</span> <span class="toc-text">17.19 对称密钥Symmetric key</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#18T"><span class="toc-number">19.</span> <span class="toc-text">18T</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#18-1%E5%A8%81%E8%83%81%E5%88%86%E6%9E%90Threat-analysis"><span class="toc-number">19.1.</span> <span class="toc-text">18.1威胁分析Threat analysis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-2%E5%A8%81%E8%83%81%E8%AF%84%E4%BC%B0Threat-assessment"><span class="toc-number">19.2.</span> <span class="toc-text">18.2威胁评估Threat assessment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-3%E5%A8%81%E8%83%81%E6%90%9C%E5%AF%BBThreat-hunting"><span class="toc-number">19.3.</span> <span class="toc-text">18.3威胁搜寻Threat hunting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-4%E5%A8%81%E8%83%81%E7%AE%A1%E7%90%86Threat-management"><span class="toc-number">19.4.</span> <span class="toc-text">18.4威胁管理Threat management</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-5%E5%A8%81%E8%83%81%E7%9B%91%E6%8E%A7Threat-monitoring"><span class="toc-number">19.5.</span> <span class="toc-text">18.5威胁监控Threat monitoring</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-6%E7%A5%A8Ticket"><span class="toc-number">19.6.</span> <span class="toc-text">18.6票Ticket</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-7%E4%BA%A4%E9%80%9A%E7%81%AF%E5%8D%8F%E8%AE%AETraffic-light-protocol"><span class="toc-number">19.7.</span> <span class="toc-text">18.7交通灯协议Traffic light protocol</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-8%E7%89%B9%E6%B4%9B%E4%BC%8A%E6%9C%A8%E9%A9%ACTrojan-horse"><span class="toc-number">19.8.</span> <span class="toc-text">18.8特洛伊木马Trojan horse</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-9%E4%B8%A4%E5%9B%A0%E7%B4%A0%E9%AA%8C%E8%AF%812FA"><span class="toc-number">19.9.</span> <span class="toc-text">18.9两因素验证2FA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-10-%E5%B9%BF%E5%91%8A%E8%BD%AF%E4%BB%B6Typhoid-adware"><span class="toc-number">19.10.</span> <span class="toc-text">18.10 广告软件Typhoid adware</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#19U"><span class="toc-number">20.</span> <span class="toc-text">19U</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#19-1%E6%9C%AA%E7%BB%8F%E6%8E%88%E6%9D%83%E7%9A%84%E8%AE%BF%E9%97%AEUnauthorised-access"><span class="toc-number">20.1.</span> <span class="toc-text">19.1未经授权的访问Unauthorised access</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-2URL-%E6%B3%A8%E5%85%A5"><span class="toc-number">20.2.</span> <span class="toc-text">19.2URL 注入</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#20V"><span class="toc-number">21.</span> <span class="toc-text">20V</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#20-1%E8%99%9A%E6%8B%9F%E4%B8%93%E7%94%A8%E7%BD%91VPN"><span class="toc-number">21.1.</span> <span class="toc-text">20.1虚拟专用网VPN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20-2%E7%97%85%E6%AF%92Virus"><span class="toc-number">21.2.</span> <span class="toc-text">20.2病毒Virus</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20-3%E8%84%86%E5%BC%B1%E6%80%A7Vulnerability"><span class="toc-number">21.3.</span> <span class="toc-text">20.3脆弱性Vulnerability</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#21W"><span class="toc-number">22.</span> <span class="toc-text">21W</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#21-1wabbits"><span class="toc-number">22.1.</span> <span class="toc-text">21.1wabbits</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-2%E6%B0%B4%E5%9D%91%E6%B0%B4%E5%9D%91%E6%94%BB%E5%87%BBWater-holing-watering-hole-attack"><span class="toc-number">22.2.</span> <span class="toc-text">21.2水坑水坑攻击Water-holing watering hole attack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-3%E6%B0%B4%E5%9D%91Watering-hole"><span class="toc-number">22.3.</span> <span class="toc-text">21.3水坑Watering hole</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-4%E6%8D%95%E9%B2%B8Whaling"><span class="toc-number">22.4.</span> <span class="toc-text">21.4捕鲸Whaling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-5%E7%99%BD%E9%98%9FWhite-team"><span class="toc-number">22.5.</span> <span class="toc-text">21.5白队White team</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-6%E7%99%BD%E5%90%8D%E5%8D%95Whitelist"><span class="toc-number">22.6.</span> <span class="toc-text">21.6白名单Whitelist</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-7%E8%A0%95%E8%99%ABWorm"><span class="toc-number">22.7.</span> <span class="toc-text">21.7蠕虫Worm</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#22Z"><span class="toc-number">23.</span> <span class="toc-text">22Z</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#22-1Zero-day"><span class="toc-number">23.1.</span> <span class="toc-text">22.1Zero-day</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-2%E5%83%B5%E5%B0%B8Zombie"><span class="toc-number">23.2.</span> <span class="toc-text">22.2僵尸Zombie</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/a817c557/" title="PHP 01"><img src="/img/102.jpeg" onerror="this.onerror=null;this.src='/img/06.jpg'" alt="PHP 01"></a><div class="content"><a class="title" href="/posts/a817c557/" title="PHP 01">PHP 01</a><time datetime="2025-04-27T20:52:00.000Z" title="发表于 2025-04-28 04:52:00">2025-04-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/c0a33dea/" title="openeluer操作系统概述"><img src="/img/102.jpeg" onerror="this.onerror=null;this.src='/img/06.jpg'" alt="openeluer操作系统概述"></a><div class="content"><a class="title" href="/posts/c0a33dea/" title="openeluer操作系统概述">openeluer操作系统概述</a><time datetime="2025-04-26T20:52:00.000Z" title="发表于 2025-04-27 04:52:00">2025-04-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/ff94a54/" title="Linux常用命令详解"><img src="/img/102.jpeg" onerror="this.onerror=null;this.src='/img/06.jpg'" alt="Linux常用命令详解"></a><div class="content"><a class="title" href="/posts/ff94a54/" title="Linux常用命令详解">Linux常用命令详解</a><time datetime="2025-04-25T20:52:00.000Z" title="发表于 2025-04-26 04:52:00">2025-04-26</time></div></div></div></div></div></div></main><footer id="footer" style="background-color: rgba(45, 10, 61, 0.2);"><div id="footer-wrap"><div class="footer_custom_text"><style>
+  .footer {
+    text-align: center;
+    position: relative;
+  }
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .social-links i {
+    color: #8400ff;
+  }
+  .social-link {
+    color: #8a2be2;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: rgba(138, 43, 226, 0.1);
+  }
+  .social-link:hover {
+    color: #892be294;
+    background: #892be294;
+    transform: translateY(-3px) scale(1.2);
+    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+    text-decoration: none !important; 
+  }
+  .footer p {
+    margin: 0.5rem 0;
+    line-height: 1;
+  }
+  .copyright {
+    font-size: 1.1rem; 
+    color: #c08bdf;
+    font-weight: 400;
+  }
+  .tagline {
+    font-size: 0.8rem;
+    color: #8a2be2;
+    font-style: italic;
+    font-weight: 500;
+  }
+  .visitor-count {
+    font-size: 0.75rem;
+    color: rgba(219, 142, 255, 0.658);
+    font-weight: 300;
+  }
+  #visitorCount {
+    font-weight: bold;
+  }
+</style>
+<div class="footer">
+  <div class="social-links">
+    <a href="https://github.com/kukual" class="social-link" target="_blank" rel="external nofollow noopener noreferrer" aria-label="GitHub" title="GitHub">
+      <i class="fab fa-github"></i>
+    </a>
+    <a href="https://blog.csdn.net/weixin_74811095" class="social-link" target="_blank" rel="external nofollow noopener noreferrer" aria-label="CSDN" title="CSDN">
+      <i class="fas fa-code"></i>
+    </a>
+    <a href="https://www.xiaohongshu.com/user/profile/5e8a0aae0000000001002ce4" class="social-link" target="_blank" rel="external nofollow noopener noreferrer" aria-label="小红书" title="小红书">
+      <i class="fas fa-book"></i>
+    </a>
+    <a href="https://space.bilibili.com/498478848" class="social-link" target="_blank" rel="external nofollow noopener noreferrer" aria-label="bilibili" title="bilibili">
+      <i class="fab fa-bilibili"></i>
+    </a>
+  </div>
+  <p class="copyright">© 2025 kukualのblog - 所有权利保留</p>
+  <p class="tagline">> Stay curious, stay hacking, stay anime! <</p>
+  <p class="visitor-count">访问量: <span id="visitorCount">1024</span> | 你是第 <span id="dailyVisitor">1</span> 位今日访客</p>
+</div>
+<script>
+  // 确保DOM加载完成后执行
+  document.addEventListener('DOMContentLoaded', function() {
+    // 模拟访问量增长
+    function updateVisitorCount() {
+      const countElement = document.getElementById('visitorCount');
+      let count = parseInt(countElement.textContent) || 1024;
+      // 从localStorage获取或初始化计数
+      const storedCount = localStorage.getItem('totalVisitors');
+      if (storedCount) {
+        count = parseInt(storedCount);
+        countElement.textContent = count;
+      }
+      // 每日访客计数
+      const today = new Date().toDateString();
+      const dailyData = JSON.parse(localStorage.getItem('dailyVisitors') || '{"date":"", "count":0}');
+      if (dailyData.date !== today) {
+        dailyData.date = today;
+        dailyData.count = 0;
+      }
+      dailyData.count += 1;
+      document.getElementById('dailyVisitor').textContent = dailyData.count;
+      localStorage.setItem('dailyVisitors', JSON.stringify(dailyData));
+      // 每30秒随机增加访问量
+      setInterval(() => {
+        count += Math.floor(Math.random() * 3);
+        countElement.textContent = count;
+        localStorage.setItem('totalVisitors', count.toString());
+      }, 30000);
+    }
+    updateVisitorCount();
+    // 添加点击动画效果
+    const socialLinks = document.querySelectorAll('.social-link');
+    socialLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        this.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 300);
+      });
+    });
+  });
+</script>
+</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script defer src="/js/cursor.js"></script><script defer src="/js/sakura.js"></script><script src="/live2d-widget/autoload.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="输入关键词…" type="text"></div></div><hr><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_categories_card_injector_config(){
+    // 检查容器是否存在
+    var parent_div_git = document.getElementById('recent-posts');
+    // 如果容器不存在，则动态创建
+    if (!parent_div_git) {
+      console.warn('butterfly_categories_card: 挂载容器不存在，正在动态创建...');
+      // 创建新容器（默认插入到页面主体顶部）
+      parent_div_git = document.createElement('div');
+      parent_div_git.id = 'recent-posts'; // 赋予配置的ID
+      document.querySelector('#page').prepend(parent_div_git); // 插入到 #content-inner 内
+    }
+    var item_html = '<style>li.categoryBar-list-item{width:32.3%;}.categoryBar-list{max-height: 950px;overflow:auto;}.categoryBar-list::-webkit-scrollbar{width:0!important}@media screen and (max-width: 650px){.categoryBar-list{max-height: 800px;}}</style><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"><div id="categoryBar"><ul class="categoryBar-list"><li class="categoryBar-list-item" style="background:url(/img/11.png);"> <a class="categoryBar-list-link" href="/categories/笔记杂记/">笔记杂记</a><span class="categoryBar-list-count">16</span><span class="categoryBar-list-descr">1</span></li><li class="categoryBar-list-item" style="background:url(/img/12.png);"> <a class="categoryBar-list-link" href="/categories/博客搭建/">博客搭建</a><span class="categoryBar-list-count">16</span><span class="categoryBar-list-descr">2</span></li></ul></div></div>';
+    console.log('已挂载 butterfly_categories_card');
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+  }
+  // 路径匹配逻辑（使用 startsWith）
+  if (location.pathname.startsWith('/categories/') || '/categories/' === 'all') {
+    butterfly_categories_card_injector_config();
+  }
+  </script><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/8ac25d20/" alt=""><img width="48" height="48" src="/img/106.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-31</span><a class="blog-slider__title" href="posts/8ac25d20/" alt="">butterfly主题魔改01：准备工作及魔改流程目录</a><div class="blog-slider__text">作为魔改系列的开篇，指导用户完成Butterfly主题的基础配置：包括主题安装、配置文件迁移（_config.butterfly.yml）、图片目录创建。同时列出后续12篇教程的目录，涵盖颜色、导航栏、动态背景、页面美化等主题，形成完整的定制路线图。强调通过分离配置文件避免版本冲突，为后续高阶修改奠定基础。</div><a class="blog-slider__button" href="posts/8ac25d20/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/8ac25d19/" alt=""><img width="48" height="48" src="/img/106.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-30</span><a class="blog-slider__title" href="posts/8ac25d19/" alt="">hexo butterfly主题整体结构解析</a><div class="blog-slider__text">全面解析Butterfly主题的模块化目录结构，从根目录的配置文件（_config.yml、plugins.yml）到核心功能模块（布局文件、样式脚本、静态资源）逐一说明。重点标注了layout/下的Pug模板组件（如头部、侧边栏、评论系统）、source/中的CSS/JS定制入口，以及scripts/的事件处理逻辑。适合开发者深度定制主题时快速定位文件，理解各模块的依赖关系与修改影响。</div><a class="blog-slider__button" href="posts/8ac25d19/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/77f87ebd/" alt=""><img width="48" height="48" src="/img/104.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-29</span><a class="blog-slider__title" href="posts/77f87ebd/" alt="">腾讯云COS+Obsidian实现图片自动上传到图床</a><div class="blog-slider__text">文章介绍如何通过腾讯云COS和PicList工具实现Obsidian笔记的图片自动上传。步骤包括：腾讯云COS存储桶创建、API密钥获取、PicList安装与配置（含时间戳重命名防冲突），以及Obsidian插件Image Auto Upload的安装与设置。详细说明了手动/自动上传图片的操作方法，并配有多张界面截图，帮助用户无缝衔接本地写作与云端图床管理，提升Markdown文档的图片管理效率。</div><a class="blog-slider__button" href="posts/77f87ebd/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/a817c557/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-28</span><a class="blog-slider__title" href="posts/a817c557/" alt="">PHP 01</a><div class="blog-slider__text">从环境搭建到语法、函数、数组、面向对象、字符串处理及Web交互，快速入门PHP后端开发。</div><a class="blog-slider__button" href="posts/a817c557/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/53689933/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-20</span><a class="blog-slider__title" href="posts/53689933/" alt="">Java程序设计基础</a><div class="blog-slider__text">从Java环境安装到语法、面向对象、集合、多线程、GUI、I/O、网络编程，系统呈现Java学习的完整路线。</div><a class="blog-slider__button" href="posts/53689933/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/ec335aec/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-28</span><a class="blog-slider__title" href="posts/ec335aec/" alt="">利用Github和hexo搭建自己的个人博客</a><div class="blog-slider__text">该教程详细指导用户从零开始搭建Hexo博客并部署到GitHub。内容涵盖Git、Node.js环境安装，Hexo框架初始化，主题安装（以Amazing主题为例），以及GitHub仓库创建与SSH密钥配置。通过图文并茂的步骤演示了本地测试、主题配置、依赖安装和最终部署流程。重点解决了国内用户使用npm速度慢的问题（推荐cnpm），并提供了常见问题的解决方案，如环境变量配置和SSH认证测试，适合新手快速搭建个人技术博客。</div><a class="blog-slider__button" href="posts/ec335aec/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/ff94a54/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-26</span><a class="blog-slider__title" href="posts/ff94a54/" alt="">Linux常用命令详解</a><div class="blog-slider__text">详解Linux系统登录、关机、密码、锁屏、命令行编辑与文件查看（cat/more/less/head/tail）等日常操作。</div><a class="blog-slider__button" href="posts/ff94a54/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/c0a33dea/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-27</span><a class="blog-slider__title" href="posts/c0a33dea/" alt="">openeluer操作系统概述</a><div class="blog-slider__text">介绍openEuler开源服务器操作系统的背景、特性、发行版、与鲲鹏生态协同及其在安全、性能上的增强</div><a class="blog-slider__button" href="posts/c0a33dea/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/c4becd09/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-25</span><a class="blog-slider__title" href="posts/c4becd09/" alt="">Linux常用命令2</a><div class="blog-slider__text">汇总Linux关机和重启命令（logout、reboot、shutdown、halt、passwd、vlock）及其选项，方便日常维护。</div><a class="blog-slider__button" href="posts/c4becd09/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/5db79cb3/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-24</span><a class="blog-slider__title" href="posts/5db79cb3/" alt="">Linux常用命令1</a><div class="blog-slider__text">归纳RPM、YUM包管理及服务启停/自启常用命令，帮助管理员快速完成软件安装、升级、维护与排障。</div><a class="blog-slider__button" href="posts/5db79cb3/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/f24bb437/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-23</span><a class="blog-slider__title" href="posts/f24bb437/" alt="">Linux操作系统概述</a><div class="blog-slider__text">概述Linux诞生、内核、发行版及开源优势，并给出运维工程师进阶路线、薪资与国产操作系统发展背景。</div><a class="blog-slider__button" href="posts/f24bb437/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/a4b345c0/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-15</span><a class="blog-slider__title" href="posts/a4b345c0/" alt="">安全见闻</a><div class="blog-slider__text">以费曼学习法切入，梳理渗透测试流程、语言选择、软件/网络/硬件/AI安全全景，并分享学习心得。</div><a class="blog-slider__button" href="posts/a4b345c0/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/a5ecaa69/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-22</span><a class="blog-slider__title" href="posts/a5ecaa69/" alt="">XSS跨站脚本攻击</a><div class="blog-slider__text">聚焦XSS跨站脚本攻击，解析cookie机制与反射型、存储型、DOM型XSS原理、利用思路及防御要点。</div><a class="blog-slider__button" href="posts/a5ecaa69/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/22f97770/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-19</span><a class="blog-slider__title" href="posts/22f97770/" alt="">HTTP基础</a><div class="blog-slider__text">用图解方式讲解TCP/IP、IP/端口、HTTP请求与响应，帮助零基础读者理解网站访问背后的网络与协议原理。</div><a class="blog-slider__button" href="posts/22f97770/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/e73517db/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-17</span><a class="blog-slider__title" href="posts/e73517db/" alt="">SQL注入</a><div class="blog-slider__text">结合示例图解释SQL注入原理：利用输入拼接、报错、注释、UNION、布尔/延时盲注及IDOR越权漏洞。</div><a class="blog-slider__button" href="posts/e73517db/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/65503319/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-21</span><a class="blog-slider__title" href="posts/65503319/" alt="">Kali安装配置docker</a><div class="blog-slider__text">手把手在Kali Linux上完成Docker的安装、启动、开机自启与验证，附截图与命令，适合初学者快速部署。</div><a class="blog-slider__button" href="posts/65503319/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/3bb43d1e/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-18</span><a class="blog-slider__title" href="posts/3bb43d1e/" alt="">Apache Tomcat 文件读取/文件包含(CVE-2020-1938)漏洞复现</a><div class="blog-slider__text">详细记录CVE-2020-1938（Tomcat AJP文件包含/读取）漏洞的环境搭建、检测、利用及GetShell全过程，含图文。</div><a class="blog-slider__button" href="posts/3bb43d1e/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/a5ecaa69/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-13</span><a class="blog-slider__title" href="posts/a5ecaa69/" alt="">网络安全术语</a><div class="blog-slider__text">系统梳理网络安全攻击、防守、技术、工具及攻防演练所需的中英文术语，方便快速查阅与对照。</div><a class="blog-slider__button" href="posts/a5ecaa69/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/f632dd30/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-16</span><a class="blog-slider__title" href="posts/f632dd30/" alt="">加密的虚拟机怎么解除加密？</a><div class="blog-slider__text">图文并茂演示在VMware中通过“编辑设置→访问控制→移除加密”解除虚拟机加密的全过程。</div><a class="blog-slider__button" href="posts/f632dd30/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/83e403fa/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-14</span><a class="blog-slider__title" href="posts/83e403fa/" alt="">网络安全术语中英文表</a><div class="blog-slider__text">按A-Z顺序给出网络安全核心概念的中英文对照，适合快速检索、统一用语并辅助学习或报告撰写。</div><a class="blog-slider__button" href="posts/83e403fa/" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

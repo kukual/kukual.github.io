@@ -1,0 +1,988 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>安全见闻 | kukualのblog</title><meta name="author" content="kukual"><meta name="copyright" content="kukual"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f5f0fa"><meta name="description" content="以费曼学习法切入，梳理渗透测试流程、语言选择、软件&#x2F;网络&#x2F;硬件&#x2F;AI安全全景，并分享学习心得。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安全见闻">
+<meta property="og:url" content="https://kukual.github.io/posts/a4b345c0/index.html">
+<meta property="og:site_name" content="kukualのblog">
+<meta property="og:description" content="以费曼学习法切入，梳理渗透测试流程、语言选择、软件&#x2F;网络&#x2F;硬件&#x2F;AI安全全景，并分享学习心得。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://kukual.github.io/img/102.jpeg">
+<meta property="article:published_time" content="2025-04-14T20:52:00.000Z">
+<meta property="article:modified_time" content="2025-04-14T20:52:11.000Z">
+<meta property="article:author" content="kukual">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kukual.github.io/img/102.jpeg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "安全见闻",
+  "url": "https://kukual.github.io/posts/a4b345c0/",
+  "image": "https://kukual.github.io/img/102.jpeg",
+  "datePublished": "2025-04-14T20:52:00.000Z",
+  "dateModified": "2025-04-14T20:52:11.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "kukual",
+      "url": "https://kukual.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/01.png"><link rel="canonical" href="https://kukual.github.io/posts/a4b345c0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#2d0a3d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f5f0fa')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&amp;family=Ma+Shan+Zheng&amp;family=Fredoka+One&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":"ture","top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":true,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":300,"languages":{"author":"作者: kukual","link":"链接: ","source":"来源: kukualのblog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '安全见闻',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Chewy&family=Fredoka+One&family=Caveat:wght@400;700&family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@300;500;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="/css/categorybar.css"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250819223546030.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/02.jpg" onerror="this.onerror=null;this.src='/img/05.jpg'" alt="avatar"></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/101.jpeg);"><nav id="nav"><!-- 左侧博客信息区域--><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/01.png" alt="Logo"><span class="site-name">kukualのblog</span></a><a class="nav-page-title" href="/"><span class="site-name">安全见闻</span></a></span><!-- 新增的导航菜单容器（居中布局关键）--><div id="nav-menus-container"><!-- 菜单主体部分--><div id="menus"><!-- 搜索按钮--><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><!-- 菜单项--><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div><!-- 移动端汉堡菜单按钮（保持原位置）--><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">安全见闻</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-04-14T20:52:00.000Z" title="发表于 2025-04-15 04:52:00">2025-04-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-04-14T20:52:11.000Z" title="更新于 2025-04-15 04:52:11">2025-04-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AC%94%E8%AE%B0%E6%9D%82%E8%AE%B0/">笔记杂记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">20.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>60分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id data-flag-title><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;本文最后更新于&quot;,&quot;messageNext&quot;:&quot;天前，部分内容可能已失效&quot;,&quot;postUpdate&quot;:&quot;2025-04-15 04:52:11&quot;}" hidden></div><h1 id="安全见闻"><a href="#安全见闻" class="headerlink" title="安全见闻"></a>安全见闻</h1><h1 id="0-导学"><a href="#0-导学" class="headerlink" title="0 导学"></a>0 导学</h1><h2 id="0-1-费曼学习法"><a href="#0-1-费曼学习法" class="headerlink" title="0.1 费曼学习法"></a>0.1 费曼学习法</h2><ul>
+<li>费曼学习法是一种高效的学习方法，它强调以教促学，通过向他人传授知识来加深自己的理解。</li>
+<li>这种方法包括四个步骤：<br>  <strong>选择知识</strong>：确定你想要深入理解的知识。<br>  <strong>简化知识</strong>：用简单的语言向他人（最好是不熟悉该知识的人）解释这部分知识。<br>  <strong>识别并填补知识空白</strong>：在解释过程中，识别自己理解中的漏洞，并返回去填补这些空白。<br>  <strong>重复和简化</strong>：不断重复这个过程，直到你能够简洁明了地解释这部分知识。</li>
+</ul>
+<h2 id="0-2-渗透测试概念"><a href="#0-2-渗透测试概念" class="headerlink" title="0.2 渗透测试概念"></a>0.2 渗透测试概念</h2><ul>
+<li>‌‌渗透测试是一种在计算机系统上进行的授权模拟攻击，旨在对其安全性进行评估。‌渗透测试通过模拟‌恶意黑客的攻击方法，评估计算机网络系统的安全性能。它是一种机制，通过渐进的、逐步深入的过程来检查网络系统的安全漏洞。</li>
+</ul>
+<h2 id="‌0-3-渗透测试前景"><a href="#‌0-3-渗透测试前景" class="headerlink" title="‌0.3 渗透测试前景"></a>‌0.3 渗透测试前景</h2><ul>
+<li>网络安全人才缺口大；10-15年内是风口行业：薪资高，国内都不低于1万块一个月。</li>
+<li>安全服务工程师主要面向公司，拿固定的工资，做些漏洞挖掘的工作，证书oscp、cissp。</li>
+<li>红队主要面向国家，打击网络犯罪，证书oscp、osep。</li>
+</ul>
+<h2 id="0-4-渗透测试思路"><a href="#0-4-渗透测试思路" class="headerlink" title="0.4 渗透测试思路"></a>0.4 渗透测试思路</h2><ul>
+<li>信息搜集、漏洞扫描、漏洞挖掘、开始攻击、权限维持（持久化）、权限提升、免杀隐藏、横向移动、痕迹清理</li>
+<li>web渗透、红队：专研python、php、java三选二，剩下的就是把攻防技术这块搞好。</li>
+</ul>
+<h2 id="0-5-鸡汤"><a href="#0-5-鸡汤" class="headerlink" title="0.5 鸡汤"></a>0.5 鸡汤</h2><ul>
+<li>不论是任何方向我们要做的就是究其本质，找到正确的努力方向，而不是盲目学习，那只会让自己痛苦。</li>
+<li>在任何领域，无论我们达到了什么样的成就，都应该保持谦逊的态度，认识到自己的局限性。这种自我认识并不是自我贬低，而是一种智慧，它提醒我们总是有未知的领域等待我们去探索，总是有新的知识等待我们去学习。认为自己“什么都不会”的态度，实际上是对知识无限性的尊重和对学习过程的热爱。这种态度激励我们保持好奇心和开放性，不断追求新的理解，不断挑战自己的假设和信念。通过这种方式，我们可以持续成长，不断扩展我们的知识边界，最终成为更全面的个体。</li>
+<li>学渗透就要：懂进攻，知防守。</li>
+</ul>
+<hr>
+<h1 id="1-语言基础"><a href="#1-语言基础" class="headerlink" title="1 语言基础"></a>1 语言基础</h1><ul>
+<li>人的精力是有限的，要根据个人需求来选择学编程语言。前期可以学一学python。</li>
+</ul>
+<h2 id="1-1-编程语言"><a href="#1-1-编程语言" class="headerlink" title="1.1 编程语言"></a>1.1 编程语言</h2><ul>
+<li><strong>C语言</strong>：一种通用的、面向过程的编程语言，广泛应用于系统软件和嵌入式开发。C++：在C语言基础上发展而来，支持面向对象编程，常用于游戏开发、高性能计算等领域。</li>
+<li><strong>Java</strong>：一种广泛使用的面向对象编程语言，具有跨平台性，应用于企业级应用开发等。</li>
+<li><strong>Python</strong>：简洁易学，拥有丰富的库，适用于数据分析、人工智能、Web开发等。</li>
+<li><strong>C</strong>#：由微软开发，主要用于Windows平台上的应用开发。</li>
+<li><strong>JavaScript</strong>：主要用于网页前端开发，也可用于服务器端开发（Node.js）。</li>
+<li><strong>Ruby</strong>：一种简洁而富有表现力的编程语言，常用于Web开发。</li>
+<li><strong>PHP</strong>：主要用于Web开发，尤其适合服务器端脚本编程</li>
+<li><strong>Swift</strong>：苹果公司开发的编程语言，用于iOS和macOS应用开发。</li>
+<li><strong>Go</strong>：一种高效、简洁的编程语言，适用于网络编程和云计算等领域。</li>
+<li><strong>Kotlin</strong>：可与Java互操作，主要用于Android开发。</li>
+</ul>
+<h2 id="1-2-函数式编程语言"><a href="#1-2-函数式编程语言" class="headerlink" title="1.2 函数式编程语言"></a>1.2 函数式编程语言</h2><ul>
+<li><strong>Haskell</strong>：纯函数式编程语言，以强大的类型系统和数学上的严谨性著称。</li>
+<li><strong>Clojure</strong>：运行在Java虚拟机上的Lisp方言，结合了函数式编程和Java平台的优势。</li>
+<li><strong>Lisp</strong>（包括CommonLisp、Scheme等）：历史悠久的编程语言家族，以其高度的灵活性和宏系统闻名。</li>
+</ul>
+<h2 id="1-3-数据科学和机器学习领域语言"><a href="#1-3-数据科学和机器学习领域语言" class="headerlink" title="1.3 数据科学和机器学习领域语言"></a>1.3 数据科学和机器学习领域语言</h2><ul>
+<li><strong>R</strong>：在统计分析和数据可视化方面应用广泛。</li>
+<li><strong>Julia</strong>：设计用于高性能科学计算和数据分析。</li>
+</ul>
+<h2 id="1-4-Web全栈开发语言"><a href="#1-4-Web全栈开发语言" class="headerlink" title="1.4 Web全栈开发语言"></a>1.4 Web全栈开发语言</h2><ul>
+<li><strong>TypeScript</strong>：是JavaScript的超集，增加了静态类型检查等特性，提高了大型项目的开发效率。</li>
+</ul>
+<h2 id="1-5-移动开发语言"><a href="#1-5-移动开发语言" class="headerlink" title="1.5 移动开发语言"></a>1.5 移动开发语言</h2><ul>
+<li><strong>Objective-C</strong>：曾经是iOS开发的主要语言，现在逐渐被Swift取代。</li>
+</ul>
+<h2 id="1-6-嵌入式系统开发语言"><a href="#1-6-嵌入式系统开发语言" class="headerlink" title="1.6 嵌入式系统开发语言"></a>1.6 嵌入式系统开发语言</h2><ul>
+<li><strong>Assembly</strong> <strong>Language</strong>（汇编语言）：不同的处理器架构有不同的汇编语言，用于对硬件进行底层控制。</li>
+</ul>
+<h2 id="1-7-其他语言"><a href="#1-7-其他语言" class="headerlink" title="1.7 其他语言"></a>1.7 其他语言</h2><ul>
+<li><strong>Pascal</strong>：曾经在教学和早期软件开发中有广泛应用。</li>
+<li><strong>Delphi</strong>（基于ObjectPascal）：用于快速应用开发。</li>
+<li><strong>Scala</strong>：融合了面向对象编程和函数式编程，运行在Java虚拟机上</li>
+<li><strong>Elixir</strong>：基于Erlang虚拟机，具有高并发和容错性，适合构建分布式系统。</li>
+</ul>
+<hr>
+<h1 id="2-软件程序"><a href="#2-软件程序" class="headerlink" title="2 软件程序"></a>2 软件程序</h1><ul>
+<li><strong>软件程序是一种计算机程序，用于计算机计算和其他可编程设备，这其实就是我们说的代码。</strong></li>
+<li>不论是什么软件程序，都是由代码组成的。比如网页设计、网站开发、软件开发、软件工程等等，其本质都是代码。很多专有名词也都是这样的，所以不需要去刻意区分。这些代码只是完成特定功能的罢了，如鉴权中间件，跨域中间件，其本质就是iis那些中间件，明自本质才不会被名词所混淆。</li>
+<li>究其根本，不论是什么样的语言只要能告诉计算机，只要计算机做了，这就是我们的程序。所以不论是哪个方向究其根本就是一行一行的代码，这个代码转化成二进制，我们底层的硬件就知道它要干什么。程序就是告诉计算机,我们要做什么。</li>
+<li>哪个更快用哪个，python能做的就不要用c++，越简单的编程语言越实用，因为其本质都是让计算机去做同样一件事，所以不要把事情复杂化。</li>
+</ul>
+<hr>
+<h2 id="2-1-web程序（网站）"><a href="#2-1-web程序（网站）" class="headerlink" title="2.1 web程序（网站）"></a>2.1 web程序（网站）</h2><ul>
+<li>渗透对应的就是对web程序入侵，但除了学web程序，还要学其它的。</li>
+<li><strong>通常构成</strong>：前端-后端-数据库-服务器。</li>
+<li>前端url请求到后端，然后执行什么一个命令。如果要后端登陆，这时候就要调用数据库的数据，数据库是在服务器上的。</li>
+<li>后边web安全入门会讲。</li>
+</ul>
+<h3 id="2-1-1-语言"><a href="#2-1-1-语言" class="headerlink" title="2.1.1 语言"></a>2.1.1 语言</h3><ul>
+<li><strong>HTML</strong>：可能面临点击劫持等安全问题。</li>
+<li><strong>CSS</strong>：虽然主要用于样式，但也存在注入风险。</li>
+<li><strong>JavaScript</strong>：易受XSS攻击，包括DOM型、反射型和存储型，以及其他如点击劫持和请求走私等。</li>
+</ul>
+<h3 id="2-2-2-代码库"><a href="#2-2-2-代码库" class="headerlink" title="2.2.2 代码库"></a>2.2.2 代码库</h3><ul>
+<li>我们写代码用原生的语言去写很废精力，但是可以封装成一些库让它很方便的去调用。</li>
+<li>JQuery、Bootstrap、ElementUI等库和框架简化了代码编写，但也可能引入安全漏洞。</li>
+</ul>
+<h3 id="2-2-3-框架"><a href="#2-2-3-框架" class="headerlink" title="2.2.3 框架"></a>2.2.3 框架</h3><ul>
+<li>Vue、React、Angular等前端框架基于HTML、CSS和JavaScript构建，它们简化了开发但也需要进行XSS等安全问题的分析。</li>
+</ul>
+<h3 id="2-2-4-前端"><a href="#2-2-4-前端" class="headerlink" title="2.2.4 前端"></a>2.2.4 前端</h3><ul>
+<li><strong>潜在漏洞</strong>：信息泄露、xss、csrf、点击劫持、访问控制、web缓存漏洞、跨域漏洞、请求走私。</li>
+</ul>
+<h3 id="2-2-5-后端"><a href="#2-2-5-后端" class="headerlink" title="2.2.5 后端"></a>2.2.5 后端</h3><ul>
+<li><strong>潜在漏洞</strong>：信息泄露、xss、csrf、ssrf、反序列化漏洞、sqI注入漏洞、命令注入漏洞、服务端模板注入、跨域漏洞、访问控制等等。</li>
+<li><strong>语言</strong>：php、java、python、golang、c&#x2F;c++、lua、node.js、ruby。<br>  后端语言有很多，比如php就会有反序列化漏洞，sql注入漏洞，命令注入漏洞等问题。</li>
+</ul>
+<h3 id="2-2-6-数据库"><a href="#2-2-6-数据库" class="headerlink" title="2.2.6 数据库"></a>2.2.6 数据库</h3><ul>
+<li>数据库有sql注入，xss，命令注入等潜在漏洞。</li>
+<li>数据库分类：<br>  <strong>①关系型数据库</strong>：mysql、sql sever、access、postgre sql。<br>  <strong>②非关系型数据库</strong>：mongodb、couchdb、neo4j、redis。</li>
+</ul>
+<h3 id="2-2-7-服务器程序"><a href="#2-2-7-服务器程序" class="headerlink" title="2.2.7 服务器程序"></a>2.2.7 服务器程序</h3><ul>
+<li><strong>潜在漏洞</strong>：信息泄露、文件上传漏洞、文件解析漏洞、目录遍历、访问控制。</li>
+<li>服务器程序有apache、nginx、iis、tengine、tomcat、weblogic。</li>
+</ul>
+<hr>
+<h2 id="2-2-二进制程序"><a href="#2-2-二进制程序" class="headerlink" title="2.2 二进制程序"></a>2.2 二进制程序</h2><ul>
+<li>这块渗透方面涉猎并不广泛，它本身也是有局限性的。</li>
+<li>二进制程序是编译后的软件，它们由0和1组成的机器语言指令构成，这些指令能够直接被计算机的中央处理器（CPU）执行。</li>
+<li><strong>二进制程序的渗透测试和分析通常涉及以下方面</strong>：<br>  <strong>①逆向工程</strong>：分析二进制程序以了解其工作原理，寻找潜在的安全漏洞。<br>  <strong>②漏洞利用</strong>：开发利用代码来证明漏洞的存在，这些漏洞可能允许攻击者执行任意代码、获取敏感信息或破坏系统。<br>  <strong>③保护机制</strong>：研究二进制程序中的安全保护措施，如代码签名、地址空间布局随机化（ASLR）和数据执行防止（DEP）。</li>
+</ul>
+<h2 id="2-3-驱动程序（了解即可）"><a href="#2-3-驱动程序（了解即可）" class="headerlink" title="2.3 驱动程序（了解即可）"></a>2.3 驱动程序（了解即可）</h2><ul>
+<li>驱动程序也是软件程序的一种。</li>
+<li>驱动程序是操作系统与硬件设备之间的桥梁，负责将操作系统的指令翻译成硬件设备可以理解的信号，从而使得操作系统能够与硬件设备进行交互。</li>
+<li>在Windows系统中，驱动程序通常具有.sys扩展名。</li>
+<li>潜在漏洞：内网渗透，逆向工程，病毒分析，安全对抗，外挂保护（比如腾讯的外挂保护，你怎么去绕过外挂保护？可能就需要用到驱动底层逻辑去和他对抗）</li>
+</ul>
+<h3 id="2-3-1-内核驱动"><a href="#2-3-1-内核驱动" class="headerlink" title="2.3.1 内核驱动"></a>2.3.1 内核驱动</h3><ul>
+<li>内核驱动是操作系统内核的一部分，它们在系统启动时加载，并在整个系统运行期间提供硬件访问服务。</li>
+<li>内核驱动负责管理硬件资源，如内存、I&#x2F;O端口和中断，使硬件设备能够高效地与操作系统及应用程序交互。</li>
+<li>内核驱动还可以提供性能优化，如DMA（直接内存访问）和缓存管理，以提高硬件设备的效率。</li>
+</ul>
+<h3 id="2-3-2-设备驱动"><a href="#2-3-2-设备驱动" class="headerlink" title="2.3.2 设备驱动"></a>2.3.2 设备驱动</h3><ul>
+<li>设备驱动是操作系统和硬件设备之间的中介。</li>
+<li>为应用程序提供统一的接口来访问硬件设备，隐藏硬件的复杂性。</li>
+<li>管理硬件资源，确保多个设备和应用程序可以公平地访问硬件。</li>
+<li>处理硬件产生的中断，这是硬件通知操作系统有事件发生（如数据到达）的一种方式。</li>
+<li>设备驱动还负责处理硬件操作中的异常情况，如硬件故障或数据错误。</li>
+</ul>
+<h2 id="2-4-上位机"><a href="#2-4-上位机" class="headerlink" title="2.4 上位机"></a>2.4 上位机</h2><ul>
+<li>上位机通常指的是在工业控制系统或自动化系统中，用于监控和控制的计算机或控制单元。</li>
+</ul>
+<hr>
+<h2 id="2-5-脚本程序"><a href="#2-5-脚本程序" class="headerlink" title="2.5 脚本程序"></a>2.5 脚本程序</h2><ul>
+<li><strong>脚本语言</strong>：lua、php、go、python、JavaScript</li>
+<li>脚本通俗理解就是拿过来以后我就可以直接看见它的源代码，可复制性高。打开浏览器随便进一个网站。f12去看一下，基本上前端代码在调试器里都是可以看到的。</li>
+</ul>
+<h3 id="2-5-1-主流脚本语言"><a href="#2-5-1-主流脚本语言" class="headerlink" title="2.5.1 主流脚本语言"></a>2.5.1 主流脚本语言</h3><ul>
+<li>golang（脚本性）、python（脚本性）、nodejs（脚本性程序）</li>
+<li>这些编程语言都可以写一些脚本性的病毒，python可以编写木马，js也可以编写木马。比如beefxss，了解本质的人都知道是相当于js写的木马；再比如PHP一句话木马，就是php写的木马。</li>
+<li>就算学会了编程语言基础，还是得去了解这个脚本木马的构成是怎么写的。就比如说你会了js，但你不一定会写js病毒，因为你可能对病毒的写法不了解。</li>
+<li>所以说，写任何病毒脚本之前要学会编程基础，基本的语法，库的调用，然后了解病毒的一个原理构成，再尝试编写病毒。</li>
+</ul>
+<h3 id="2-5-2-macro（宏病毒）"><a href="#2-5-2-macro（宏病毒）" class="headerlink" title="2.5.2 macro（宏病毒）"></a>2.5.2 macro（宏病毒）</h3><ul>
+<li>宏病毒是一种利用Office应用程序中的宏功能来传播的恶意软件。</li>
+<li>宏代码是VB、c#类似于这样的语言去写的。</li>
+</ul>
+<h3 id="2-5-3-Batch、PowerShell"><a href="#2-5-3-Batch、PowerShell" class="headerlink" title="2.5.3 Batch、PowerShell"></a>2.5.3 Batch、PowerShell</h3><ul>
+<li>这两个也是微软的，这都是Windows上面的程序，作用是用于内网渗透。</li>
+<li>内网渗透并不是单指内网渗透中的域渗透，这么讲太狭隘了，总的来说内网渗透和公网渗透没啥区别就是多了一个域渗透的一个东西，但是域渗透代表不了内网。</li>
+</ul>
+<h3 id="2-5-4-CAD-LISP-脚本病毒"><a href="#2-5-4-CAD-LISP-脚本病毒" class="headerlink" title="2.5.4 CAD LISP(脚本病毒)"></a>2.5.4 CAD LISP(脚本病毒)</h3><ul>
+<li>LISP是AutoCAD等CAD软件中使用的脚本语言，用于自动化绘图任务。</li>
+<li>cad很多同学玩过，画图纸有时候会用到一些脚本，就好比我们要做excel表格一样，会用一些宏，它可以自动化帮你完成一些工作。</li>
+<li>我们可以写一些正常的脚本，也可以写一些不正常的脚本，比如脚本病毒，很多搞cad的人不懂，他懒得画图纸，直接拿别人的，拿到以后发现中毒了。当然他们可能也发现不了中了毒，因为他不是专业的。而且很多杀毒软件不支持这样的操作，不会去查杀cad这种病毒的。</li>
+</ul>
+<h3 id="2-5-5-AUtolt3-脚本病毒"><a href="#2-5-5-AUtolt3-脚本病毒" class="headerlink" title="2.5.5 AUtolt3(脚本病毒)"></a>2.5.5 AUtolt3(脚本病毒)</h3><ul>
+<li>AutoIt3（简称AU3）是一种在Windows GUI或DOS上实现自动化任务的脚本语言，其语法类似BASIC。</li>
+<li>这种语言都是大家不常见的语言，我们的杀毒软件针对的是主流的编程语言代码病毒，对这种语言查杀程度低。</li>
+<li>但不是说这种语言不能杀，只是说越冷的计算机编程语言编写的病毒越难查杀。</li>
+<li>类似这样的病毒太多了，比如说bios病毒。</li>
+</ul>
+<hr>
+<h2 id="2-6-操作系统"><a href="#2-6-操作系统" class="headerlink" title="2.6 操作系统"></a>2.6 操作系统</h2><ul>
+<li>操作系统也属于软件程序的一种，只不过是很大的一个软件，本质上也属于软件程序的范畴，搞web渗透，搞二进制的，写代码都是基于操作系统去写的。</li>
+<li><strong>操作系统</strong>：ios、mac、linux、android、windows、wince、vxworks等等</li>
+</ul>
+<h3 id="2-6-1-注册表"><a href="#2-6-1-注册表" class="headerlink" title="2.6.1 注册表"></a>2.6.1 注册表</h3><ul>
+<li>在linux里没有，windows才有注册表。</li>
+<li><strong>Linux系统</strong>不使用注册表，而是通过各种配置文件来存储系统和应用程序的设置，这些文件通常位于<code>/etc</code>目录下。</li>
+<li><strong>Windows注册表</strong>是Windows操作系统中一个重要的数据库，用于存储系统设置和配置信息。它包含五个主要的根键：HKEY_LOCAL_MACHINE、HKEY_CURRENT_USER、HKEY_CLASSES_ROOT、HKEY_USERS和HKEY_CURRENT_CONFIG。可以通过<code>regedit</code>命令打开注册表编辑器，但需要谨慎操作，因为不当的修改可能会导致系统不稳定或启动失败。</li>
+</ul>
+<h3 id="2-6-2-防火墙"><a href="#2-6-2-防火墙" class="headerlink" title="2.6.2 防火墙"></a>2.6.2 防火墙</h3><ul>
+<li>防火墙用于监控和控制进出计算机或网络的数据包，防止未授权的访问。</li>
+<li>Windows内置的防火墙可以通过控制面板进行配置。</li>
+<li>Linux系统通常使用<code>iptables</code>或<code>firewalld</code>等工具来管理防火墙规则。</li>
+</ul>
+<h3 id="2-6-3-自启动"><a href="#2-6-3-自启动" class="headerlink" title="2.6.3 自启动"></a>2.6.3 自启动</h3><ul>
+<li>自启动程序是在操作系统启动时自动运行的程序，可以通过系统的启动文件夹或注册表（Windows）&#x2F;配置文件（Linux）进行配置。</li>
+</ul>
+<h3 id="2-6-4-计划任务"><a href="#2-6-4-计划任务" class="headerlink" title="2.6.4 计划任务"></a>2.6.4 计划任务</h3><ul>
+<li>任务计划程序允许用户配置在特定时间或满足特定条件时自动执行的任务。</li>
+<li>在Windows中，这可以通过“任务计划程序”来设置。</li>
+<li>在Linux中，可以使用<code>cron</code>和<code>at</code>命令。</li>
+</ul>
+<h3 id="2-6-5-事件日志"><a href="#2-6-5-事件日志" class="headerlink" title="2.6.5 事件日志"></a>2.6.5 事件日志</h3><ul>
+<li>Windows系统通过事件查看器来监控和查看系统日志，包括应用程序日志、系统日志和安全日志。</li>
+<li>Linux系统使用<code>dmesg</code>、<code>syslog</code>和<code>journalctl</code>等工具来查看和分析系统日志。</li>
+</ul>
+<h3 id="2-6-6-内核驱动"><a href="#2-6-6-内核驱动" class="headerlink" title="2.6.6 内核驱动"></a>2.6.6 内核驱动</h3><ul>
+<li>内核驱动是操作系统内核的扩展，用于直接与硬件交互。</li>
+<li>在Linux中，这些模块可以在运行时加载和卸载。</li>
+</ul>
+<h3 id="2-6-7-系统服务"><a href="#2-6-7-系统服务" class="headerlink" title="2.6.7 系统服务"></a>2.6.7 系统服务</h3><ul>
+<li>系统服务是后台运行的程序，为其他程序提供功能。</li>
+<li>在Windows中，服务可以通过服务管理器进行管理。</li>
+<li>在Linux中，使用<code>systemd</code>或<code>init</code>系统。</li>
+</ul>
+<h3 id="2-6-8-进程线程"><a href="#2-6-8-进程线程" class="headerlink" title="2.6.8 进程线程"></a>2.6.8 进程线程</h3><ul>
+<li>操作系统需要管理运行中的进程和线程，确保资源的合理分配和任务的顺利执行。</li>
+</ul>
+<h3 id="2-6-9-系统编程"><a href="#2-6-9-系统编程" class="headerlink" title="2.6.9 系统编程"></a>2.6.9 系统编程</h3><ul>
+<li>涉及直接与操作系统交互的编程，如内存管理、进程控制、文件系统操作等。</li>
+</ul>
+<hr>
+<h2 id="2-7-裸板程序"><a href="#2-7-裸板程序" class="headerlink" title="2.7 裸板程序"></a>2.7 裸板程序</h2><ul>
+<li>裸板程序是没有操作系统的概念，也没有进程的概念，这种程序通常需要直接与硬件打交道，包括内存管理、设备驱动等。如单片机上写一个代码，也是软件程序的一种，是一个代码组成的。</li>
+</ul>
+<h2 id="2-8-机器学习"><a href="#2-8-机器学习" class="headerlink" title="2.8 机器学习"></a>2.8 机器学习</h2><ul>
+<li>一般用python去编写，但是像go之类的编程语言都是可以写的，归根结底它也是个程序。</li>
+</ul>
+<h2 id="2-9-量子计算"><a href="#2-9-量子计算" class="headerlink" title="2.9 量子计算"></a>2.9 量子计算</h2><ul>
+<li>量子计算程序是为量子计算机编写的，它们利用量子力学的原理来处理信息。</li>
+<li>量子计算程序通常用专门的量子编程语言编写，如Q#、Qiskit、Cirq等。</li>
+<li>这些程序利用量子比特（qubits）来执行计算，能够解决某些对于传统计算机来说不可行的问题。</li>
+</ul>
+<h2 id="2-10-工控程序"><a href="#2-10-工控程序" class="headerlink" title="2.10 工控程序"></a>2.10 工控程序</h2><ul>
+<li>工控程序是指用于工业控制系统的软件，这些系统可能包括机器人、自动化生产线和其他类型的机械或电子设备。</li>
+<li>控程序可能需要遵循特定的工业标准，如Modbus、Profibus或EtherCAT，以确保设备之间的兼容性和通信。</li>
+</ul>
+<h2 id="2-11-BIOS程序"><a href="#2-11-BIOS程序" class="headerlink" title="2.11 BIOS程序"></a>2.11 BIOS程序</h2><ul>
+<li>BIOS（基本输入&#x2F;输出系统）是计算机启动时最先运行的软件，它负责初始化硬件并加载操作系统。</li>
+<li>BIOS程序现在通常被称为UEFI（统一可扩展固件接口），它不仅包括启动代码，还包括安全启动、远程诊断和其他高级功能。</li>
+</ul>
+<hr>
+<h1 id="3-网络基础"><a href="#3-网络基础" class="headerlink" title="3 网络基础"></a>3 网络基础</h1><h2 id="3-1-硬件设备"><a href="#3-1-硬件设备" class="headerlink" title="3.1 硬件设备"></a>3.1 硬件设备</h2><h3 id="3-1-1-计算机硬件"><a href="#3-1-1-计算机硬件" class="headerlink" title="3.1.1 计算机硬件"></a>3.1.1 计算机硬件</h3><ul>
+<li><strong>中央处理器（CPU）</strong>：计算机的核心部件，负责执行指令和处理数据。它的性能决定了计算机的运行速度。</li>
+<li><strong>内存</strong>：用于存储正在运行的程序和数据，它的容量和速度对计算机的性能有很大影响。</li>
+<li><strong>硬盘</strong>：用于长期存储数据，包括操作系统、应用程序，文件等。硬盘的容量和读写速度也是影响计算机性能的重要因素。</li>
+<li><strong>显卡</strong>：用于处理图形和图像数据，它的性能决定了计算机的图形处理能力。对于游戏玩家和图形设计师来说，显卡的性能非常重要。</li>
+<li><strong>主板</strong>：是计算机的核心电路板，连接着各种硬件设备，如CPU、内存、硬盘、显卡等。主板的质量和性能对计算机的稳定性和扩展性有很大影响。</li>
+</ul>
+<h3 id="3-1-2-网络硬件"><a href="#3-1-2-网络硬件" class="headerlink" title="3.1.2 网络硬件"></a>3.1.2 网络硬件</h3><ul>
+<li><strong>网络服务器</strong>：提供网络服务，如文件存储、电子邮件、Web服务等。网络服务器通常具有较高的性能和可靠性，以满足大量用户的需求。</li>
+<li><strong>网络存储设备</strong>：用于存储网络中的数据，如网络附加存储（NAS）和存储区域网络（SAN）。它们提供了大容量、高可靠性的数据存储解决方案。</li>
+<li><strong>网络打印机</strong>：可以通过网络连接被多台计算机共享，方便用户打印文件。</li>
+<li><strong>网络摄像头</strong>：用于视频监控和远程会议等应用。它可以通过网络将视频信号传输到其他设备上。</li>
+</ul>
+<h3 id="3-1-3-移动设备硬件"><a href="#3-1-3-移动设备硬件" class="headerlink" title="3.1.3 移动设备硬件"></a>3.1.3 移动设备硬件</h3><ul>
+<li><strong>智能手机</strong>：集成了多种功能，如通信、拍照、娱乐、办公等。智能手机的硬件包括处理器、内存、存储、屏幕、摄像头等。</li>
+<li><strong>平板电脑</strong>：类似于智能手机，但屏幕更大，适合阅读、浏览网页、观看视频等。平板电脑的硬件也包括处理器、内存、存储、屏幕、摄像头等。</li>
+<li><strong>可穿戴设备</strong>：如智能手表、智能手环等，它们可以监测用户的健康数据、运动数据等，并与智能手机等设备进行连接和交互。可穿戴设备的硬件包括传感器、处理器、内存、存储、屏幕等。</li>
+</ul>
+<h3 id="3-1-4-硬件发展趋势"><a href="#3-1-4-硬件发展趋势" class="headerlink" title="3.1.4 硬件发展趋势"></a>3.1.4 硬件发展趋势</h3><ul>
+<li><strong>小型化</strong>：硬件设备越来越小型化，便于携带和使用。例如，智能手机、平板电脑等移动设备的体积越来越小，性能却越来越强。</li>
+<li><strong>高性能</strong>：随着技术的不断进步，硬件设备的性能不断提高。例如，CPU的处理速度越来越快，内存和存储的容量越来越大，显卡的图形处理能力越来越强。</li>
+<li><strong>智能化</strong>：硬件设备越来越智能化，能够自动适应不同的环境和用户需求。例如，智能手机可以根据用户的使用习惯自动调整屏幕亮度、音量等设置。</li>
+<li><strong>互联互通</strong>：硬件设备之间的互联互通越来越紧密，形成了一个庞大的物联网。例如，智能家居设备可以通过网络连接实现自动化控制，智能汽车可以与其他车辆和交通设施进行通信。</li>
+<li><strong>节能</strong>：随着环保意识的提高，硬件设计越来越注重能效比，如使用更高效的处理器和电源管理技术。</li>
+<li><strong>云集成</strong>：硬件设备越来越多地与云服务集成，提供远程存储、处理和访问能力。</li>
+</ul>
+<hr>
+<h2 id="3-2-网络类型"><a href="#3-2-网络类型" class="headerlink" title="3.2 网络类型"></a>3.2 网络类型</h2><ul>
+<li><strong>局域网（LAN）</strong>：覆盖范围较小，一般在一个建筑物或一个校园内。例如，公司办公室内的网络就是一个局域网，用于员工之间共享文件、打印机等资源。</li>
+<li><strong>城域网（MAN）</strong>：覆盖范围较大，一般在一个城市内。例如，城市的有线电视网络、宽带网络等。</li>
+<li><strong>广域网（WAN）</strong>：覆盖范围非常大，可以跨越国家和地区。例如，互联网就是一个广域网，连接了全球各地的计算机和网络设备。</li>
+<li><strong>个人区域网（PAN）</strong>：如蓝牙技术，覆盖范围通常在几米以内，用于连接个人设备，如耳机、手机和电脑。</li>
+</ul>
+<h2 id="3-3-网络协议"><a href="#3-3-网络协议" class="headerlink" title="3.3 网络协议"></a>3.3 网络协议</h2><ul>
+<li><strong>TCP&#x2F;IP协议</strong>：是互联网的基础协议，包括传输控制协议（TCP）和网际协议（IP）。TCP负责数据的可靠传输，IP负责数据的路由和寻址。</li>
+<li><strong>HTTP协议</strong>：超文本传输协议，用于在Web浏览器和Web服务器之间传输超文本数据，如网页、图片、视频等。</li>
+<li><strong>SMTP、POP3和IMAP协议</strong>：用于电子邮件的发送和接收。</li>
+<li><strong>FTP协议</strong>：文件传输协议，用于在计算机之间传输文件。</li>
+<li><strong>DNS协议</strong>：域名系统（DNS）协议用于将域名转换为IP地址，使用户能够通过易于记忆的域名访问互联网资源。</li>
+<li><strong>SSL&#x2F;TLS</strong>：安全套接层（SSL）和传输层安全（TLS）协议用于在互联网通信中提供加密、认证和数据完整性。</li>
+</ul>
+<h2 id="3-4-网络设备"><a href="#3-4-网络设备" class="headerlink" title="3.4 网络设备"></a>3.4 网络设备</h2><ul>
+<li><strong>路由器</strong>：连接不同的网络，实现网络之间的数据转发。它根据IP地址和路由表来确定数据的传输路径。</li>
+<li><strong>网卡</strong>：安装在计算机上，用于连接网络。它将计算机的数据转换为网络信号进行传输，并接收网络信号转换为计算机可识别的数据。</li>
+<li><strong>交换机</strong>：在局域网中连接多台计算机，实现数据的快速交换。它根据MAC地址来转发数据帧。</li>
+<li><strong>无线接入点（AP）</strong>：提供无线网络连接，使无线设备能够接入局域网或广域网。</li>
+</ul>
+<h2 id="3-5-网络安全"><a href="#3-5-网络安全" class="headerlink" title="3.5 网络安全"></a>3.5 网络安全</h2><ul>
+<li><strong>防火墙</strong>：用于保护网络免受外部攻击，它可以根据预设的规则过滤网络流量。</li>
+<li><strong>加密技术</strong>：对数据进行加密，防止数据被窃取或篡改。例如，SSL&#x2F;TLS协议用于在Web浏览器和Web服务器之间进行加密通信。</li>
+<li><strong>身份认证</strong>：确保只有授权用户能够访问网络资源，常见的身份认证方式有用户名和密码、数字证书、生物识别等。</li>
+</ul>
+<hr>
+<h1 id="4-通讯协议涉及的安全问题"><a href="#4-通讯协议涉及的安全问题" class="headerlink" title="4 通讯协议涉及的安全问题"></a>4 通讯协议涉及的安全问题</h1><ul>
+<li>潜在安全问题所涉及的领域：无线电安全，协议分析，web渗透，逆向分析。</li>
+<li>通讯协议涉及的安全问题主要包括以下几个方面：</li>
+</ul>
+<h2 id="4-1-保密性问题"><a href="#4-1-保密性问题" class="headerlink" title="4.1 保密性问题"></a>4.1 保密性问题</h2><ul>
+<li><strong>数据泄露风险</strong><br>  ①许多通讯协议在设计时可能没有充分考虑数据加密，导致在传输过程中数据容易被窃听。例如，未加密的HTTP协议，攻击者可以通过网络监听获取传输中的敏感信息，如用户名、密码、信用卡号等。<br>  ②弱加密算法的使用也可能导致保密性不足。一些老旧的加密算法可能存在已知的漏洞，容易被攻击者破解。例如，早期的DES加密算法，其密钥长度较短，容易受到暴力破解攻击。</li>
+<li><strong>密钥管理不善</strong><br>  ①加密通讯协议通常依赖密钥来保证数据的保密性。然而，如果密钥管理不善，如密钥泄露、密钥存储不安全等，就会使通讯的保密性受到严重威胁。<br>  ②密钥的分发过程也可能存在风险。如果密钥在分发过程中被窃取或篡改，那么后续的通讯将不再安全。</li>
+</ul>
+<h2 id="4-2-完整性问题"><a href="#4-2-完整性问题" class="headerlink" title="4.2 完整性问题"></a>4.2 完整性问题</h2><ul>
+<li><strong>数据算改风险</strong><br>  ①攻击者可以算改在通讯过程中传输的数据，破坏数据的完整性。例如，在网络购物中，攻击者可以修改订单金额或商品数量等信息，给用户和商家带来损失。<br>  ②缺乏有效的数据完整性校验机制的通讯协议容易受到此类攻击。一些简单的通讯协议可能只进行基本的错误检测，而没有对数据的完整性进行严格的校验。</li>
+<li><strong>重放攻击</strong><br>  ①重放攻击是指攻击者记录通讯过程中的数据，并在稍后的时间重复发送这些数据，以达到欺骗系统的目的。例如，在身份验证过程中，攻击者可以记录用户的登录请求，然后重复发送该请求，从而冒充合法用户登录系统。<br>  ②通讯协议如果没有采取有效的防范重放攻击的措施，就容易受到这种攻击的影响。</li>
+</ul>
+<h2 id="4-3-身份验证问题"><a href="#4-3-身份验证问题" class="headerlink" title="4.3 身份验证问题"></a>4.3 身份验证问题</h2><ul>
+<li><strong>假冒身份风险</strong><br>  ①攻击者可以假冒合法用户或设备的身份进行通讯，获取敏感信息或进行非法操作。例如，在网络钓鱼攻击中，攻击者伪装成合法的银行网站，骗取用户的登录信息。<br>  ②通讯协议如果没有严格的身份验证机制，就难以区分合法用户和攻击者。</li>
+<li><strong>身份验证漏洞</strong><br>  ①一些通讯协议的身份验证机制可能存在漏洞，被攻击者利用。例如，某些协议可能使用简单的用户名和密码进行身份验证，容易受到暴力破解攻击。<br>  ②身份验证过程中的中间人攻击也是一个常见的问题。攻击者可以在通讯双方之间插入自己，窃取身份验证信息，然后冒充其中一方与另一方进行通讯。</li>
+</ul>
+<h2 id="4-4-可用性问题"><a href="#4-4-可用性问题" class="headerlink" title="4.4 可用性问题"></a>4.4 可用性问题</h2><ul>
+<li><strong>拒绝服务攻击</strong><br>  ①攻击者可以通过发送大量的无效请求或恶意数据包，使通讯系统陷入瘫痪，无法为合法用户提供服务。例如，分布式拒绝服务攻击（DDoS）可以利用大量的僵尸主机向目标服务器发送海量的数据包，耗尽服务器的资源，导致服务不可用。<br>  ②一些通讯协议可能对这种攻击缺乏有效的防范措施，容易受到影响。</li>
+<li><strong>协议漏洞导致的可用性问题</strong><br>  ①某些通讯协议的设计缺陷可能导致系统在特定情况下出现故障，影响可用性。例如，协议中的死锁问题、资源泄漏问题等都可能导致系统无法正常运行。</li>
+</ul>
+<h2 id="4-5-协议实现问题"><a href="#4-5-协议实现问题" class="headerlink" title="4.5 协议实现问题"></a>4.5 协议实现问题</h2><ul>
+<li><strong>编程错误</strong><br>  ①通讯协议的实现过程中可能存在编程错误，导致安全漏洞。例如，缓冲区溢出漏洞、内存泄漏等问题都可能被攻击者利用，从而破坏系统的安全性。<br>  ②开发人员在实现通讯协议时，需要严格遵循安全编程规范，进行充分的测试和代码审查，以减少此类漏洞的出现。</li>
+<li><strong>第三方库和组件的安全问题</strong><br>  ①许多通讯协议的实现依赖于第三方库和组件。如果这些第三方库和组件存在安全漏洞，就会影响到通讯协议的安全性。<br>  ②开发人员需要对使用的第三方库和组件进行严格的安全评估，及时更新和修复发现的安全问题。</li>
+</ul>
+<h2 id="4-6-协议设计缺陷"><a href="#4-6-协议设计缺陷" class="headerlink" title="4.6 协议设计缺陷"></a>4.6 协议设计缺陷</h2><ul>
+<li><strong>缺乏安全考虑的设计</strong><br>  ①有些通讯协议在设计之初可能没有充分考虑安全因素，导致存在先天的安全漏洞。例如，某些协议可能没有对数据的长度、类型等进行严格的限制，使得攻击者可以利用这些漏洞进行缓冲区溢出攻击等。<br>  ②协议的设计可能过于复杂，增加了出现安全漏洞的可能性。复杂的协议往往难以理解和实现正确，容易出现错误和漏洞。</li>
+<li><strong>协议升级带来的安全风险</strong><br>  ①当通讯协议进行升级时，可能会引入新的安全问题。例如，新的功能可能会带来新的攻击面，或者旧版本的协议与新版本的协议之间的兼容性问题可能导致安全漏洞。<br>  ②在进行协议升级时，需要进行充分的安全评估和测试，确保新的协议不会引入新的安全风险。</li>
+</ul>
+<h2 id="4-7-移动通讯协议安全问题"><a href="#4-7-移动通讯协议安全问题" class="headerlink" title="4.7 移动通讯协议安全问题"></a>4.7 移动通讯协议安全问题</h2><ul>
+<li><strong>无线网络的特殊性</strong><br>  ①移动通讯通常通过无线网络进行，这使得通讯更容易受到窃听、干扰和攻击。无线网络的信号可以在一定范围内被接收，攻击者可以通过监听无线信号获取通讯内容。<br>  ②移动设备的移动性也增加了安全管理的难度，例如设备可能会连接到不可信的无线网络，或者在不同的网络环境之间切换。</li>
+<li><strong>移动应用的安全风险</strong><br>  ①移动应用通常使用特定的通讯协议与服务器进行通信。如果这些应用的开发过程中没有充分考虑安全问题，可能会导致通讯协议被滥用或攻击。例如，应用可能会泄露用户的敏感信息，或者被恶意软件利用进行攻击。<br>  ②移动应用的更新和管理也可能存在安全问题。如果应用的更新过程不安全，可能会被攻击者篡改，从而安装恶意软件。</li>
+</ul>
+<h2 id="4-8-物联网通讯协议安全问题"><a href="#4-8-物联网通讯协议安全问题" class="headerlink" title="4.8 物联网通讯协议安全问题"></a>4.8 物联网通讯协议安全问题</h2><ul>
+<li><strong>大量设备的管理难题</strong><br>  ①物联网中通常包含大量的设备，这些设备的管理和安全更新是一个巨大的挑战。如果其中一个设备被攻击，可能会影响到整个物联网系统的安全。<br>  ②许多物联网设备的计算能力和存储资源有限，难以实现复杂的安全机制。</li>
+<li><strong>异构性带来的安全问题</strong><br>  ①物联网中的设备可能使用不同的通讯协议和技术，这增加了安全管理的复杂性。不同的协议可能存在不同的安全漏洞，需要采取不同的安全措施。<br>  ②物联网中的设备可能来自不同的厂商，这些厂商的安全标准和实践可能不同，也会增加安全风险。</li>
+</ul>
+<h2 id="4-9-工业控制系统通讯协议安全问题"><a href="#4-9-工业控制系统通讯协议安全问题" class="headerlink" title="4.9 工业控制系统通讯协议安全问题"></a>4.9 工业控制系统通讯协议安全问题</h2><ul>
+<li><strong>实时性要求与安全的冲突</strong><br>  ①工业控制系统通常对实时性要求很高，这可能与安全机制的实施产生冲突。例如，一些安全措施可能会导致通讯延迟，影响系统的实时性能。<br>  ②在保障工业控制系统的安全时，需要平衡实时性和安全性的要求。</li>
+<li><strong>与传统IT系统的融合带来的风险</strong><br>  ①随着工业互联网的发展，工业控制系统越来越多地与传统的IT系统进行融合。这使得工业控制系统面临来自传统IT系统的安全威胁，如病毒、恶意软件等。<br>  ②工业控制系统的安全防护需要考虑与传统IT系统的集成，采取相应的安全措施。</li>
+</ul>
+<hr>
+<h1 id="5-硬件设备网络安全问题与潜在漏洞分析及渗透测试应用"><a href="#5-硬件设备网络安全问题与潜在漏洞分析及渗透测试应用" class="headerlink" title="5 硬件设备网络安全问题与潜在漏洞分析及渗透测试应用"></a>5 硬件设备网络安全问题与潜在漏洞分析及渗透测试应用</h1><ul>
+<li>在当今数字化时代，硬件设备作为网络系统的重要组成部分，其安全性直接关系到整个网络的稳定与安全。随着网络攻击手段的不断演进，硬件设备面临着越来越多的网络安全问题和潜在漏洞。渗透测试作为一种主动的安全评估方法，可以有效地发现硬件设备中的安全漏洞，为提升硬件设备的安全性提供有力支持。</li>
+</ul>
+<h2 id="5-1-硬件设备的网络安全问题点"><a href="#5-1-硬件设备的网络安全问题点" class="headerlink" title="5.1 硬件设备的网络安全问题点"></a>5.1 硬件设备的网络安全问题点</h2><h3 id="5-1-1-物理安全问题"><a href="#5-1-1-物理安全问题" class="headerlink" title="5.1.1 物理安全问题"></a>5.1.1 物理安全问题</h3><ul>
+<li><strong>设备被盗或损坏</strong><br>  <strong>①渗透测试视角</strong>：攻击者可能会物理接近硬件设备，尝试窃取设备或破坏其物理结构。例如，通过撬锁、伪装成维修人员等方式进入设备存放区域，盗取存储有敏感信息的硬盘或其他组件。<br>  <strong>②防范措施</strong>：加强设备存放区域的物理安全防护，如安装监控摄像头、门禁系统、报警装置等。对重要设备进行加密存储，防止数据被轻易读取。</li>
+<li><strong>环境因素</strong><br>  <strong>①渗透测试视角</strong>：极端的温度、湿度或灰尘等环境因素可能导致硬件设备出现故障，为攻击者提供可乘之机。例如，高温可能使设备性能下降，增加被攻击的风险；潮湿环境可能导致电路短路，使设备更容易被入侵。<br>  <strong>②防范措施</strong>：确保设备运行环境符合标准要求，安装温度、湿度控制设备，定期对设备进行清洁和维护。</li>
+<li><strong>电磁干扰</strong><br>  <strong>①渗透测试视角</strong>：攻击者可以利用电磁干扰设备干扰硬件设备的正常运行，导致数据传输错误或设备故障。例如，通过发射特定频率的电磁信号干扰无线通信设备的信号接收。<br>  <strong>②防范措施</strong>：对重要设备进行电磁屏蔽，使用抗干扰的通信线路和设备。</li>
+</ul>
+<h3 id="5-1-2-供应链安全问题"><a href="#5-1-2-供应链安全问题" class="headerlink" title="5.1.2 供应链安全问题"></a>5.1.2 供应链安全问题</h3><ul>
+<li><strong>假冒伪劣产品</strong><br>  <strong>①渗透测试视角</strong>：攻击者可能会在供应链中混入假冒伪劣的硬件设备，这些设备可能存在安全漏洞，或者被植入恶意软件。例如，假冒的网络设备可能会被配置为向攻击者发送敏感信息，或者允许攻击者远程控制设备。<br>  <strong>②防范措施</strong>：建立严格的供应链管理体系，对供应商进行严格的审核和认证。对采购的硬件设备进行安全检测，如检查设备的序列号、固件版本等，确保设备的真实性和安全性。</li>
+<li><strong>恶意软件植入</strong><br>  <strong>①渗透测试视角</strong>：攻击者可能在硬件设备的生产、运输或存储过程中植入恶意软件，如固件后门、恶意芯片等。这些恶意软件可以在设备投入使用后被激活，对网络进行攻击<br>  <strong>②防范措施</strong>：对硬件设备进行安全检测，包括固件分析、恶意软件扫描等。使用可信的供应链渠道，确保设备在整个供应链过程中的安全性。</li>
+<li><strong>供应链中断</strong><br>  <strong>①渗透测试视角</strong>：供应链中断可能会导致硬件设备无法及时供应，企业可能会被迫使用未经充分测试的替代设备，增加了安全风险。此外，攻击者也可能会利用供应链中断制造混乱，趁机发动攻击。<br>  <strong>②防范措施</strong>：建立多元化的供应链渠道，确保在供应链中断时能够及时获得替代设备。制定应急预案，应对供应链中断可能带来的安全问题。</li>
+</ul>
+<h3 id="5-1-3-设备漏洞问题"><a href="#5-1-3-设备漏洞问题" class="headerlink" title="5.1.3 设备漏洞问题"></a>5.1.3 设备漏洞问题</h3><ul>
+<li><strong>操作系统漏洞</strong><br>  <strong>①渗透测试视角</strong>：硬件设备上的操作系统可能存在各种漏洞，如缓冲区溢出、权限提升等。攻击者可以利用这些漏洞获取设备的控制权，或者窃取敏感信息。例如，通过发送精心构造的数据包，触发操作系统的缓冲区溢出漏洞，从而执行恶意代码<br>  ②防范措施：及时更新操作系统补丁，关闭不必要的服务和端口。对设备进行安全配置，限制用户权限，防止未经授权的访问。</li>
+<li><strong>固件漏洞</strong><br>  <strong>①渗透测试视角</strong>：硬件设备的固件也可能存在漏洞，攻击者可以通过固件升级或恶意软件植入等方式利用这些漏洞。例如，攻击者可以利用固件漏洞获取设备的管理员权限，或者篡改设备的配置。<br>  <strong>②防范措施</strong>：定期检查设备固件版本，及时更新固件补丁。对固件进行安全审计，确保固件的完整性和安全性。</li>
+<li><strong>硬件设计漏洞</strong><br>  <strong>①渗透测试视角</strong>：硬件设备的设计可能存在漏洞，如硬件后门、侧信道攻击等。攻击者可以利用这些漏洞获取设备的敏感信息，或者控制设备。例如，通过分析设备的电磁辐射或功耗变化，获取设备处理的敏感数据<br>  <strong>②防范措施</strong>：在设备采购过程中，选择经过安全认证的产品。对设备进行安全评估，检测是否存在硬件设计漏洞。采用加密技术和安全隔离措施保护敏感信息。</li>
+</ul>
+<h3 id="5-1-4-网络连接问题"><a href="#5-1-4-网络连接问题" class="headerlink" title="5.1.4 网络连接问题"></a>5.1.4 网络连接问题</h3><ul>
+<li><strong>网络攻击</strong><br> <strong>①渗透测试视角</strong>：硬件设备连接到网络后，可能会受到各种网络攻击，如DDoS攻击、SQL注入、跨站脚本攻击等。攻击者可以利用这些攻击手段破坏设备的正常运行，或者窃取敏感信息。例如，通过发送大量的请求，使设备无法正常响应，从而实现DDoS攻击。<br> <strong>②防范措施</strong>：加强网络安全防护，如安装入侵检测系统、防火墙等对设备进行网络访问控制，限制来自外部网络的访问。定期进行安全漏洞扫描，及时发现和修复网络安全漏洞。</li>
+<li><strong>无线连接安全问题</strong><br>  <strong>①渗透测试视角</strong>：无线连接的硬件设备可能会受到无线攻击，如Wi-Fi密码破解、蓝牙攻击等。攻击者可以利用这些攻击手段获取设备的控制权或者窃取敏感信息。例如，攻击者可能尝试破解Wi-Fi密码，接入无线网络，进而攻击连接到该网络的硬件设备。<br>  <strong>②防范措施</strong>：对无线连接进行加密，如使用WPA2加密协议。定期更换无线密码，限制无线设备的连接数量。对无线设备进行安全配置，关闭不必要的服务和功能。</li>
+<li><strong>网络隔离问题</strong><br>  <strong>①渗透测试视角</strong>：如果硬件设备没有进行有效的网络隔离，可能会导致不同网络之间的安全问题相互影响。例如，，一个受感染的设备可能会通过网络传播恶意软件，影响其他设备的安全。<br>  <strong>②防范措施</strong>：对不同的网络进行隔离，使用防火墙、虚拟局域网等技术实现网络隔离。对跨网络的数据传输进行严格的控制和审查，防止恶意软件的传播。</li>
+</ul>
+<hr>
+<h2 id="5-2-硬件设备的潜在漏洞及渗透测试方法"><a href="#5-2-硬件设备的潜在漏洞及渗透测试方法" class="headerlink" title="5.2 硬件设备的潜在漏洞及渗透测试方法"></a>5.2 硬件设备的潜在漏洞及渗透测试方法</h2><h3 id="5-2-1-处理器漏洞"><a href="#5-2-1-处理器漏洞" class="headerlink" title="5.2.1 处理器漏洞"></a>5.2.1 处理器漏洞</h3><ul>
+<li><strong>幽灵（Spectre）和熔断（Meltdown）漏洞</strong><br>  <strong>①透测试方法</strong>：可以使用专门的漏洞检测工具，如Meltdown and Spectre Checker，对处理器进行检测。也可以通过分析处理器的性能指标，如CPU使用率、内存访问时间等，判断是否存在漏洞。<br>  <strong>②利用场景</strong>：攻击者可以利用这些漏洞获取处理器中的敏感信息，如密码、密钥等。例如，通过构造特定的代码序列，诱导处理器执行错误的预测执行，从而读取内核内存中的敏感数据。<br>  <strong>③防范措施</strong>：及时更新处理器的微代码和操作系统补丁，关闭预测执行功能（在某些情况下可能会影响性能）。使用内存隔离技术，防止内核内存被用户空间程序访问。</li>
+<li><strong>侧信道攻击漏洞</strong><br>  <strong>①渗透测试方法</strong>：侧信道攻击通常需要对目标设备进行长时间的观察和分析，因此渗透测试人员可以使用专门的侧信道攻击工具，如电磁辐射分析仪、功耗分析器等，对设备进行监测。也可以通过软件模拟的方式，分析设备的运行状态，判断是否存在侧信道攻击漏洞。<br>  <strong>②利用场景</strong>：攻击者可以通过分析设备的电磁辐射、功耗变化等侧信道信息，获取设备处理的敏感数据。例如，通过分析密码加密过程中的功耗变化，推断出密码的部分信息。<br>  <strong>③防范措施</strong>：采用电磁屏蔽技术，减少设备的电磁辐射。使用随机化技术，如随机化密码加密过程中的时间和功耗，防止侧信道攻击。</li>
+</ul>
+<h3 id="5-2-2-存储设备漏洞"><a href="#5-2-2-存储设备漏洞" class="headerlink" title="5.2.2 存储设备漏洞"></a>5.2.2 存储设备漏洞</h3><ul>
+<li><strong>固态硬盘（SSD）漏洞</strong><br>  <strong>①渗透测试方法</strong>：可以使用SSD漏洞检测工具，如SSDSecure Erase Tool，对SSD进行检测。也可以通过分析SSD的固件版本和功能，判断是否存在漏洞。<br>  <strong>②利用场景</strong>：攻击者可以利用SSD的固件漏洞获取存储在SSD中的数据。例如，通过修改SSD的固件，使SSD在特定条件下泄露数据。<br>  <strong>③防范措施</strong>：及时更新SSD的固件补丁，使用加密技术保护存储在SSD中的数据。对重要数据进行备份，防止数据丢失。</li>
+<li><strong>内存漏洞</strong><br>  <strong>①渗透测试方法</strong>：可以使用内存漏洞检测工具，如Memtest86，对内存进行检测。也可以通过分析程序的内存访问模式，判断是否存在内存漏洞。<br>  <strong>②利用场景</strong>：内存可能存在缓冲区溢出、内存泄漏等漏洞，攻击者可以利用这些漏洞获取内存中的敏感信息。例如，通过发送精心构造的数据包触发程序的缓冲区溢出漏洞，从而执行恶意代码。<br>  <strong>③防范措施</strong>：及时更新软件补丁，修复内存漏洞。对程序进行安全审计，确保程序的内存访问安全。使用内存隔离技术，防止不同程序之间的内存访问冲突。</li>
+</ul>
+<h3 id="5-2-3-网络设备漏洞"><a href="#5-2-3-网络设备漏洞" class="headerlink" title="5.2.3 网络设备漏洞"></a>5.2.3 网络设备漏洞</h3><ul>
+<li><strong>路由器漏洞</strong><br>  <strong>①渗透测试方法</strong>：可以使用路由器漏洞扫描工具，如Router Scan，对路由器进行检测。也可以通过分析路由器的配置文件和固件版本，判断是否存在漏洞<br>  <strong>②利用场景</strong>：路由器可能存在漏洞，如默认密码、远程代码执行漏洞等，攻击者可以利用这些漏洞控制路由器，进而对网络进行攻击。例如，通过利用路由器的远程代码执行漏洞，在路由器上安装恶意软件，实现对网络流量的监控和篡改。<br>  <strong>③防范措施</strong>：及时更新路由器的固件补丁，修改默认密码。对路由器进行安全配置，关闭不必要的服务和端口。使用网络访问控制技术，限制对路由器的访问。</li>
+<li><strong>交换机漏洞</strong><br>  <strong>①渗透测试方法</strong>：可以使用交换机漏洞扫描工具，.如Switch Scanner对交换机进行检测。也可以通过分析交换机的配置文件和固件版本，判断是否存在漏洞<br>  <strong>②利用场景</strong>：交换机可能存在漏洞，如VLAN跳跃漏洞、MAC地址欺骗漏洞等，攻击者可以利用这些漏洞获取网络中的敏感信息。例如，通过利用VLAN跳跃漏洞，跨越不同的VLAN，获取其他VLAN中的敏感数据。<br>  <strong>③防范措施</strong>：及时更新交换机的固件补丁，对交换机进行安全配置关闭不必要的服务和功能。使用VLAN隔离技术，防正不同VLAN之间的通信。</li>
+</ul>
+<h3 id="5-2-4物联网设备漏洞"><a href="#5-2-4物联网设备漏洞" class="headerlink" title="5.2.4物联网设备漏洞"></a>5.2.4物联网设备漏洞</h3><ul>
+<li><strong>物联网设备安全问题日益突出，由于物联网设备通常具有较低的计算能力和存储容量，因此它们更容易受到攻击。</strong><br>  <strong>①渗透测试方法</strong>：可以使用物联网设备漏洞扫描工具，如1oT Inspector，对物联网设备进行检测。也可以通过分析物联网设备的通信协议和固件版本，判断是否存在漏洞。<br>  <strong>②利用场景</strong>：物联网设备可能存在漏洞，如默认密码、弱加密算法、远程代码执行漏洞等，攻击者可以利用这些漏洞控制物联网设备，进而对网络进行攻击。例如，通过利用物联网设备的远程代码执行漏洞，在物联网设备上安装恶意软件，实现对物联网网络的控制。<br>  <strong>③防范措施</strong>：加强物联网设备的安全管理，如定期更新设备固件、修改默认密码、使用强加密算法等。对物联网设备进行安全认证，确保设备的安全性。使用物联网安全网关，对物联网设备的通信进行监控和过滤。</li>
+</ul>
+<hr>
+<h2 id="5-3-渗透测试在硬件设备安全评估中的应用"><a href="#5-3-渗透测试在硬件设备安全评估中的应用" class="headerlink" title="5.3 渗透测试在硬件设备安全评估中的应用"></a>5.3 渗透测试在硬件设备安全评估中的应用</h2><h3 id="5-3-1-渗透测试的流程"><a href="#5-3-1-渗透测试的流程" class="headerlink" title="5.3.1 渗透测试的流程"></a>5.3.1 渗透测试的流程</h3><ul>
+<li><strong>信息收集</strong>：收集目标硬件设备的相关信息，包括设备型号、固件版本、网络配置等。</li>
+<li><strong>漏洞扫描</strong>：使用漏洞扫描工具对硬件设备进行扫描，发现潜在的安全漏洞。</li>
+<li><strong>漏洞利用</strong>：根据发现的漏洞，尝试利用漏洞获取设备的控制权或敏感信息。</li>
+<li><strong>后渗透测试</strong>：在成功获取设备控制权后，进行后渗透测试，如权限提升、横向移动、数据窃取等。</li>
+<li><strong>报告生成</strong>：将渗透测试的结果整理成报告，包括发现的漏洞、利用方法、风险评估等。</li>
+</ul>
+<h3 id="5-3-2-渗透测试的注意事项"><a href="#5-3-2-渗透测试的注意事项" class="headerlink" title="5.3.2 渗透测试的注意事项"></a>5.3.2 渗透测试的注意事项</h3><ul>
+<li><strong>合法合规</strong>：渗透测试必须在合法合规的前提下进行，获得相关授权后方可进行测试。</li>
+<li><strong>风险控制</strong>：在进行渗透测试时，要注意控制测试的风险，避免对目标设备造成不必要的损害。</li>
+<li><strong>保密原则</strong>：渗透测试人员要遵守保密原则，对测试过程中获取的敏感信息进行严格保密。</li>
+</ul>
+<h2 id="5-4-结论"><a href="#5-4-结论" class="headerlink" title="5.4 结论"></a>5.4 结论</h2><ul>
+<li>硬件设备的网络安全问题和潜在漏洞是一个复杂的问题，需要从多个方面进行防护。渗透测试作为一种主动的安全评估方法，可以有效地发现硬件设备中的安全漏洞，为提升硬件设备的安全性提供有力支持。在进行硬件设备的安全评估时，应结合渗透测试技能，全面分析硬件设备的网络安全问题和潜在漏洞，采取有效的防护措施，确保硬件设备的安全运行。同时，企业和个人也应加强对硬件设备网络安全的意识，定期进行安全评估和漏洞修复，保障网络安全。</li>
+</ul>
+<hr>
+<h1 id="6-人工智能"><a href="#6-人工智能" class="headerlink" title="6 人工智能"></a>6 人工智能</h1><h2 id="6-1-人工智能简介"><a href="#6-1-人工智能简介" class="headerlink" title="6.1 人工智能简介"></a>6.1 人工智能简介</h2><ul>
+<li>人工智能（Artificial Intelligence，简称Al）是指让计算机模拟人类智能的技术和科学。它旨在使计算机系统能够执行通常需要人类智能才能完成的任务，如学习、推理、解决问题、理解自然语言、识别图像和语音等。</li>
+<li>人工智能的发展可以追溯到上世纪50年代，经过几十年的研究和发展，如今已经在许多领域取得了重大突破和广泛应用。例如：<br>  <strong>①医疗领域</strong>：辅助医生进行疾病诊断、医学影像分析、药物研发等。<br>  <strong>②交通领域</strong>：自动驾驶汽车、交通流量预测和优化等。<br>  <strong>③金融领域</strong>：风险评估、欺诈检测、智能投资顾问等。<br>  <strong>④图像识别和语音处理</strong>：人脸识别、语音助手等技术已经深入人们的日常生活。<br>  <strong>⑤客户服务</strong>：智能聊天机器人可以快速回答客户的问题，提高服务效率。</li>
+</ul>
+<h3 id="6-1-1-机器学习"><a href="#6-1-1-机器学习" class="headerlink" title="6.1.1 机器学习"></a>6.1.1 机器学习</h3><ul>
+<li>机器学习是实现人工智能的一种方法，它使计算机能够从数据中学习并改进其性能。</li>
+<li>工作流程包括数据收集、数据预处理、模型选择与训练、模型评估与优化以及模型应用。<br>  <strong>①数据收集</strong>：从数据库、文件、传感器、网络等渠道获取结构化、半结构化和非结构化数据。<br>  <strong>②数据预处理</strong>：包括数据清洗、数据归一化和特征提取。<br>  <strong>③模型选择与训练</strong>：选择合适的算法，将数据分为训练集和测试集，并对模型进行训练。<br>  <strong>④模型评估与优化</strong>：使用测试集评估模型性能，并根据评估结果进行优化。<br>  <strong>⑤模型应用</strong>：将优化后的模型应用于实际任务中，并持续监控和评估其性能。</li>
+<li><strong>深度学习</strong><br>  深度学习是机器学习的一个分支，它基于人工神经网络。深度学习模型通常由多个层次组成，包括输入层、隐藏层和输出层，能够从数据中自动学习复杂的特征。</li>
+</ul>
+<hr>
+<h2 id="6-2-人工智能涉及的网络安全问题"><a href="#6-2-人工智能涉及的网络安全问题" class="headerlink" title="6.2 人工智能涉及的网络安全问题"></a>6.2 人工智能涉及的网络安全问题</h2><h3 id="6-2-1-数据安全问题"><a href="#6-2-1-数据安全问题" class="headerlink" title="6.2.1 数据安全问题"></a>6.2.1 数据安全问题</h3><ul>
+<li>人工智能系统通常需要大量的数据进行训练。这些数据可能包含敏感信息，如个人身份信息、财务数据等。如果这些数据在收集、存储、传输或使用过程中没有得到妥善保护，就可能被泄露、窃取或滥用。</li>
+<li>攻击者可能会通过攻击数据存储系统、网络传输通道或利用人工智能算法的漏洞来获取数据。</li>
+</ul>
+<h3 id="6-2-2-对抗攻击"><a href="#6-2-2-对抗攻击" class="headerlink" title="6.2.2 对抗攻击"></a>6.2.2 对抗攻击</h3><ul>
+<li>对抗攻击是指通过对输入数据进行微小的修改，使得人工智能系统产生错误的输出。例如，在图像识别中，通过在图像上添加一些人眼难以察觉的扰动，可以使人工智能系统错误地识别图像。</li>
+<li>对抗攻击可能会对安全关键领域的人工智能系统造成严重威胁，如自动驾驶汽车、人脸识别系统等。</li>
+</ul>
+<h3 id="6-2-3-模型窃取和知识产权问题"><a href="#6-2-3-模型窃取和知识产权问题" class="headerlink" title="6.2.3 模型窃取和知识产权问题"></a>6.2.3 模型窃取和知识产权问题</h3><ul>
+<li>攻击者可以通过逆向工程等手段窃取人工智能模型的参数和结构，从而复制或改进该模型。这不仅会侵犯知识产权，还可能导致商业机密泄露。</li>
+<li>此外，攻击者还可以利用窃取的模型进行恶意攻击，如生成虚假数据来欺骗其他人工智能系统。</li>
+</ul>
+<h3 id="6-2-4-恶意使用人工智能"><a href="#6-2-4-恶意使用人工智能" class="headerlink" title="6.2.4 恶意使用人工智能"></a>6.2.4 恶意使用人工智能</h3><ul>
+<li>攻击者可以利用人工智能技术来发动更复杂，更难以检测的网络攻击。例如，使用人工智能生成的恶意软件可以自动适应不同的环境和防御机制，提高攻击的成功率。</li>
+<li>人工智能还可以被用于自动化的网络钓鱼、垃圾邮件发送等恶意活动。</li>
+</ul>
+<hr>
+<h2 id="6-3-人工智能学习路径和方法"><a href="#6-3-人工智能学习路径和方法" class="headerlink" title="6.3 人工智能学习路径和方法"></a>6.3 人工智能学习路径和方法</h2><h3 id="6-3-1-学习基础知识"><a href="#6-3-1-学习基础知识" class="headerlink" title="6.3.1 学习基础知识"></a>6.3.1 学习基础知识</h3><ul>
+<li>掌握数学基础知识，如线性代数、概率论、统计学等。这些知识对于理解人工智能算法和模型非常重要。</li>
+<li>学习编程语言，如Python。Python是人工智能领域最常用的编程语言之一，有丰富的库和工具可供使用。</li>
+<li>了解机器学习和深度学习的基本概念，包括监督学习、无监督学习、神经网络等。</li>
+</ul>
+<h3 id="6-3-2在线课程和教程"><a href="#6-3-2在线课程和教程" class="headerlink" title="6.3.2在线课程和教程"></a>6.3.2在线课程和教程</h3><ul>
+<li>利用在线学习平台，如Coursera、Udemy、edX等，参加人工智能相关的课程。这些课程通常由知名大学或专业机构提供，内容丰富，教学质量高。</li>
+<li>阅读相关的书籍和博客，如《深度学习》《机器学习实战》等书籍，以及一些知名的人工智能博客，如Medium上的人工智能专栏。</li>
+</ul>
+<h3 id="6-3-3-实践项目"><a href="#6-3-3-实践项目" class="headerlink" title="6.3.3 实践项目"></a>6.3.3 实践项目</h3><ul>
+<li>参与开源项目或自己动手实践人工智能项目。可以从一些简单的项目开始，如手写数字识别、图像分类等，逐渐提高难度。</li>
+<li>参加人工智能竞赛，如Kaggle上的各种竞赛。这些竞赛可以让你接触到真实的数据集和问题，提高你的实践能力和竞争力。</li>
+</ul>
+<h3 id="6-3-4-持续学习和交流"><a href="#6-3-4-持续学习和交流" class="headerlink" title="6.3.4 持续学习和交流"></a>6.3.4 持续学习和交流</h3><ul>
+<li>关注人工智能领域的最新研究进展和技术趋势，可以通过阅读学术论文、参加学术会议、关注行业新闻等方式实现。</li>
+<li>加入人工智能社区或论坛，与其他学习者和专业人士交流经验、分享知识、解决问题。</li>
+</ul>
+<blockquote>
+<p>总之，学习人工智能需要掌握扎实的基础知识，通过实践项目不断提高自己的能力，并持续关注领域的最新发展。同时，也要关注人工智能带来的网络安全问题，加强安全意识和防范措施。</p>
+</blockquote>
+<hr>
+<h1 id="7-量子计算与网络渗透测试"><a href="#7-量子计算与网络渗透测试" class="headerlink" title="7 量子计算与网络渗透测试"></a>7 量子计算与网络渗透测试</h1><h2 id="7-1-学习方向"><a href="#7-1-学习方向" class="headerlink" title="7.1 学习方向"></a>7.1 学习方向</h2><h3 id="7-1-1-量子物理学基础"><a href="#7-1-1-量子物理学基础" class="headerlink" title="7.1.1 量子物理学基础"></a>7.1.1 量子物理学基础</h3><ul>
+<li>了解量子力学的基本原理，如量子态、叠加态、纠缠等概念，这是理解量子计算的基础。</li>
+<li>学习量子力学的数学表达，包括波函数、算符等，以便更好地分析量子计算系统的特性。</li>
+</ul>
+<h3 id="7-1-2-量子计算原理与技术"><a href="#7-1-2-量子计算原理与技术" class="headerlink" title="7.1.2 量子计算原理与技术"></a>7.1.2 量子计算原理与技术</h3><ul>
+<li>掌握量子比特、量子门、量子电路等量子计算的核心概念。</li>
+<li>研究不同的量子计算模型，如量子线路模型、绝热量子计算等。</li>
+<li>了解量子算法，特别是对传统密码学构成威胁的算法，如Shor算法。</li>
+</ul>
+<h3 id="7-1-3-传统网络安全知识"><a href="#7-1-3-传统网络安全知识" class="headerlink" title="7.1.3 传统网络安全知识"></a>7.1.3 传统网络安全知识</h3><ul>
+<li>巩固传统加密算法、哈希函数、数字签名等网络安全技术。</li>
+<li>熟悉网络安全架构、访问控制、漏洞管理等方面的知识，以便对比量子计算对传统安全的影响。</li>
+</ul>
+<h3 id="7-1-4-量子密码学"><a href="#7-1-4-量子密码学" class="headerlink" title="7.1.4 量子密码学"></a>7.1.4 量子密码学</h3><ul>
+<li>学习量子密钥分发（QKD）的原理和技术，掌握其优势和局限性。</li>
+<li>研究抗量子密码算法，如基于格的密码、基于哈希的密码等。</li>
+</ul>
+<h3 id="7-1-5-量子计算安全政策与法规"><a href="#7-1-5-量子计算安全政策与法规" class="headerlink" title="7.1.5 量子计算安全政策与法规"></a>7.1.5 量子计算安全政策与法规</h3><ul>
+<li>了解国内外关于量子计算安全的政策法规，以及行业标准的发展动态。</li>
+<li>关注量子计算安全领域的伦理和法律问题。</li>
+</ul>
+<h2 id="7-2-漏洞风险"><a href="#7-2-漏洞风险" class="headerlink" title="7.2 漏洞风险"></a>7.2 漏洞风险</h2><h3 id="7-2-1-加密算法被破解风险"><a href="#7-2-1-加密算法被破解风险" class="headerlink" title="7.2.1 加密算法被破解风险"></a>7.2.1 加密算法被破解风险</h3><ul>
+<li>传统非对称加密算法（如RSA、ECC）可能被量子计算机上的Shor算法快速破解。</li>
+<li>哈希函数可能受到量子计算的攻击，导致碰撞攻击更容易实施。</li>
+</ul>
+<h3 id="7-2-2-“现在收获，以后解密”风险"><a href="#7-2-2-“现在收获，以后解密”风险" class="headerlink" title="7.2.2 “现在收获，以后解密”风险"></a>7.2.2 “现在收获，以后解密”风险</h3><ul>
+<li>攻击者可能在当前收集加密数据，等待量子计算技术成熟后进行解密。</li>
+</ul>
+<h3 id="7-2-3-区块链安全风险"><a href="#7-2-3-区块链安全风险" class="headerlink" title="7.2.3 区块链安全风险"></a>7.2.3 区块链安全风险</h3><ul>
+<li>量子计算可能破解区块链用户的私钥，威胁加密货币的安全。</li>
+</ul>
+<h3 id="7-2-4-量子密钥分发风险"><a href="#7-2-4-量子密钥分发风险" class="headerlink" title="7.2.4 量子密钥分发风险"></a>7.2.4 量子密钥分发风险</h3><ul>
+<li>量子信道可能受到干扰，影响密钥的生成和传输。</li>
+<li>设备和系统可能存在安全漏洞，被攻击者利用。</li>
+</ul>
+<h3 id="7-2-5-量子计算系统自身风险"><a href="#7-2-5-量子计算系统自身风险" class="headerlink" title="7.2.5 量子计算系统自身风险"></a>7.2.5 量子计算系统自身风险</h3><ul>
+<li>量子计算系统存在错误和噪声问题，可能被攻击者利用来破坏计算过程或获取敏感信息。</li>
+<li>供应链安全风险，硬件设备或软件可能被植入恶意代码。</li>
+</ul>
+<h2 id="7-3-测试方法"><a href="#7-3-测试方法" class="headerlink" title="7.3 测试方法"></a>7.3 测试方法</h2><h3 id="7-3-1-加密算法测试"><a href="#7-3-1-加密算法测试" class="headerlink" title="7.3.1 加密算法测试"></a>7.3.1 加密算法测试</h3><ul>
+<li>使用量子计算模拟器或量子硬件，尝试运行Shor算法对传统加密算法进行破解。</li>
+<li>分析不同加密算法在量子计算环境下的安全性，评估其被破解的难度和时间。</li>
+</ul>
+<h3 id="7-3-2-“现在收获，以后解密”测试"><a href="#7-3-2-“现在收获，以后解密”测试" class="headerlink" title="7.3.2 “现在收获，以后解密”测试"></a>7.3.2 “现在收获，以后解密”测试</h3><ul>
+<li>模拟攻击者收集加密数据的场景，分析在未来量子计算技术发展后，这些数据被解密的可能性。</li>
+<li>研究数据存储和保护策略，以降低“现在收获，以后解密”的风险。</li>
+</ul>
+<h3 id="7-3-3-区块链安全测试"><a href="#7-3-3-区块链安全测试" class="headerlink" title="7.3.3 区块链安全测试"></a>7.3.3 区块链安全测试</h3><ul>
+<li>分析量子计算对区块链的影响，特别是对私钥安全性的威胁。</li>
+<li>测试抗量子密码算法在区块链中的应用效果。</li>
+</ul>
+<h3 id="7-3-4-量子密钥分发测试"><a href="#7-3-4-量子密钥分发测试" class="headerlink" title="7.3.4 量子密钥分发测试"></a>7.3.4 量子密钥分发测试</h3><ul>
+<li>对量子信道进行干扰测试，评估其对密钥分发的影响。</li>
+<li>检查量子设备和系统的安全性，包括硬件漏洞、软件漏洞等。</li>
+</ul>
+<h3 id="7-3-5-量子计算系统自身测试"><a href="#7-3-5-量子计算系统自身测试" class="headerlink" title="7.3.5 量子计算系统自身测试"></a>7.3.5 量子计算系统自身测试</h3><ul>
+<li>进行错误注入测试，观察量子计算系统在错误和噪声环境下的性能和安全性。</li>
+<li>审查量子计算系统的供应链，确保硬件设备和软件的安全性。</li>
+</ul>
+<blockquote>
+<p>总之，量子计算安全是一个复杂的领域，需要综合运用物理学、计算机科学、密码学等多学科知识进行学习和研究。通过了解漏洞风险并采用适当的测试方法，可以更好地保障量子计算系统的安全。</p>
+</blockquote>
+<h2 id="7-4-渗透思路"><a href="#7-4-渗透思路" class="headerlink" title="7.4 渗透思路"></a>7.4 渗透思路</h2><h3 id="7-4-1-信息收集阶段"><a href="#7-4-1-信息收集阶段" class="headerlink" title="7.4.1 信息收集阶段"></a>7.4.1 信息收集阶段</h3><ul>
+<li><strong>目标背景调研</strong>：了解目标量子系统所属的机构、其在量子研究或应用中的角色、相关的项目信息等。例如，确定该量子系统是用于科研实验、量子通信网络建设，还是量子计算服务等，以便更好地理解其潜在的价值和可能存在的安全重点。</li>
+<li><strong>技术架构分析</strong>：研究目标量子系统的技术架构，包括所使用的量子设备类型（如量子计算机的型号、量子通信设备的技术标准等）、系统的拓扑结构、与传统网络的连接方式等。这可以通过查阅相关的技术文档、学术论文，或者与熟悉该系统的人员进行交流来获取信息。</li>
+<li><strong>公开信息搜集</strong>：利用互联网搜索引擎、学术数据库、专业论坛等渠道，收集与目标量子系统相关的公开信息。可能包括系统的开发者或供应商发布的技术资料、研究团队的学术报告、相关的新闻报道等。这些信息可以帮助渗透测试人员了解系统的基本特性、已公开的漏洞或安全事件，以及可能存在的安全隐患。</li>
+</ul>
+<h3 id="7-4-2-威胁建模阶段"><a href="#7-4-2-威胁建模阶段" class="headerlink" title="7.4.2 威胁建模阶段"></a>7.4.2 威胁建模阶段</h3><ul>
+<li><strong>识别潜在威胁源</strong>：分析可能对量子系统构成威胁的主体，包括外部的黑客组织、竞争对手、恶意研究人员等，以及内部的系统管理员、研发人员等可能存在的误操作或恶意行为。同时，考虑量子计算技术本身可能带来的新的威胁，如量子算法对传统加密的挑战。</li>
+<li><strong>确定攻击路径</strong>：根据收集到的信息和对威胁源的分析，确定可能的攻击路径。例如对于量子通信系统，攻击路径可能包括对量子信道的干扰、对通信设备的物理攻击或软件漏洞利用；对于量子计算系统，可能的攻击路径包括对量子算法的攻击、对控制系统的入侵等。</li>
+<li><strong>评估影响程度</strong>：对每种可能的攻击路径进行影响评估，确定如果攻击成功，可能对目标量子系统造成的影响，如数据泄露、系统瘫痪、量子密钥被破解等。这将有助于确定渗透测试的重点和优先级。</li>
+</ul>
+<h3 id="7-4-3-漏洞分析阶段"><a href="#7-4-3-漏洞分析阶段" class="headerlink" title="7.4.3 漏洞分析阶段"></a>7.4.3 漏洞分析阶段</h3><ul>
+<li><strong>设备漏洞扫描</strong>：使用专业的漏洞扫描工具，对量子系统中的硬件设备进行扫描，查找可能存在的安全漏洞。例如，检查量子计算机的控制系统、量子通信设备的接口等是存在已知的漏洞或配置不当的问题。</li>
+<li><strong>软件漏洞检测</strong>：对于量子系统中运行的软件，包括操作系统、控制软件、通信协议等进行漏洞检测。可以使用静态代码分析工具、动态漏洞扫描工具等，查找可能存在的代码漏洞、缓冲区溢出、权限管理不当等问题。</li>
+<li><strong>量子算法分析</strong>：针对量子系统所使用的量子算法，分析其安全性。例如，对于量子密钥分发算法，检查其是否存在被窃听或破解的风险；对于量子计算算法，研究是否存在可能被利用来攻击系统的漏洞。</li>
+</ul>
+<h3 id="7-4-4-渗透攻击阶段"><a href="#7-4-4-渗透攻击阶段" class="headerlink" title="7.4.4 渗透攻击阶段"></a>7.4.4 渗透攻击阶段</h3><ul>
+<li><strong>漏洞利用尝试</strong>：根据发现的漏洞，尝试利用漏洞获取对量子系统的访问权限。例如，如果发现了一个远程代码执行漏洞，尝试通过发送精心构造的数据包来执行恶意代码，获取系统的控制权。</li>
+<li><strong>量子信道干扰</strong>：对于量子通信系统，尝试通过干扰量子信道来影响通信的安全性。这可能包括使用强磁场、强光等方式干扰量子态的传输，或者尝试窃听量子信道中的信息。</li>
+<li><strong>社会工程学攻击</strong>：利用社会工程学方法，尝试获取量子系统相关人员的信任，，获取敏感信息或访问权限。例如，通过发送钓鱼邮件、伪装成技术支持人员等方式，诱使目标人员透露账号密码、系统配置等信息。</li>
+</ul>
+<h3 id="7-4-5-后渗透攻击阶段"><a href="#7-4-5-后渗透攻击阶段" class="headerlink" title="7.4.5 后渗透攻击阶段"></a>7.4.5 后渗透攻击阶段</h3><ul>
+<li><strong>内部网络探测</strong>：在成功获取量子系统的访问权限后，进一步探测系统内部的网络结构了解系统中其他设备的连接情况和访问权限，以便发现更多的潜在目标。</li>
+<li><strong>数据窃取与分析</strong>：尝试窃取量子系统中的敏感数据，如量子密钥、实验数据、用户信息等，并对窃取的数据进行分析，以获取更多的信息和潜在的漏洞。</li>
+<li><strong>权限提升与持久化</strong>：尝试提升自己在量子系统中的权限，以便获取更高的访问级别和更多的操作权限。同时，采取措施使自己的访问权限持久化，以便在后续的测试中能够继续访问系统。</li>
+</ul>
+<h3 id="7-4-6-报告阶段"><a href="#7-4-6-报告阶段" class="headerlink" title="7.4.6 报告阶段"></a>7.4.6 报告阶段</h3><ul>
+<li><strong>结果整理与分析</strong>：将渗透测试过程中发现的漏洞、攻击路径、获取的信息等进行整理和分析，总结出量子系统存在的安全问题和潜在的风险。</li>
+<li><strong>报告撰写</strong>：编写详细的渗透测试报告，报告中应包括测试的目标、范围、方法、过程发现的问题、风险评估以及建议的修复措施等。报告应具有清晰的结构和准确的表述，以便目标机构的管理人员和技术人员能够理解和采取相应的措施。</li>
+</ul>
+<h1 id="8-二进制与网络安全的关系"><a href="#8-二进制与网络安全的关系" class="headerlink" title="8 二进制与网络安全的关系"></a>8 二进制与网络安全的关系</h1><h2 id="8-1-二进制的基本概念"><a href="#8-1-二进制的基本概念" class="headerlink" title="8.1 二进制的基本概念"></a>8.1 二进制的基本概念</h2><ul>
+<li>进制是计算技术中广泛采用的一种数制。它只有两个数码：0和1，采用逢二进一的进位规则。计算机中的所有数据都是以二进制形式存储和处理的。</li>
+</ul>
+<h2 id="8-2-二进制在网络安全中的重要性"><a href="#8-2-二进制在网络安全中的重要性" class="headerlink" title="8.2 二进制在网络安全中的重要性"></a>8.2 二进制在网络安全中的重要性</h2><ul>
+<li><strong>底层安全基础</strong>：网络系统的安全性很大程度上依赖于底层二进制代码的正确性和安全性。恶意软件、漏洞利用等往往针对二进制代码进行攻击。</li>
+<li><strong>漏洞分析</strong>：通过分析二进制代码可以发现潜在的安全漏洞，如缓冲区溢出、代码注入等。</li>
+<li><strong>加密与解密</strong>：二进制代码在加密和解密算法中起着关键作用，对二进制的理解有助于分析和破解加密机制。</li>
+</ul>
+<h2 id="8-3-二进制安全的概念与范畴"><a href="#8-3-二进制安全的概念与范畴" class="headerlink" title="8.3 二进制安全的概念与范畴"></a>8.3 二进制安全的概念与范畴</h2><h3 id="8-3-1-二进制安全的定义"><a href="#8-3-1-二进制安全的定义" class="headerlink" title="8.3.1 二进制安全的定义"></a>8.3.1 二进制安全的定义</h3><ul>
+<li>二进制安全是指在处理二进制数据时，确保数据的完整性、保密性和可用性，防止恶意攻击和数据篡改。</li>
+</ul>
+<h3 id="8-3-2-范畴"><a href="#8-3-2-范畴" class="headerlink" title="8.3.2 范畴"></a>8.3.2 范畴</h3><ul>
+<li><strong>内存安全</strong>：防止内存泄漏、缓冲区溢出等问题，确保程序在内存中的正确运行。</li>
+<li><strong>代码安全</strong>：分析和检测二进制代码中的漏洞，如逻辑错误、，安全漏洞等。</li>
+<li><strong>数据安全</strong>：保护二进制数据的机密性和完整性，，防止数据被窃取或篡改。</li>
+<li><strong>逆向工程</strong>：通过对二进制代码的分析，了解程序的功能和结构，以便发现潜在的安全问题。</li>
+<li><strong>漏洞修复</strong>：针对发现的二进制安全漏洞，进行及时的修复和加固。</li>
+</ul>
+<h2 id="8-4-二进制安全的渗透测试方法"><a href="#8-4-二进制安全的渗透测试方法" class="headerlink" title="8.4 二进制安全的渗透测试方法"></a>8.4 二进制安全的渗透测试方法</h2><h3 id="8-4-1-静态分析"><a href="#8-4-1-静态分析" class="headerlink" title="8.4.1 静态分析"></a>8.4.1 静态分析</h3><ul>
+<li><strong>工具介绍</strong>：<br>  常用的反汇编工具OllyDbg和ImmunityDebugger,可以将二进制文件反汇编成汇编代码，便于分析。此外Hopper Disassembler，也是一款功能强大的反汇编工具，尤其在分析 macOS和iOS平台的二进制文件时表现出色。</li>
+<li><strong>分析流程</strong>：<br>  <strong>①识别关键函数和代码段</strong>：通过对程序的入口点、导出函数等进行分析，确定可能存在安全问题的关键代码区域。<br>  <strong>②检查代码中的潜在漏洞</strong>：如缓冲区溢出、整数溢出、格式化字符串漏洞等。可以通过检查函数调用、内存操作等方式来发现这些漏洞。<br>  <strong>③分析控制流和数据流</strong>：了解程序的执行流程和数据的流向，查找可能的攻击路径。例如，通过分析条件跳转、循环等控制结构，以及变量的赋值和传递，确定是否存在可以被利用的漏洞。<br>  <strong>④符号执行</strong>：使用KLEE等符号执行工具对二进制代码进行分析，可以在不实际执行程序的情况下，探索程序的所有可能执行路径，从而发现潜在的安全漏洞。</li>
+</ul>
+<h3 id="8-4-2-动态分析"><a href="#8-4-2-动态分析" class="headerlink" title="8.4.2 动态分析"></a>8.4.2 动态分析</h3><ul>
+<li><strong>工具介绍</strong>：<br>  GDB（GNUDebugger）是一款强大的调试器，可对运行中的程序进行调试，观察程序的行为和内存状态。此外，WinDbg在Windows平台上也被广泛使用。</li>
+<li><strong>分析流程</strong>：<br>  <strong>①设置断点</strong>：在关键代码位置设置断点，以便在程序执行到该位置时暂停，观察程序的状态。<br>  <strong>②跟踪程序的执行流程</strong>：通过单步执行、继续执行等操作，跟踪程序的执行流程，了解程序的行为。<br>  <strong>③观察内存中的数据变化</strong>：检查程序在运行过程中内存中的数据变化，检测是否存在异常行为。例如，观察变量的值是否被意外修改，或者是否存在内存泄漏等问题。<br>  <strong>④分析程序的输入输出</strong>：监测程序的输入和输出，查找可能的漏洞利用点。例如，检查程序是否对输入数据进行了正确的验证，或者是否存在输出敏感信息的情况。</li>
+</ul>
+<h3 id="8-4-3-模糊测试"><a href="#8-4-3-模糊测试" class="headerlink" title="8.4.3 模糊测试"></a>8.4.3 模糊测试</h3><ul>
+<li><strong>工具介绍</strong>：<br>  American Fuzzy Lop（AFL）是一款非常流行的模糊测试工具，它能够高效地生成大量的随机输入数据，对程序进行测试。Peach Fuzzer也是一款功能强大的模糊测试工具，支持多种平台和协议。</li>
+<li><strong>分析流程</strong>：<br>  <strong>①确定输入接口和目标程序</strong>：确定程序的输入接口，例如命令行参数、文件输入、网络输入等。然后选择要进行模糊测试的目标程序。<br>  <strong>②生成随机输入数据</strong>：使用模糊测试工具生成大量的随机输入数据，这些数据可以是各种类型的，如字符串、整数、文件内容等<br>  <strong>③将输入数据输入到程序中</strong>：将生成的随机输入数据输入到目标程序中，观察程序的行为。<br>  <strong>④监测程序的行为</strong>：查找可能的崩溃或异常情况。如果程序出现崩溃或异常行为，分析原因，确定是否存在安全漏洞。<br>  优化模糊测试策略：根据测试结果，不断优化模糊测试策略，提高测试的效率和覆盖率。</li>
+</ul>
+<h3 id="8-4-4-漏洞利用"><a href="#8-4-4-漏洞利用" class="headerlink" title="8.4.4 漏洞利用"></a>8.4.4 漏洞利用</h3><ul>
+<li><strong>工具介绍</strong>：<br>  Metasploit是一款广泛使用的漏洞利用框架，它提供了大量的漏洞利用模块和辅助工具，方便开发和执行漏洞利用代码。此外，Exploit-DB是一个漏洞利用代码库可以从中查找和参考已有的漏洞利用代码。</li>
+<li><strong>分析流程</strong>：<br>  <strong>①确定目标系统中的漏洞</strong>：通过漏洞扫描、渗透测试等方式，确定目标系统中存在的安全漏洞。<br>  <strong>②开发漏洞利用代码</strong>：根据漏洞的类型和特点，开发相应的漏洞利用代码。漏洞利用代码可以使用各种编程语言编写，如Python、C、Assembly等。<br>  <strong>③利用漏洞获取系统权限</strong>：将漏洞利用代码发送到目标系统，触发漏洞，获取系统权限。<br>  <strong>④验证漏洞利用的有效性</strong>：验证漏洞利用是否成功，以及获取的系统权限是否符合预期。<br>  <strong>⑤进行后续的渗透测试</strong>：在获取系统权限后，可以进行进一步的渗透测试，如提取敏感信息、安装后门等。</li>
+</ul>
+<h3 id="8-4-5-代码审计"><a href="#8-4-5-代码审计" class="headerlink" title="8.4.5 代码审计"></a>8.4.5 代码审计</h3><ul>
+<li><strong>工具介绍</strong>：<br>  Checkmarx和Fortify是两款常用的代码审计工具，它们能够对源代码进行分析，查找潜在的安全漏洞。此外，SonarQube也可以用于代码质量和安全审计。</li>
+<li><strong>分析流程</strong>：<br>  <strong>①选择要审计的代码</strong>：确定要进行代码审计的源代码文件或项目。<br>  <strong>②配置审计工具</strong>：根据项目的特点和需求，配置代码审计工具的规则和参数。<br>  <strong>③运行代码审计工具</strong>：启动代码审计工具，对源代码进行分析。<br>  <strong>④分析审计结果</strong>：查看代码审计工具生成的报告，分析其中的安全漏洞和问题。<br>  <strong>⑤修复安全漏洞</strong>：根据审计结果，对发现的安全漏洞进行修复和加固。</li>
+</ul>
+<h2 id="8-5-结论"><a href="#8-5-结论" class="headerlink" title="8.5 结论"></a>8.5 结论</h2><ul>
+<li>二进制安全是网络安全的重要组成部分，掌握二进制安全的渗透测试方法对于保护网络系统的安全至关重要。通过静态分析、动态分析、模糊测试、漏洞利用和代码审计等方法可以有效地检测和防范二进制代码中的安全漏洞，提高网络系统的安全性。在实际应用中应结合多种方法进行综合分析，以确保网络系统的安全稳定运行。同时，随着技木的不断发展，二进制安全领域也在不断演进，需要持续学习和研究新的技术和方法，以应对不断变化的安全挑战。</li>
+</ul>
+<hr>
+<h1 id="9-网络安全热门证书介绍及备考指南"><a href="#9-网络安全热门证书介绍及备考指南" class="headerlink" title="9 网络安全热门证书介绍及备考指南"></a>9 网络安全热门证书介绍及备考指南</h1><h2 id="9-1-OSCP-Offensive-Security-Certified-Professional"><a href="#9-1-OSCP-Offensive-Security-Certified-Professional" class="headerlink" title="9.1 OSCP (Offensive Security Certified Professional)"></a>9.1 OSCP (Offensive Security Certified Professional)</h2><h3 id="9-1-1-证书介绍"><a href="#9-1-1-证书介绍" class="headerlink" title="9.1.1 证书介绍"></a>9.1.1 证书介绍</h3><ul>
+<li>OSCP是OffensiveSecurity提供的渗透测试认证，被广泛认为是业内最具实践性和挑战性的认证之一。该证书强调实际操作能力，要求考生在规定时间内完成一系列渗透测试任务，以证明其具备真实的渗透测试技能。</li>
+</ul>
+<h3 id="9-1-2-考点"><a href="#9-1-2-考点" class="headerlink" title="9.1.2 考点"></a>9.1.2 考点</h3><ul>
+<li><strong>信息收集</strong>：包括网络侦察、端口扫描、服务识别等。</li>
+<li><strong>漏洞发现</strong>：常见漏洞如SQL注入、缓冲区溢出、文件上传漏洞等</li>
+<li><strong>漏洞利用</strong>：掌握各种漏洞的利用方法，获取系统权限。</li>
+<li><strong>后渗透测试</strong>：包括权限提升、横向移动、数据窃取等。</li>
+</ul>
+<h3 id="9-1-3-练习方法"><a href="#9-1-3-练习方法" class="headerlink" title="9.1.3 练习方法"></a>9.1.3 练习方法</h3><ul>
+<li><strong>学习基础知识</strong>：掌握网络、操作系统、数据库等基础知识，了解常见漏洞类型和利用方法。</li>
+<li><strong>搭建实验环境</strong>：使用虚拟机搭建各种渗透测试环境，进行实践操作。</li>
+<li><strong>参加培训课程</strong>：OffensiveSecurity提供官方培训课程，也有一些第三方培训机构提供相关课程。</li>
+<li><strong>练习靶场</strong>：利用在线渗透测试靶场，如Hack The Box、VulnHub等进行练习。</li>
+</ul>
+<hr>
+<h2 id="9-2-OSep-Offensive-Security-Exploit-Developer"><a href="#9-2-OSep-Offensive-Security-Exploit-Developer" class="headerlink" title="9.2 OSep(Offensive Security Exploit Developer)"></a>9.2 OSep(Offensive Security Exploit Developer)</h2><h3 id="9-2-1-证书介绍"><a href="#9-2-1-证书介绍" class="headerlink" title="9.2.1 证书介绍"></a>9.2.1 证书介绍</h3><ul>
+<li>OSep专注于漏洞利用开发，旨在培养专业的漏洞挖掘和利用开发人员。该证书要求考生具备深入的底层知识和高级编程技能，能够独立发现和利用软件中的安全漏洞。</li>
+</ul>
+<h3 id="9-2-2考点"><a href="#9-2-2考点" class="headerlink" title="9.2.2考点"></a>9.2.2考点</h3><ul>
+<li><strong>逆向工程</strong>：掌握反汇编、调试等技术，分析软件的内部结构。</li>
+<li><strong>漏洞挖掘</strong>：使用静态分析和动态分析方法，发现软件中的安全漏洞。</li>
+<li><strong>漏洞利用开发</strong>：编写漏洞利用代码，实现对目标系统的控制。</li>
+<li><strong>高级编程</strong>：熟悉C、C++、Python等编程语言，能够进行底层编程。</li>
+</ul>
+<h3 id="9-2-3-练习方法"><a href="#9-2-3-练习方法" class="headerlink" title="9.2.3 练习方法"></a>9.2.3 练习方法</h3><ul>
+<li><strong>学习逆向工程知识</strong>：阅读相关书籍和教程，掌握逆向工程的基本技术。</li>
+<li><strong>实践漏洞挖掘</strong>：使用漏洞挖掘工具，如Fuzzing 工具等，进行漏洞挖掘实践。</li>
+<li><strong>开发漏洞利用代码</strong>：根据挖掘到的漏洞，编写相应的利用代码。</li>
+<li><strong>参加CTF比赛</strong>：通过参加CTF比赛，提高自己的漏洞利用开发能力。</li>
+</ul>
+<h3 id="9-2-4-价格"><a href="#9-2-4-价格" class="headerlink" title="9.2.4 价格"></a>9.2.4 价格</h3><ul>
+<li>OSep认证的价格相对较高，通常在1699美元左右。具体价格可咨询Offensive Security 官方网站。</li>
+</ul>
+<hr>
+<h2 id="9-3-CISSP-Certified-Information-Systems-Security-Professional"><a href="#9-3-CISSP-Certified-Information-Systems-Security-Professional" class="headerlink" title="9.3 CISSP (Certified Information Systems Security Professional)"></a>9.3 CISSP (Certified Information Systems Security Professional)</h2><h3 id="9-3-1-证书介绍"><a href="#9-3-1-证书介绍" class="headerlink" title="9.3.1 证书介绍"></a>9.3.1 证书介绍</h3><ul>
+<li>CISSP是国际上广泛认可的信息安全专业认证，由（ISC)²组织颁发。该证书涵盖了信息安全的各个领域，包括安全管理、访问控制、密码学、网络安全等，适合信息安全管理人员和专业人士。</li>
+</ul>
+<h3 id="9-3-2-考点"><a href="#9-3-2-考点" class="headerlink" title="9.3.2 考点"></a>9.3.2 考点</h3><ul>
+<li><strong>安全管理</strong>：包括安全策略、风险管理、合规性等。</li>
+<li><strong>访问控制</strong>：身份认证、授权、访问控制模型等。</li>
+<li><strong>密码学</strong>：加密算法、密钥管理、数字签名等。</li>
+<li><strong>网络安全</strong>：网络架构、防火墙、入侵检测等。</li>
+<li><strong>软件开发安全</strong>：安全开发生命周期、代码审查等。</li>
+</ul>
+<h3 id="9-3-3-练习方法"><a href="#9-3-3-练习方法" class="headerlink" title="9.3.3 练习方法"></a>9.3.3 练习方法</h3><ul>
+<li><strong>学习官方教材</strong>：阅读CISSP官方教材，掌握各个领域的知识。</li>
+<li><strong>参加培训课程</strong>：有很多培训机构提供CISSP培训课程，可以帮助考生系统地学习和复习。</li>
+<li><strong>做练习题</strong>：通过做练习题，加深对知识点的理解和掌握。</li>
+<li><strong>参加学习小组</strong>：与其他考生一起学习和交流，分享经验和心得。</li>
+</ul>
+<h3 id="9-3-4-价格"><a href="#9-3-4-价格" class="headerlink" title="9.3.4 价格"></a>9.3.4 价格</h3><ul>
+<li>CISSP认证的考试费用为749美元。培训课程费用因机构而异。</li>
+</ul>
+<h2 id="9-4-总结"><a href="#9-4-总结" class="headerlink" title="9.4 总结"></a>9.4 总结</h2><ul>
+<li>以上三个证书都是网络安全领域的热门认证，各有其特点和适用人群。0SCP和OSep注重实践操作能力，适合渗透测试人员和漏洞利用开发人员；CISSP则更侧重于信息安全管理，适合管理人员和专业人士。在选择证书时，应根据自己的职业规划和兴趣爱好进行选择，并制定合理的学习计划和备考策略。同时，要注重实践操作，通过搭建实验环境、参加靶场练习。</li>
+</ul>
+<hr>
+<h1 id="10-个人学习的心得体会"><a href="#10-个人学习的心得体会" class="headerlink" title="10 个人学习的心得体会"></a>10 个人学习的心得体会</h1><ul>
+<li>看完安全见闻的视频后，我对网络安全和渗透测试的学习有了更深刻的理解。</li>
+<li>老师交给了我很多，一是我们想要掌握好某一部分知识，可以通过向他人传授知识来加深自己的理解和记忆。二是要选择正确的学习方向，才不会让努力白费。三就是要保持一种“什么都不会”的谦逊态度，对知识保持敬畏和好奇，这有助于我们更加开放地接受新知识，不断拓展认知的边界。同样，在学习过程中，我深刻体会到学习要持之以恒，不能半途而废。</li>
+<li>在学习编程语言的过程中，我明白了选择学习哪种语言应该基于自己的目标和职业发展方向。例如，Python因其简洁和强大的库支持，在数据分析和人工智能领域非常受欢迎。而C语言和C++在系统软件开发中占据着不可替代的地位。</li>
+<li>通过对软件程序和网络基础的学习，我对之前学过的知识有了更清晰的定位，帮助我在学习网络安全中构建一个坚实的知识框架。</li>
+<li>此外，视频还介绍了很多我之前未曾接触过的知识，比如量子计算对网络安全的潜在影响，以及人工智能在网络安全中的应用，这些都激发了我对这些前沿技术的兴趣。</li>
+<li>在学习安全见闻的过程中，我更加明确了自己要学习的内容和方向。我意识到，网络安全是一个庞大且复杂的领域，需要不断学习和实践才能跟上其发展的步伐。</li>
+<li>在学习安全见闻的过程中，我更加明确了自己要学习的内容和方向。我期待在未来的学习和工作中，能够将这些知识转化为实际的能力，为保护网络空间的安全做出贡献。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://kukual.github.io/">kukual</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://kukual.github.io/posts/a4b345c0/">https://kukual.github.io/posts/a4b345c0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="external nofollow noopener noreferrer">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://kukual.github.io" target="_blank">kukualのblog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a></div><div class="post-share"><div class="social-share" data-image="/img/102.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>感谢您的支持！</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"></a><div class="post-qr-code-desc">微信</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/83e403fa/" title="网络安全术语中英文表"><img class="cover" src="/img/102.jpeg" onerror="onerror=null;src='/img/06.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">网络安全术语中英文表</div></div><div class="info-2"><div class="info-item-1">按A-Z顺序给出网络安全核心概念的中英文对照，适合快速检索、统一用语并辅助学习或报告撰写。</div></div></div></a><a class="pagination-related" href="/posts/f632dd30/" title="加密的虚拟机怎么解除加密？"><img class="cover" src="/img/102.jpeg" onerror="onerror=null;src='/img/06.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">加密的虚拟机怎么解除加密？</div></div><div class="info-2"><div class="info-item-1">图文并茂演示在VMware中通过“编辑设置→访问控制→移除加密”解除虚拟机加密的全过程。</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/83e403fa/" title="网络安全术语中英文表"><img class="cover" src="/img/102.jpeg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-14</div><div class="info-item-2">网络安全术语中英文表</div></div><div class="info-2"><div class="info-item-1">按A-Z顺序给出网络安全核心概念的中英文对照，适合快速检索、统一用语并辅助学习或报告撰写。</div></div></div></a><a class="pagination-related" href="/posts/a5ecaa69/" title="网络安全术语"><img class="cover" src="/img/102.jpeg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-13</div><div class="info-item-2">网络安全术语</div></div><div class="info-2"><div class="info-item-1">系统梳理网络安全攻击、防守、技术、工具及攻防演练所需的中英文术语，方便快速查阅与对照。</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/02.jpg" onerror="this.onerror=null;this.src='/img/05.jpg'" alt="avatar"></div><div class="author-info-name">kukual</div><div class="author-info-description">专注于网络安全技术研究 | 渗透测试实战案例 | CTF竞赛解析 | 漏洞复现分析</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" href="https://kukual.github.io/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/kukual" target="_blank" title="Github" rel="external nofollow noopener noreferrer"><i class="fab fa-github" style="color: #8a2be2;"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_74811095" target="_blank" title="CSDN" rel="external nofollow noopener noreferrer"><i class="fa-solid fa-code" style="color: #8a2be2;"></i></a><a class="social-icon" href="https://www.xiaohongshu.com/user/profile/5e8a0aae0000000001002ce4" target="_blank" title="redbook" rel="external nofollow noopener noreferrer"><i class="fa-solid fa-book" style="color: #8a2be2;"></i></a><a class="social-icon" href="https://space.bilibili.com/498478848" target="_blank" title="bilibili" rel="external nofollow noopener noreferrer"><i class="fab fa-bilibili" style="color: #8a2be2;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><style>
+.announcement-card {
+    --main-color: #ff00ff;
+    --secondary-color: #00ffff;
+    --highlight-color: #ff5500;
+    position: relative;
+    overflow: hidden;
+}
+.announcement-content {
+    font-size: 1rem; 
+    line-height: 1.2; 
+    color: #ffffff;
+    position: relative;
+}
+.keyword {
+    color: var(--secondary-color);
+    font-weight: 300;
+    font-size: 1.1rem; 
+}
+.highlight {
+    color: var(--main-color);
+    font-weight: 1000;
+    font-size: 1.2rem; 
+}
+.announcement-content ul {
+    list-style-type: none;
+    margin: 0.8rem 0; 
+    padding-left: 1.5rem;   
+}
+</style>
+<div class="announcement-card">
+    <div class="announcement-content">
+        <p><span class="highlight">欢迎来到「酷库阿洛」网络安全研习录</span>！🎉</p>
+        <p><strong>本平台专注于：</strong></p>
+        <ul>
+            <li><span class="keyword">> 网络安全技术研究</span></li>
+            <li><span class="keyword">> 渗透测试实战案例</span></li>
+            <li><span class="keyword">> CTF竞赛解析</span></li>
+            <li><span class="keyword">> 漏洞复现分析</span></li>
+        </ul>
+        <p>🌟 <strong>加入我们，一起探索网络安全奥秘，提升攻防实战能力，共同守护数字世界的安宁！</strong></p>
+    </div>
+</div>
+</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E8%A7%81%E9%97%BB"><span class="toc-number">1.</span> <span class="toc-text">安全见闻</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0-%E5%AF%BC%E5%AD%A6"><span class="toc-number">2.</span> <span class="toc-text">0 导学</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-1-%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text">0.1 费曼学习法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0-2-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%A6%82%E5%BF%B5"><span class="toc-number">2.2.</span> <span class="toc-text">0.2 渗透测试概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%8C0-3-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%89%8D%E6%99%AF"><span class="toc-number">2.3.</span> <span class="toc-text">‌0.3 渗透测试前景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0-4-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%80%9D%E8%B7%AF"><span class="toc-number">2.4.</span> <span class="toc-text">0.4 渗透测试思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0-5-%E9%B8%A1%E6%B1%A4"><span class="toc-number">2.5.</span> <span class="toc-text">0.5 鸡汤</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80"><span class="toc-number">3.</span> <span class="toc-text">1 语言基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80"><span class="toc-number">3.1.</span> <span class="toc-text">1.1 编程语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80"><span class="toc-number">3.2.</span> <span class="toc-text">1.2 函数式编程语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%92%8C%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%A2%86%E5%9F%9F%E8%AF%AD%E8%A8%80"><span class="toc-number">3.3.</span> <span class="toc-text">1.3 数据科学和机器学习领域语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-Web%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80"><span class="toc-number">3.4.</span> <span class="toc-text">1.4 Web全栈开发语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80"><span class="toc-number">3.5.</span> <span class="toc-text">1.5 移动开发语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6-%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80"><span class="toc-number">3.6.</span> <span class="toc-text">1.6 嵌入式系统开发语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-7-%E5%85%B6%E4%BB%96%E8%AF%AD%E8%A8%80"><span class="toc-number">3.7.</span> <span class="toc-text">1.7 其他语言</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E8%BD%AF%E4%BB%B6%E7%A8%8B%E5%BA%8F"><span class="toc-number">4.</span> <span class="toc-text">2 软件程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-web%E7%A8%8B%E5%BA%8F%EF%BC%88%E7%BD%91%E7%AB%99%EF%BC%89"><span class="toc-number">4.1.</span> <span class="toc-text">2.1 web程序（网站）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-%E8%AF%AD%E8%A8%80"><span class="toc-number">4.1.1.</span> <span class="toc-text">2.1.1 语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-%E4%BB%A3%E7%A0%81%E5%BA%93"><span class="toc-number">4.1.2.</span> <span class="toc-text">2.2.2 代码库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3-%E6%A1%86%E6%9E%B6"><span class="toc-number">4.1.3.</span> <span class="toc-text">2.2.3 框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-4-%E5%89%8D%E7%AB%AF"><span class="toc-number">4.1.4.</span> <span class="toc-text">2.2.4 前端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-5-%E5%90%8E%E7%AB%AF"><span class="toc-number">4.1.5.</span> <span class="toc-text">2.2.5 后端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-6-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">4.1.6.</span> <span class="toc-text">2.2.6 数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-7-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%A8%8B%E5%BA%8F"><span class="toc-number">4.1.7.</span> <span class="toc-text">2.2.7 服务器程序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%A8%8B%E5%BA%8F"><span class="toc-number">4.2.</span> <span class="toc-text">2.2 二进制程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F%EF%BC%88%E4%BA%86%E8%A7%A3%E5%8D%B3%E5%8F%AF%EF%BC%89"><span class="toc-number">4.3.</span> <span class="toc-text">2.3 驱动程序（了解即可）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8"><span class="toc-number">4.3.1.</span> <span class="toc-text">2.3.1 内核驱动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8"><span class="toc-number">4.3.2.</span> <span class="toc-text">2.3.2 设备驱动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E4%B8%8A%E4%BD%8D%E6%9C%BA"><span class="toc-number">4.4.</span> <span class="toc-text">2.4 上位机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-%E8%84%9A%E6%9C%AC%E7%A8%8B%E5%BA%8F"><span class="toc-number">4.5.</span> <span class="toc-text">2.5 脚本程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-1-%E4%B8%BB%E6%B5%81%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80"><span class="toc-number">4.5.1.</span> <span class="toc-text">2.5.1 主流脚本语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-2-macro%EF%BC%88%E5%AE%8F%E7%97%85%E6%AF%92%EF%BC%89"><span class="toc-number">4.5.2.</span> <span class="toc-text">2.5.2 macro（宏病毒）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-3-Batch%E3%80%81PowerShell"><span class="toc-number">4.5.3.</span> <span class="toc-text">2.5.3 Batch、PowerShell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-4-CAD-LISP-%E8%84%9A%E6%9C%AC%E7%97%85%E6%AF%92"><span class="toc-number">4.5.4.</span> <span class="toc-text">2.5.4 CAD LISP(脚本病毒)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-5-AUtolt3-%E8%84%9A%E6%9C%AC%E7%97%85%E6%AF%92"><span class="toc-number">4.5.5.</span> <span class="toc-text">2.5.5 AUtolt3(脚本病毒)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number">4.6.</span> <span class="toc-text">2.6 操作系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-1-%E6%B3%A8%E5%86%8C%E8%A1%A8"><span class="toc-number">4.6.1.</span> <span class="toc-text">2.6.1 注册表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-2-%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-number">4.6.2.</span> <span class="toc-text">2.6.2 防火墙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-3-%E8%87%AA%E5%90%AF%E5%8A%A8"><span class="toc-number">4.6.3.</span> <span class="toc-text">2.6.3 自启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-4-%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1"><span class="toc-number">4.6.4.</span> <span class="toc-text">2.6.4 计划任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-5-%E4%BA%8B%E4%BB%B6%E6%97%A5%E5%BF%97"><span class="toc-number">4.6.5.</span> <span class="toc-text">2.6.5 事件日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-6-%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8"><span class="toc-number">4.6.6.</span> <span class="toc-text">2.6.6 内核驱动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-7-%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1"><span class="toc-number">4.6.7.</span> <span class="toc-text">2.6.7 系统服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-8-%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B"><span class="toc-number">4.6.8.</span> <span class="toc-text">2.6.8 进程线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-9-%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B"><span class="toc-number">4.6.9.</span> <span class="toc-text">2.6.9 系统编程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-7-%E8%A3%B8%E6%9D%BF%E7%A8%8B%E5%BA%8F"><span class="toc-number">4.7.</span> <span class="toc-text">2.7 裸板程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-8-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0"><span class="toc-number">4.8.</span> <span class="toc-text">2.8 机器学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-9-%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97"><span class="toc-number">4.9.</span> <span class="toc-text">2.9 量子计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-10-%E5%B7%A5%E6%8E%A7%E7%A8%8B%E5%BA%8F"><span class="toc-number">4.10.</span> <span class="toc-text">2.10 工控程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-11-BIOS%E7%A8%8B%E5%BA%8F"><span class="toc-number">4.11.</span> <span class="toc-text">2.11 BIOS程序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80"><span class="toc-number">5.</span> <span class="toc-text">3 网络基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87"><span class="toc-number">5.1.</span> <span class="toc-text">3.1 硬件设备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6"><span class="toc-number">5.1.1.</span> <span class="toc-text">3.1.1 计算机硬件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2-%E7%BD%91%E7%BB%9C%E7%A1%AC%E4%BB%B6"><span class="toc-number">5.1.2.</span> <span class="toc-text">3.1.2 网络硬件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-3-%E7%A7%BB%E5%8A%A8%E8%AE%BE%E5%A4%87%E7%A1%AC%E4%BB%B6"><span class="toc-number">5.1.3.</span> <span class="toc-text">3.1.3 移动设备硬件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-4-%E7%A1%AC%E4%BB%B6%E5%8F%91%E5%B1%95%E8%B6%8B%E5%8A%BF"><span class="toc-number">5.1.4.</span> <span class="toc-text">3.1.4 硬件发展趋势</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E7%BD%91%E7%BB%9C%E7%B1%BB%E5%9E%8B"><span class="toc-number">5.2.</span> <span class="toc-text">3.2 网络类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.3.</span> <span class="toc-text">3.3 网络协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87"><span class="toc-number">5.4.</span> <span class="toc-text">3.4 网络设备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8"><span class="toc-number">5.5.</span> <span class="toc-text">3.5 网络安全</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE%E6%B6%89%E5%8F%8A%E7%9A%84%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-number">6.</span> <span class="toc-text">4 通讯协议涉及的安全问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E4%BF%9D%E5%AF%86%E6%80%A7%E9%97%AE%E9%A2%98"><span class="toc-number">6.1.</span> <span class="toc-text">4.1 保密性问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E5%AE%8C%E6%95%B4%E6%80%A7%E9%97%AE%E9%A2%98"><span class="toc-number">6.2.</span> <span class="toc-text">4.2 完整性问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E9%97%AE%E9%A2%98"><span class="toc-number">6.3.</span> <span class="toc-text">4.3 身份验证问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-%E5%8F%AF%E7%94%A8%E6%80%A7%E9%97%AE%E9%A2%98"><span class="toc-number">6.4.</span> <span class="toc-text">4.4 可用性问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-%E5%8D%8F%E8%AE%AE%E5%AE%9E%E7%8E%B0%E9%97%AE%E9%A2%98"><span class="toc-number">6.5.</span> <span class="toc-text">4.5 协议实现问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6-%E5%8D%8F%E8%AE%AE%E8%AE%BE%E8%AE%A1%E7%BC%BA%E9%99%B7"><span class="toc-number">6.6.</span> <span class="toc-text">4.6 协议设计缺陷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7-%E7%A7%BB%E5%8A%A8%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-number">6.7.</span> <span class="toc-text">4.7 移动通讯协议安全问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-8-%E7%89%A9%E8%81%94%E7%BD%91%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-number">6.8.</span> <span class="toc-text">4.8 物联网通讯协议安全问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-9-%E5%B7%A5%E4%B8%9A%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-number">6.9.</span> <span class="toc-text">4.9 工业控制系统通讯协议安全问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E4%B8%8E%E6%BD%9C%E5%9C%A8%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E5%8F%8A%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%BA%94%E7%94%A8"><span class="toc-number">7.</span> <span class="toc-text">5 硬件设备网络安全问题与潜在漏洞分析及渗透测试应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87%E7%9A%84%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E7%82%B9"><span class="toc-number">7.1.</span> <span class="toc-text">5.1 硬件设备的网络安全问题点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-1-%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-number">7.1.1.</span> <span class="toc-text">5.1.1 物理安全问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-2-%E4%BE%9B%E5%BA%94%E9%93%BE%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-number">7.1.2.</span> <span class="toc-text">5.1.2 供应链安全问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-3-%E8%AE%BE%E5%A4%87%E6%BC%8F%E6%B4%9E%E9%97%AE%E9%A2%98"><span class="toc-number">7.1.3.</span> <span class="toc-text">5.1.3 设备漏洞问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-4-%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E9%97%AE%E9%A2%98"><span class="toc-number">7.1.4.</span> <span class="toc-text">5.1.4 网络连接问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87%E7%9A%84%E6%BD%9C%E5%9C%A8%E6%BC%8F%E6%B4%9E%E5%8F%8A%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95"><span class="toc-number">7.2.</span> <span class="toc-text">5.2 硬件设备的潜在漏洞及渗透测试方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-1-%E5%A4%84%E7%90%86%E5%99%A8%E6%BC%8F%E6%B4%9E"><span class="toc-number">7.2.1.</span> <span class="toc-text">5.2.1 处理器漏洞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-2-%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87%E6%BC%8F%E6%B4%9E"><span class="toc-number">7.2.2.</span> <span class="toc-text">5.2.2 存储设备漏洞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-3-%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E6%BC%8F%E6%B4%9E"><span class="toc-number">7.2.3.</span> <span class="toc-text">5.2.3 网络设备漏洞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-4%E7%89%A9%E8%81%94%E7%BD%91%E8%AE%BE%E5%A4%87%E6%BC%8F%E6%B4%9E"><span class="toc-number">7.2.4.</span> <span class="toc-text">5.2.4物联网设备漏洞</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%9C%A8%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87%E5%AE%89%E5%85%A8%E8%AF%84%E4%BC%B0%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">7.3.</span> <span class="toc-text">5.3 渗透测试在硬件设备安全评估中的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-1-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-number">7.3.1.</span> <span class="toc-text">5.3.1 渗透测试的流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-2-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">7.3.2.</span> <span class="toc-text">5.3.2 渗透测试的注意事项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-%E7%BB%93%E8%AE%BA"><span class="toc-number">7.4.</span> <span class="toc-text">5.4 结论</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD"><span class="toc-number">8.</span> <span class="toc-text">6 人工智能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%AE%80%E4%BB%8B"><span class="toc-number">8.1.</span> <span class="toc-text">6.1 人工智能简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-1-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0"><span class="toc-number">8.1.1.</span> <span class="toc-text">6.1.1 机器学习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%B6%89%E5%8F%8A%E7%9A%84%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-number">8.2.</span> <span class="toc-text">6.2 人工智能涉及的网络安全问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-1-%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-number">8.2.1.</span> <span class="toc-text">6.2.1 数据安全问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-2-%E5%AF%B9%E6%8A%97%E6%94%BB%E5%87%BB"><span class="toc-number">8.2.2.</span> <span class="toc-text">6.2.2 对抗攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-3-%E6%A8%A1%E5%9E%8B%E7%AA%83%E5%8F%96%E5%92%8C%E7%9F%A5%E8%AF%86%E4%BA%A7%E6%9D%83%E9%97%AE%E9%A2%98"><span class="toc-number">8.2.3.</span> <span class="toc-text">6.2.3 模型窃取和知识产权问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-4-%E6%81%B6%E6%84%8F%E4%BD%BF%E7%94%A8%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD"><span class="toc-number">8.2.4.</span> <span class="toc-text">6.2.4 恶意使用人工智能</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84%E5%92%8C%E6%96%B9%E6%B3%95"><span class="toc-number">8.3.</span> <span class="toc-text">6.3 人工智能学习路径和方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-1-%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">8.3.1.</span> <span class="toc-text">6.3.1 学习基础知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-2%E5%9C%A8%E7%BA%BF%E8%AF%BE%E7%A8%8B%E5%92%8C%E6%95%99%E7%A8%8B"><span class="toc-number">8.3.2.</span> <span class="toc-text">6.3.2在线课程和教程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-3-%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE"><span class="toc-number">8.3.3.</span> <span class="toc-text">6.3.3 实践项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-4-%E6%8C%81%E7%BB%AD%E5%AD%A6%E4%B9%A0%E5%92%8C%E4%BA%A4%E6%B5%81"><span class="toc-number">8.3.4.</span> <span class="toc-text">6.3.4 持续学习和交流</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E4%B8%8E%E7%BD%91%E7%BB%9C%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95"><span class="toc-number">9.</span> <span class="toc-text">7 量子计算与网络渗透测试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-%E5%AD%A6%E4%B9%A0%E6%96%B9%E5%90%91"><span class="toc-number">9.1.</span> <span class="toc-text">7.1 学习方向</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-1-%E9%87%8F%E5%AD%90%E7%89%A9%E7%90%86%E5%AD%A6%E5%9F%BA%E7%A1%80"><span class="toc-number">9.1.1.</span> <span class="toc-text">7.1.1 量子物理学基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-2-%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%8E%9F%E7%90%86%E4%B8%8E%E6%8A%80%E6%9C%AF"><span class="toc-number">9.1.2.</span> <span class="toc-text">7.1.2 量子计算原理与技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-3-%E4%BC%A0%E7%BB%9F%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%9F%A5%E8%AF%86"><span class="toc-number">9.1.3.</span> <span class="toc-text">7.1.3 传统网络安全知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-4-%E9%87%8F%E5%AD%90%E5%AF%86%E7%A0%81%E5%AD%A6"><span class="toc-number">9.1.4.</span> <span class="toc-text">7.1.4 量子密码学</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-5-%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%AE%89%E5%85%A8%E6%94%BF%E7%AD%96%E4%B8%8E%E6%B3%95%E8%A7%84"><span class="toc-number">9.1.5.</span> <span class="toc-text">7.1.5 量子计算安全政策与法规</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-%E6%BC%8F%E6%B4%9E%E9%A3%8E%E9%99%A9"><span class="toc-number">9.2.</span> <span class="toc-text">7.2 漏洞风险</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-1-%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E8%A2%AB%E7%A0%B4%E8%A7%A3%E9%A3%8E%E9%99%A9"><span class="toc-number">9.2.1.</span> <span class="toc-text">7.2.1 加密算法被破解风险</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-2-%E2%80%9C%E7%8E%B0%E5%9C%A8%E6%94%B6%E8%8E%B7%EF%BC%8C%E4%BB%A5%E5%90%8E%E8%A7%A3%E5%AF%86%E2%80%9D%E9%A3%8E%E9%99%A9"><span class="toc-number">9.2.2.</span> <span class="toc-text">7.2.2 “现在收获，以后解密”风险</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-3-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8%E9%A3%8E%E9%99%A9"><span class="toc-number">9.2.3.</span> <span class="toc-text">7.2.3 区块链安全风险</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-4-%E9%87%8F%E5%AD%90%E5%AF%86%E9%92%A5%E5%88%86%E5%8F%91%E9%A3%8E%E9%99%A9"><span class="toc-number">9.2.4.</span> <span class="toc-text">7.2.4 量子密钥分发风险</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-5-%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F%E8%87%AA%E8%BA%AB%E9%A3%8E%E9%99%A9"><span class="toc-number">9.2.5.</span> <span class="toc-text">7.2.5 量子计算系统自身风险</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95"><span class="toc-number">9.3.</span> <span class="toc-text">7.3 测试方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-1-%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E6%B5%8B%E8%AF%95"><span class="toc-number">9.3.1.</span> <span class="toc-text">7.3.1 加密算法测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-2-%E2%80%9C%E7%8E%B0%E5%9C%A8%E6%94%B6%E8%8E%B7%EF%BC%8C%E4%BB%A5%E5%90%8E%E8%A7%A3%E5%AF%86%E2%80%9D%E6%B5%8B%E8%AF%95"><span class="toc-number">9.3.2.</span> <span class="toc-text">7.3.2 “现在收获，以后解密”测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-3-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95"><span class="toc-number">9.3.3.</span> <span class="toc-text">7.3.3 区块链安全测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-4-%E9%87%8F%E5%AD%90%E5%AF%86%E9%92%A5%E5%88%86%E5%8F%91%E6%B5%8B%E8%AF%95"><span class="toc-number">9.3.4.</span> <span class="toc-text">7.3.4 量子密钥分发测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-5-%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F%E8%87%AA%E8%BA%AB%E6%B5%8B%E8%AF%95"><span class="toc-number">9.3.5.</span> <span class="toc-text">7.3.5 量子计算系统自身测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-4-%E6%B8%97%E9%80%8F%E6%80%9D%E8%B7%AF"><span class="toc-number">9.4.</span> <span class="toc-text">7.4 渗透思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-4-1-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E9%98%B6%E6%AE%B5"><span class="toc-number">9.4.1.</span> <span class="toc-text">7.4.1 信息收集阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-4-2-%E5%A8%81%E8%83%81%E5%BB%BA%E6%A8%A1%E9%98%B6%E6%AE%B5"><span class="toc-number">9.4.2.</span> <span class="toc-text">7.4.2 威胁建模阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-4-3-%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E9%98%B6%E6%AE%B5"><span class="toc-number">9.4.3.</span> <span class="toc-text">7.4.3 漏洞分析阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-4-4-%E6%B8%97%E9%80%8F%E6%94%BB%E5%87%BB%E9%98%B6%E6%AE%B5"><span class="toc-number">9.4.4.</span> <span class="toc-text">7.4.4 渗透攻击阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-4-5-%E5%90%8E%E6%B8%97%E9%80%8F%E6%94%BB%E5%87%BB%E9%98%B6%E6%AE%B5"><span class="toc-number">9.4.5.</span> <span class="toc-text">7.4.5 后渗透攻击阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-4-6-%E6%8A%A5%E5%91%8A%E9%98%B6%E6%AE%B5"><span class="toc-number">9.4.6.</span> <span class="toc-text">7.4.6 报告阶段</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">10.</span> <span class="toc-text">8 二进制与网络安全的关系</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1-%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">10.1.</span> <span class="toc-text">8.1 二进制的基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2-%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%9C%A8%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7"><span class="toc-number">10.2.</span> <span class="toc-text">8.2 二进制在网络安全中的重要性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3-%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%AE%89%E5%85%A8%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E8%8C%83%E7%95%B4"><span class="toc-number">10.3.</span> <span class="toc-text">8.3 二进制安全的概念与范畴</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-1-%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%AE%89%E5%85%A8%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">10.3.1.</span> <span class="toc-text">8.3.1 二进制安全的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-2-%E8%8C%83%E7%95%B4"><span class="toc-number">10.3.2.</span> <span class="toc-text">8.3.2 范畴</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-4-%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%AE%89%E5%85%A8%E7%9A%84%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95"><span class="toc-number">10.4.</span> <span class="toc-text">8.4 二进制安全的渗透测试方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-1-%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90"><span class="toc-number">10.4.1.</span> <span class="toc-text">8.4.1 静态分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-2-%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90"><span class="toc-number">10.4.2.</span> <span class="toc-text">8.4.2 动态分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-3-%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95"><span class="toc-number">10.4.3.</span> <span class="toc-text">8.4.3 模糊测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-4-%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">10.4.4.</span> <span class="toc-text">8.4.4 漏洞利用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-5-%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1"><span class="toc-number">10.4.5.</span> <span class="toc-text">8.4.5 代码审计</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-5-%E7%BB%93%E8%AE%BA"><span class="toc-number">10.5.</span> <span class="toc-text">8.5 结论</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%83%AD%E9%97%A8%E8%AF%81%E4%B9%A6%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%A4%87%E8%80%83%E6%8C%87%E5%8D%97"><span class="toc-number">11.</span> <span class="toc-text">9 网络安全热门证书介绍及备考指南</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#9-1-OSCP-Offensive-Security-Certified-Professional"><span class="toc-number">11.1.</span> <span class="toc-text">9.1 OSCP (Offensive Security Certified Professional)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-1-1-%E8%AF%81%E4%B9%A6%E4%BB%8B%E7%BB%8D"><span class="toc-number">11.1.1.</span> <span class="toc-text">9.1.1 证书介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-1-2-%E8%80%83%E7%82%B9"><span class="toc-number">11.1.2.</span> <span class="toc-text">9.1.2 考点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-1-3-%E7%BB%83%E4%B9%A0%E6%96%B9%E6%B3%95"><span class="toc-number">11.1.3.</span> <span class="toc-text">9.1.3 练习方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-2-OSep-Offensive-Security-Exploit-Developer"><span class="toc-number">11.2.</span> <span class="toc-text">9.2 OSep(Offensive Security Exploit Developer)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-1-%E8%AF%81%E4%B9%A6%E4%BB%8B%E7%BB%8D"><span class="toc-number">11.2.1.</span> <span class="toc-text">9.2.1 证书介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-2%E8%80%83%E7%82%B9"><span class="toc-number">11.2.2.</span> <span class="toc-text">9.2.2考点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-3-%E7%BB%83%E4%B9%A0%E6%96%B9%E6%B3%95"><span class="toc-number">11.2.3.</span> <span class="toc-text">9.2.3 练习方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-4-%E4%BB%B7%E6%A0%BC"><span class="toc-number">11.2.4.</span> <span class="toc-text">9.2.4 价格</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-3-CISSP-Certified-Information-Systems-Security-Professional"><span class="toc-number">11.3.</span> <span class="toc-text">9.3 CISSP (Certified Information Systems Security Professional)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-3-1-%E8%AF%81%E4%B9%A6%E4%BB%8B%E7%BB%8D"><span class="toc-number">11.3.1.</span> <span class="toc-text">9.3.1 证书介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-3-2-%E8%80%83%E7%82%B9"><span class="toc-number">11.3.2.</span> <span class="toc-text">9.3.2 考点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-3-3-%E7%BB%83%E4%B9%A0%E6%96%B9%E6%B3%95"><span class="toc-number">11.3.3.</span> <span class="toc-text">9.3.3 练习方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-3-4-%E4%BB%B7%E6%A0%BC"><span class="toc-number">11.3.4.</span> <span class="toc-text">9.3.4 价格</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-4-%E6%80%BB%E7%BB%93"><span class="toc-number">11.4.</span> <span class="toc-text">9.4 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10-%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A"><span class="toc-number">12.</span> <span class="toc-text">10 个人学习的心得体会</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/a817c557/" title="PHP 01"><img src="/img/102.jpeg" onerror="this.onerror=null;this.src='/img/06.jpg'" alt="PHP 01"></a><div class="content"><a class="title" href="/posts/a817c557/" title="PHP 01">PHP 01</a><time datetime="2025-04-27T20:52:00.000Z" title="发表于 2025-04-28 04:52:00">2025-04-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/c0a33dea/" title="openeluer操作系统概述"><img src="/img/102.jpeg" onerror="this.onerror=null;this.src='/img/06.jpg'" alt="openeluer操作系统概述"></a><div class="content"><a class="title" href="/posts/c0a33dea/" title="openeluer操作系统概述">openeluer操作系统概述</a><time datetime="2025-04-26T20:52:00.000Z" title="发表于 2025-04-27 04:52:00">2025-04-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/ff94a54/" title="Linux常用命令详解"><img src="/img/102.jpeg" onerror="this.onerror=null;this.src='/img/06.jpg'" alt="Linux常用命令详解"></a><div class="content"><a class="title" href="/posts/ff94a54/" title="Linux常用命令详解">Linux常用命令详解</a><time datetime="2025-04-25T20:52:00.000Z" title="发表于 2025-04-26 04:52:00">2025-04-26</time></div></div></div></div></div></div></main><footer id="footer" style="background-color: rgba(45, 10, 61, 0.2);"><div id="footer-wrap"><div class="footer_custom_text"><style>
+  .footer {
+    text-align: center;
+    position: relative;
+  }
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .social-links i {
+    color: #8400ff;
+  }
+  .social-link {
+    color: #8a2be2;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: rgba(138, 43, 226, 0.1);
+  }
+  .social-link:hover {
+    color: #892be294;
+    background: #892be294;
+    transform: translateY(-3px) scale(1.2);
+    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+    text-decoration: none !important; 
+  }
+  .footer p {
+    margin: 0.5rem 0;
+    line-height: 1;
+  }
+  .copyright {
+    font-size: 1.1rem; 
+    color: #c08bdf;
+    font-weight: 400;
+  }
+  .tagline {
+    font-size: 0.8rem;
+    color: #8a2be2;
+    font-style: italic;
+    font-weight: 500;
+  }
+  .visitor-count {
+    font-size: 0.75rem;
+    color: rgba(219, 142, 255, 0.658);
+    font-weight: 300;
+  }
+  #visitorCount {
+    font-weight: bold;
+  }
+</style>
+<div class="footer">
+  <div class="social-links">
+    <a href="https://github.com/kukual" class="social-link" target="_blank" rel="external nofollow noopener noreferrer" aria-label="GitHub" title="GitHub">
+      <i class="fab fa-github"></i>
+    </a>
+    <a href="https://blog.csdn.net/weixin_74811095" class="social-link" target="_blank" rel="external nofollow noopener noreferrer" aria-label="CSDN" title="CSDN">
+      <i class="fas fa-code"></i>
+    </a>
+    <a href="https://www.xiaohongshu.com/user/profile/5e8a0aae0000000001002ce4" class="social-link" target="_blank" rel="external nofollow noopener noreferrer" aria-label="小红书" title="小红书">
+      <i class="fas fa-book"></i>
+    </a>
+    <a href="https://space.bilibili.com/498478848" class="social-link" target="_blank" rel="external nofollow noopener noreferrer" aria-label="bilibili" title="bilibili">
+      <i class="fab fa-bilibili"></i>
+    </a>
+  </div>
+  <p class="copyright">© 2025 kukualのblog - 所有权利保留</p>
+  <p class="tagline">> Stay curious, stay hacking, stay anime! <</p>
+  <p class="visitor-count">访问量: <span id="visitorCount">1024</span> | 你是第 <span id="dailyVisitor">1</span> 位今日访客</p>
+</div>
+<script>
+  // 确保DOM加载完成后执行
+  document.addEventListener('DOMContentLoaded', function() {
+    // 模拟访问量增长
+    function updateVisitorCount() {
+      const countElement = document.getElementById('visitorCount');
+      let count = parseInt(countElement.textContent) || 1024;
+      // 从localStorage获取或初始化计数
+      const storedCount = localStorage.getItem('totalVisitors');
+      if (storedCount) {
+        count = parseInt(storedCount);
+        countElement.textContent = count;
+      }
+      // 每日访客计数
+      const today = new Date().toDateString();
+      const dailyData = JSON.parse(localStorage.getItem('dailyVisitors') || '{"date":"", "count":0}');
+      if (dailyData.date !== today) {
+        dailyData.date = today;
+        dailyData.count = 0;
+      }
+      dailyData.count += 1;
+      document.getElementById('dailyVisitor').textContent = dailyData.count;
+      localStorage.setItem('dailyVisitors', JSON.stringify(dailyData));
+      // 每30秒随机增加访问量
+      setInterval(() => {
+        count += Math.floor(Math.random() * 3);
+        countElement.textContent = count;
+        localStorage.setItem('totalVisitors', count.toString());
+      }, 30000);
+    }
+    updateVisitorCount();
+    // 添加点击动画效果
+    const socialLinks = document.querySelectorAll('.social-link');
+    socialLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        this.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 300);
+      });
+    });
+  });
+</script>
+</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script defer src="/js/cursor.js"></script><script defer src="/js/sakura.js"></script><script src="/live2d-widget/autoload.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="输入关键词…" type="text"></div></div><hr><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_categories_card_injector_config(){
+    // 检查容器是否存在
+    var parent_div_git = document.getElementById('recent-posts');
+    // 如果容器不存在，则动态创建
+    if (!parent_div_git) {
+      console.warn('butterfly_categories_card: 挂载容器不存在，正在动态创建...');
+      // 创建新容器（默认插入到页面主体顶部）
+      parent_div_git = document.createElement('div');
+      parent_div_git.id = 'recent-posts'; // 赋予配置的ID
+      document.querySelector('#page').prepend(parent_div_git); // 插入到 #content-inner 内
+    }
+    var item_html = '<style>li.categoryBar-list-item{width:32.3%;}.categoryBar-list{max-height: 950px;overflow:auto;}.categoryBar-list::-webkit-scrollbar{width:0!important}@media screen and (max-width: 650px){.categoryBar-list{max-height: 800px;}}</style><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"><div id="categoryBar"><ul class="categoryBar-list"><li class="categoryBar-list-item" style="background:url(/img/11.png);"> <a class="categoryBar-list-link" href="/categories/笔记杂记/">笔记杂记</a><span class="categoryBar-list-count">16</span><span class="categoryBar-list-descr">1</span></li><li class="categoryBar-list-item" style="background:url(/img/12.png);"> <a class="categoryBar-list-link" href="/categories/博客搭建/">博客搭建</a><span class="categoryBar-list-count">16</span><span class="categoryBar-list-descr">2</span></li></ul></div></div>';
+    console.log('已挂载 butterfly_categories_card');
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+  }
+  // 路径匹配逻辑（使用 startsWith）
+  if (location.pathname.startsWith('/categories/') || '/categories/' === 'all') {
+    butterfly_categories_card_injector_config();
+  }
+  </script><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/8ac25d20/" alt=""><img width="48" height="48" src="/img/106.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-31</span><a class="blog-slider__title" href="posts/8ac25d20/" alt="">butterfly主题魔改01：准备工作及魔改流程目录</a><div class="blog-slider__text">作为魔改系列的开篇，指导用户完成Butterfly主题的基础配置：包括主题安装、配置文件迁移（_config.butterfly.yml）、图片目录创建。同时列出后续12篇教程的目录，涵盖颜色、导航栏、动态背景、页面美化等主题，形成完整的定制路线图。强调通过分离配置文件避免版本冲突，为后续高阶修改奠定基础。</div><a class="blog-slider__button" href="posts/8ac25d20/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/8ac25d19/" alt=""><img width="48" height="48" src="/img/106.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-30</span><a class="blog-slider__title" href="posts/8ac25d19/" alt="">hexo butterfly主题整体结构解析</a><div class="blog-slider__text">全面解析Butterfly主题的模块化目录结构，从根目录的配置文件（_config.yml、plugins.yml）到核心功能模块（布局文件、样式脚本、静态资源）逐一说明。重点标注了layout/下的Pug模板组件（如头部、侧边栏、评论系统）、source/中的CSS/JS定制入口，以及scripts/的事件处理逻辑。适合开发者深度定制主题时快速定位文件，理解各模块的依赖关系与修改影响。</div><a class="blog-slider__button" href="posts/8ac25d19/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/77f87ebd/" alt=""><img width="48" height="48" src="/img/104.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-29</span><a class="blog-slider__title" href="posts/77f87ebd/" alt="">腾讯云COS+Obsidian实现图片自动上传到图床</a><div class="blog-slider__text">文章介绍如何通过腾讯云COS和PicList工具实现Obsidian笔记的图片自动上传。步骤包括：腾讯云COS存储桶创建、API密钥获取、PicList安装与配置（含时间戳重命名防冲突），以及Obsidian插件Image Auto Upload的安装与设置。详细说明了手动/自动上传图片的操作方法，并配有多张界面截图，帮助用户无缝衔接本地写作与云端图床管理，提升Markdown文档的图片管理效率。</div><a class="blog-slider__button" href="posts/77f87ebd/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/a817c557/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-28</span><a class="blog-slider__title" href="posts/a817c557/" alt="">PHP 01</a><div class="blog-slider__text">从环境搭建到语法、函数、数组、面向对象、字符串处理及Web交互，快速入门PHP后端开发。</div><a class="blog-slider__button" href="posts/a817c557/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/53689933/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-20</span><a class="blog-slider__title" href="posts/53689933/" alt="">Java程序设计基础</a><div class="blog-slider__text">从Java环境安装到语法、面向对象、集合、多线程、GUI、I/O、网络编程，系统呈现Java学习的完整路线。</div><a class="blog-slider__button" href="posts/53689933/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/ec335aec/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-28</span><a class="blog-slider__title" href="posts/ec335aec/" alt="">利用Github和hexo搭建自己的个人博客</a><div class="blog-slider__text">该教程详细指导用户从零开始搭建Hexo博客并部署到GitHub。内容涵盖Git、Node.js环境安装，Hexo框架初始化，主题安装（以Amazing主题为例），以及GitHub仓库创建与SSH密钥配置。通过图文并茂的步骤演示了本地测试、主题配置、依赖安装和最终部署流程。重点解决了国内用户使用npm速度慢的问题（推荐cnpm），并提供了常见问题的解决方案，如环境变量配置和SSH认证测试，适合新手快速搭建个人技术博客。</div><a class="blog-slider__button" href="posts/ec335aec/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/ff94a54/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-26</span><a class="blog-slider__title" href="posts/ff94a54/" alt="">Linux常用命令详解</a><div class="blog-slider__text">详解Linux系统登录、关机、密码、锁屏、命令行编辑与文件查看（cat/more/less/head/tail）等日常操作。</div><a class="blog-slider__button" href="posts/ff94a54/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/c0a33dea/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-27</span><a class="blog-slider__title" href="posts/c0a33dea/" alt="">openeluer操作系统概述</a><div class="blog-slider__text">介绍openEuler开源服务器操作系统的背景、特性、发行版、与鲲鹏生态协同及其在安全、性能上的增强</div><a class="blog-slider__button" href="posts/c0a33dea/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/c4becd09/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-25</span><a class="blog-slider__title" href="posts/c4becd09/" alt="">Linux常用命令2</a><div class="blog-slider__text">汇总Linux关机和重启命令（logout、reboot、shutdown、halt、passwd、vlock）及其选项，方便日常维护。</div><a class="blog-slider__button" href="posts/c4becd09/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/5db79cb3/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-24</span><a class="blog-slider__title" href="posts/5db79cb3/" alt="">Linux常用命令1</a><div class="blog-slider__text">归纳RPM、YUM包管理及服务启停/自启常用命令，帮助管理员快速完成软件安装、升级、维护与排障。</div><a class="blog-slider__button" href="posts/5db79cb3/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/f24bb437/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-23</span><a class="blog-slider__title" href="posts/f24bb437/" alt="">Linux操作系统概述</a><div class="blog-slider__text">概述Linux诞生、内核、发行版及开源优势，并给出运维工程师进阶路线、薪资与国产操作系统发展背景。</div><a class="blog-slider__button" href="posts/f24bb437/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/a4b345c0/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-15</span><a class="blog-slider__title" href="posts/a4b345c0/" alt="">安全见闻</a><div class="blog-slider__text">以费曼学习法切入，梳理渗透测试流程、语言选择、软件/网络/硬件/AI安全全景，并分享学习心得。</div><a class="blog-slider__button" href="posts/a4b345c0/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/a5ecaa69/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-22</span><a class="blog-slider__title" href="posts/a5ecaa69/" alt="">XSS跨站脚本攻击</a><div class="blog-slider__text">聚焦XSS跨站脚本攻击，解析cookie机制与反射型、存储型、DOM型XSS原理、利用思路及防御要点。</div><a class="blog-slider__button" href="posts/a5ecaa69/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/22f97770/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-19</span><a class="blog-slider__title" href="posts/22f97770/" alt="">HTTP基础</a><div class="blog-slider__text">用图解方式讲解TCP/IP、IP/端口、HTTP请求与响应，帮助零基础读者理解网站访问背后的网络与协议原理。</div><a class="blog-slider__button" href="posts/22f97770/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/e73517db/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-17</span><a class="blog-slider__title" href="posts/e73517db/" alt="">SQL注入</a><div class="blog-slider__text">结合示例图解释SQL注入原理：利用输入拼接、报错、注释、UNION、布尔/延时盲注及IDOR越权漏洞。</div><a class="blog-slider__button" href="posts/e73517db/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/65503319/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-21</span><a class="blog-slider__title" href="posts/65503319/" alt="">Kali安装配置docker</a><div class="blog-slider__text">手把手在Kali Linux上完成Docker的安装、启动、开机自启与验证，附截图与命令，适合初学者快速部署。</div><a class="blog-slider__button" href="posts/65503319/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/3bb43d1e/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-18</span><a class="blog-slider__title" href="posts/3bb43d1e/" alt="">Apache Tomcat 文件读取/文件包含(CVE-2020-1938)漏洞复现</a><div class="blog-slider__text">详细记录CVE-2020-1938（Tomcat AJP文件包含/读取）漏洞的环境搭建、检测、利用及GetShell全过程，含图文。</div><a class="blog-slider__button" href="posts/3bb43d1e/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/a5ecaa69/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-13</span><a class="blog-slider__title" href="posts/a5ecaa69/" alt="">网络安全术语</a><div class="blog-slider__text">系统梳理网络安全攻击、防守、技术、工具及攻防演练所需的中英文术语，方便快速查阅与对照。</div><a class="blog-slider__button" href="posts/a5ecaa69/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/f632dd30/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-16</span><a class="blog-slider__title" href="posts/f632dd30/" alt="">加密的虚拟机怎么解除加密？</a><div class="blog-slider__text">图文并茂演示在VMware中通过“编辑设置→访问控制→移除加密”解除虚拟机加密的全过程。</div><a class="blog-slider__button" href="posts/f632dd30/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/83e403fa/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-14</span><a class="blog-slider__title" href="posts/83e403fa/" alt="">网络安全术语中英文表</a><div class="blog-slider__text">按A-Z顺序给出网络安全核心概念的中英文对照，适合快速检索、统一用语并辅助学习或报告撰写。</div><a class="blog-slider__button" href="posts/83e403fa/" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

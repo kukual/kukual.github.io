@@ -1,0 +1,492 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>SQL注入 | kukualのblog</title><meta name="author" content="kukual"><meta name="copyright" content="kukual"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f5f0fa"><meta name="description" content="结合示例图解释SQL注入原理：利用输入拼接、报错、注释、UNION、布尔&#x2F;延时盲注及IDOR越权漏洞。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL注入">
+<meta property="og:url" content="https://kukual.github.io/posts/e73517db/index.html">
+<meta property="og:site_name" content="kukualのblog">
+<meta property="og:description" content="结合示例图解释SQL注入原理：利用输入拼接、报错、注释、UNION、布尔&#x2F;延时盲注及IDOR越权漏洞。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://kukual.github.io/img/102.jpeg">
+<meta property="article:published_time" content="2025-04-16T20:52:00.000Z">
+<meta property="article:modified_time" content="2025-04-16T20:52:11.000Z">
+<meta property="article:author" content="kukual">
+<meta property="article:tag" content="sql">
+<meta property="article:tag" content="漏洞">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kukual.github.io/img/102.jpeg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "SQL注入",
+  "url": "https://kukual.github.io/posts/e73517db/",
+  "image": "https://kukual.github.io/img/102.jpeg",
+  "datePublished": "2025-04-16T20:52:00.000Z",
+  "dateModified": "2025-04-16T20:52:11.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "kukual",
+      "url": "https://kukual.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/01.png"><link rel="canonical" href="https://kukual.github.io/posts/e73517db/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#2d0a3d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f5f0fa')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&amp;family=Ma+Shan+Zheng&amp;family=Fredoka+One&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":"ture","top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":true,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":300,"languages":{"author":"作者: kukual","link":"链接: ","source":"来源: kukualのblog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SQL注入',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Chewy&family=Fredoka+One&family=Caveat:wght@400;700&family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@300;500;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="/css/categorybar.css"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250819223546030.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/02.jpg" onerror="this.onerror=null;this.src='/img/05.jpg'" alt="avatar"></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/101.jpeg);"><nav id="nav"><!-- 左侧博客信息区域--><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/01.png" alt="Logo"><span class="site-name">kukualのblog</span></a><a class="nav-page-title" href="/"><span class="site-name">SQL注入</span></a></span><!-- 新增的导航菜单容器（居中布局关键）--><div id="nav-menus-container"><!-- 菜单主体部分--><div id="menus"><!-- 搜索按钮--><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><!-- 菜单项--><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div><!-- 移动端汉堡菜单按钮（保持原位置）--><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">SQL注入</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-04-16T20:52:00.000Z" title="发表于 2025-04-17 04:52:00">2025-04-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-04-16T20:52:11.000Z" title="更新于 2025-04-17 04:52:11">2025-04-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AC%94%E8%AE%B0%E6%9D%82%E8%AE%B0/">笔记杂记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">4.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id data-flag-title><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;本文最后更新于&quot;,&quot;messageNext&quot;:&quot;天前，部分内容可能已失效&quot;,&quot;postUpdate&quot;:&quot;2025-04-17 04:52:11&quot;}" hidden></div><h1 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h1><p><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501665.png" alt="zy01"></p>
+<ol>
+<li>假设你用自己的用户名和密码登录了一个付费网站，服务器需要查询一下你是不是VIP用户。服务器通常都是会向数据库进行查询的，因为服务器把用户数据都放在数据库里面了，要向数据库进行增加，删除，修改和查询这些操作就需要用到SKU这种语言了。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501666.png" alt="zy02"></li>
+<li>但问题是，如果黑客没有正常输入数据，而是把数据转换成代码，使得服务器像数据库的正常查询变成了不正常的代码执行。那么黑客就可以执行自己想要的操作了。</li>
+</ol>
+<h2 id="报错与注释"><a href="#报错与注释" class="headerlink" title="报错与注释"></a>报错与注释</h2><p><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501667.png" alt="zy03"></p>
+<ol>
+<li>SQL的语法就很像正常的英语，比如说这里有一个保存在数据库的用户名、密码表格，如果我们要选取表格里面的所有内容，就可以用select * from。如果我们要选取指定的用户名和密码，就可以在后面加上where，并且附上条件。</li>
+<li>假设用户输入了用户名和密码后，服务器就会把输入的用户名和密码这两条数据加在where语句里面，看起来是一个正常的操作。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501668.png" alt="zy04"></li>
+<li>但是服务器如果没有过滤用户输入的数据，比方说黑客在用户名最后加上一个单引号，SQL查询语句就会变成这样<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501669.png" alt="zy05"></li>
+<li>那当SQL执行这条语句的时候，会把一对引号里面的视为字符数据，而不是操作符。因为这里的引号不成对，因此这条SQL语句是会报错的，如果此时服务器傻的把sql报错的信息直接返回给用户，那么黑客就知道具体是什么原因导致报错了。SQL注入攻击的门就这样被打开了。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501670.png" alt="zy06"></li>
+<li>如果在单引行后面加上两横，事情就不一样了，如果在MySQL里面系统遇到这两条横线就会认为从这里开始到这一行结束都是注释，是不会被视为代码进行执行的，注释一般是用来给代码进行解释说明的文字，那相当于只会执行前面部分的SKU语句。如果黑客知道用户名及时不知道密码，也可以进行账号的登录了。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501671.png" alt="zy07"></li>
+<li>如果连正确的用户名信息都没有，那么</li>
+<li>SQL语句在遇到where关键词的时候会判断条件是真还是假。因为如果一个条件为真，另一个条件为假，用or来把这两个条件拼接起来，那么得到的就是真，也就是说一个只需要再增加一个为真的条件就行了。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501672.png" alt="zy08"></li>
+<li>比如1&#x3D;1，因为1肯定是等于1的，所以条件为真，即使用户信息错误，where这里的逻辑判断都是为真，因为这里是or，或者这样的逻辑。</li>
+</ol>
+<h2 id="UNION"><a href="#UNION" class="headerlink" title="UNION"></a>UNION</h2><p><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501673.png" alt="zy09"></p>
+<ol>
+<li>在sql里要合并两个表格的内容，常见的就是用union操作符来连接两个select语句。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501674.png" alt="zy10"></li>
+<li>但是union是可以有骚操作的，比如在MySQL里union select的后面可以不需要指定表格名字，直接在select后面用null来代替列名。</li>
+<li>null是一个特殊的值，表示没有值。这个操作看似没什么意义，因为就直接把两个null合并在表格里一起进行展示。</li>
+<li>但是union的操作必须保证合并两边的列数是要一致的，一般是不知道表格有多少列的，但可以一直在后面加上null来测试，最后多少个null是返回成功的结果，就证明这表格有多少列了。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501675.png" alt="zy11"></li>
+<li>如果现在黑客用其他方法知道了另一个表格的信息，那就可以把表格的列名放在null的位置，并且指定选取的表格名。</li>
+<li>union除了要保证列数一致以外，还要保证数据类型要相似。实际上黑客在确定好列数以后，还会进行数据类型的判断，比如逐列进行测试就行了。</li>
+<li>现在黑客就可以把所有的东西都放在一起。首先在可以注入的地方用单引号强行终止数据内容，并且加上注释关键词，使得后面的语句失效，这样SQL语句就不会报错，黑客就可以在这里注入union语句了。</li>
+</ol>
+<h2 id="布尔和时间延迟"><a href="#布尔和时间延迟" class="headerlink" title="布尔和时间延迟"></a>布尔和时间延迟</h2><ol>
+<li>现在大部分网站都会使用cookie，这样服务器就能根据不同cookie来识别不同的用户，从而展示不同的网页内容。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501676.png" alt="zy12"></li>
+<li>也就是说，通常会在数据库保存不同用户的cookie用户登录网页的时候，就会在HTTP请求里面加上Cookie这个HTTP首部。相应的也会生成服务器向数据库的查询语句，比方说select from where。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501677.png" alt="zy13"></li>
+<li>此时黑客就可以使用前面说到的方法，在这里修改cookie的值，强行加上一个单引号来结束字符数据，并且注释掉后面的SQL语句。</li>
+<li>如果此时返回的还是原来的页面，证明是可以被注入。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501678.png" alt="zy14"></li>
+<li>但是，如果我们在后面加上一个条件，故意使where语句变错，因为1肯定不等于0，加上这里我们用and来进行逻辑判断，如果有一个条件错误，也就是查询不到要查询的内容。</li>
+<li>如果此时返回的页面内容改变了，那么黑客就知道查询到内容时是什么页面，查询不到内容又是什么页面。</li>
+<li>那现在只需要修改and后面这个条件就能猜测到想要的内容了。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501679.png" alt="zy15"></li>
+<li>比方说可以把第二个条件改成这样，使用substring方法进行判断，判断mima这个字符串的第一个字符是否为字符m？<br> 如果是，那么就返回正常的用户页面。<br> 如果不是，那么就会返回不一样的用户。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501680.png" alt="zy16"></li>
+<li>此时，如果黑客知道网站管理员的账号是admin，并且账号密码都保存在users这个表里面，那就可以在这里做文章了，因为黑客可以把substring里的第一个参数修改为一条查询语句，接下来只需要不断发送请求，不断修改判断的字符，返回正确的页面就证明猜中了密码的第一个字符，然后就换为猜第二个字符。一直这样用暴力破解的方式得到管理员的密码，所以这种&#x3D;&#x3D;布尔注入&#x3D;&#x3D;的方式其实属于盲注。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501681.png" alt="zy17"></li>
+<li>盲注还有另一种常见的方式就是用&#x3D;&#x3D;延时的方式进行判断&#x3D;&#x3D;，一般会用sleep这个函数。</li>
+<li>比方说设置10秒，那如果页面在10秒左右返回的内容就是猜中，如果页面正常时间返回，而且在10秒内，那就是没猜中。</li>
+<li>但是如果网站服务器不返回内容到页面也没有不同的页面来判断查询是否成功，千万不要以为网站就安全了，只要黑客可以向网站服务器发送正常的请求，并且服务器会向数据库进行沟通，就可能会产生漏洞。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501682.png" alt="zy18"></li>
+<li>比如像MySQL系统注入load_fire()函数，如果给这个函数提供域名，那么就会触发DNS查询，也就是查询域名的IP地址，这个时候虽然服务器不返回内容给黑客，但是服务器还是会进行SQL查询。</li>
+<li>此时如果黑客做了手脚，把要查询的管理员密码和域名进行拼接，相当于直接把管理员密码发给了黑客，因为黑客的服务器是自己控制的，因此黑客可以查看DNS查询的内容，此时就可以把管理员密码给提取出来。</li>
+</ol>
+<h1 id="XSS网络攻击"><a href="#XSS网络攻击" class="headerlink" title="XSS网络攻击"></a>XSS网络攻击</h1><h2 id="反射型XSS"><a href="#反射型XSS" class="headerlink" title="反射型XSS"></a>反射型XSS</h2><ol>
+<li>骗子就如同网络黑客受害者就如同用浏览器上网的用户，银行就如同网站的服务器。</li>
+<li>首先，骗子精心制作了一条网页链接，也就是网页URL，并且发送给用户。</li>
+<li>接着用户使用浏览器输入URL浏览器就会去访问这个网站。</li>
+<li>服务器查看了链接以后以为用户想要检索某些信息而已，并没有进行额外的过滤。</li>
+<li>服务器的数据库也不需要保存什么信息就直接返回了对应的结果，浏览器就会把结果呈现到页面。</li>
+<li>问题是黑客给的URL里面是存在额外的操作，比如把用户浏览器的一些隐私发送给黑客，只要用户一点击链接就中招了。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501683.png" alt="zy19"></li>
+<li>流程总结：</li>
+</ol>
+<ul>
+<li>1.黑客URL</li>
+<li>2.用户检索信息</li>
+<li>3.服务器无过滤，不保存</li>
+<li>4.服务器反射信息</li>
+<li>5.执行脚本</li>
+</ul>
+<ol start="8">
+<li>反射型XSS一般是利用网页的检索功能，比方说b站搜索，你搜索的关键词会体现在uri里，服务器会根据URL反射回来展示在你的页面里。</li>
+<li>换句话说，你的URL的其中一部分被展示在页面里，如果b站的服务器没有对检索的URL进行过滤，</li>
+<li>刚好URL里含有恶意的代码，那么恶意的代码就会被植入到你的页面里面。</li>
+</ol>
+<h2 id="存储型XSS"><a href="#存储型XSS" class="headerlink" title="存储型XSS"></a>存储型XSS</h2><ol>
+<li>存储型的xss一般会发生在可以发表评论的网站。</li>
+<li>黑客不发表正常的评论，而是把恶意代码脚本作为评论发送给网站服务器。如果服务器不进行过滤，就会把评论永久保存起来。常见的就是保存在数据库里面。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501684.png" alt="zy20"></li>
+<li>特点：</li>
+</ol>
+<ul>
+<li>1.黑客URL </li>
+<li>2.服务器无过滤，并且保存。</li>
+<li>3.用户正常访问</li>
+<li>4.返回页面。</li>
+<li>5.执行脚本</li>
+</ul>
+<ol start="4">
+<li>问题是每个浏览这个网站的用户都会看到所有评论，也就是会被迫看到有恶意代码的评论.</li>
+<li>看到恶意代码的同时，浏览器就会自动执行恶意代码，可能会把你的信息泄露给了黑客，也可能执行的脚本是为黑客赚钱的.</li>
+<li>用户并不是因为点击乱七八糟的URL中招，而是在你访问网站评论区的时候就自动中招了。</li>
+<li>比如b站允许用户发送弹幕和评论，如果服务器不过滤，用户发送的恶意信息，这些信息就会实时的保存在b站服务器里，只要有用户访问当前的视频页面就中招，直到服务器那边把恶意代码删除为止。</li>
+</ol>
+<h2 id="DOM型XSS"><a href="#DOM型XSS" class="headerlink" title="DOM型XSS"></a>DOM型XSS</h2><ol>
+<li>黑客会制作一条链接给你点击，你点击以后浏览器并未把恶意代码脚本发送给服务器，或者恶意代码暂未执行。服务器此时并不知情，只是把正常的网页源码发送给浏览器。</li>
+<li>首先渲染网页源码，接着把刚才会执行的恶意代码也给执行了。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501685.png" alt="zy21"></li>
+<li>简单总结：</li>
+</ol>
+<ul>
+<li>1.黑客URL</li>
+<li>2.浏览器进行过滤或者部分请求</li>
+<li>3.服务器正常响应。</li>
+<li>4.执行源码与恶意代码</li>
+</ul>
+<ol start="4">
+<li>我们来看一个网站，当我们点击侧边栏的时候，我们的URL也随之发生变化，这个好像没什么神奇的。</li>
+<li>问题在于URL里的#号，一般开发者使用这个#号是为了方便用户跳转（减少对服务器的请求），进行客户端渲染。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501686.png" alt="zy22"></li>
+<li>但是#后面这一片段默认是不发送给服务器的，也就是说，浏览器向服务器请求前面的一部分url，并且正常进行渲染。</li>
+<li>如果URL里需要跳转到#号的部分再进行操作。正因为这样，浏览器的渲染分了两步走，给黑客开了个门，但并不是这样，就证明网页有漏洞了。</li>
+<li>Dom是因为XSS得满足最重要的两点，简单来说，就是在一个墙壁上找脆弱的位置，并且往脆弱的地方打洞。</li>
+<li>这个位置就是一个属性，打洞就是一个方法，比如document.URL是一个属性，可以得到当前页面的URL。<br><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501687.png" alt="zy23"></li>
+<li>而document.write就是一个方法，可以往页面里写内容，黑客就是找你源码里是否有可以操作的属性，如果有再看是否有与之对应的方法。</li>
+<li>当然我们来一个实例会更清晰一些。</li>
+<li>看看这个网站，除了URL以外，没有任何输入框，但是当我们点击图标按钮的时候，URL是会以#号的方式进行刷新的，如果此时我们在井号后面加上任意字符，你们看这个字符反应在页面上了，而且图片裂了，非常像反射型XSS。</li>
+<li>但是#后的请求并未发送给服务器，那我们来留意一下反射到页面上的内容，大家可以看到用的是div标签，并且把tabContent设置为元素的id，为的就是更好的可以用javascript来操作这，个元素，我们记住这个tabContent，然后来看一看网页的js部分，熟悉jQuery的，看到这个多了符号就知道怎么回事了。</li>
+<li>这里的意思就是把id为tabContent元素的html部分设置为变量名为html的值。</li>
+<li>jQuery的html()方法就类似于innerHTML，是可以被黑客利用来注入脚本的方法。</li>
+<li>接下来就要看有没有可以被注入的属性或者值呢？</li>
+<li>变量HTML的值就在上面进行设置，变量html里需要引用到参数num的值，这个num正是我们在URL的#号后输入的内容。</li>
+<li>如果我们能控制这个num的值，就可以进行注入，那这个num参数所属的chooseTab函数，其实是在下面执行的。</li>
+<li>我们可以看到chooseTab函数传入了一个要命的值， location.hash，也就是URL上#片段的值，</li>
+<li>这就是黑客要找的属性了。</li>
+<li>那么黑客就可以修改URL上#的值，从而触发jQuery的html()方法。</li>
+<li>那黑客就有可能会这么搞你，这里不是要设置一个img标签吗？那就直接加一个单引号迫使src属性设置结束，但src属性明显是引用不了正确的地址，会发生错误。就可以顺势使用触发onerror，并且执行脚本。</li>
+</ol>
+<h1 id="IDOR漏洞"><a href="#IDOR漏洞" class="headerlink" title="IDOR漏洞"></a>IDOR漏洞</h1><p><img src="https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/bj1/20250819213501688.png" alt="zy24"></p>
+<ol>
+<li>简单来说，当用户可以越权访问不属于他自己的资源，那就很可能出现IDOR漏洞了。</li>
+<li>先来看后面三个字母，也就是直接对象引用。</li>
+<li>比方说我们在某个应用里传了一份文件，应用服务器那边保存了这份文件。这份文件就是一个对象，文件也必须有名字才行。因此应用就会给这个文件命名，并且以某种方式对外暴露这份文件对象。</li>
+<li>当我们下次访问文件的时候，可能就是在URL上显示这个文件对象的名字。我们访问这个URL就是在直接引用这个文件对象，这就是直接对象，引用对象不一定是文件，也可以是数据库里的某些数据，还可以是整个文件夹。</li>
+<li>其实直接对象引用没问题，比如我们在b站搜索关键词出来的对应视频资源也是在直接引用对象。</li>
+<li>问题就出在这个I上，insecure不安全的也就对应着前面说的越权不属于我们的对象资源，居然能被我们引用。</li>
+<li>其实服务器对外暴露资源出去是很正常的，但是我们要对资源进行加工后再暴露才是正常的操作，防止IDRL最简单的方法就是增加权限。</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://kukual.github.io/">kukual</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://kukual.github.io/posts/e73517db/">https://kukual.github.io/posts/e73517db/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="external nofollow noopener noreferrer">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://kukual.github.io" target="_blank">kukualのblog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/sql/">sql</a><a class="post-meta__tags" href="/tags/%E6%BC%8F%E6%B4%9E/">漏洞</a></div><div class="post-share"><div class="social-share" data-image="/img/102.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>感谢您的支持！</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"></a><div class="post-qr-code-desc">微信</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/f632dd30/" title="加密的虚拟机怎么解除加密？"><img class="cover" src="/img/102.jpeg" onerror="onerror=null;src='/img/06.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">加密的虚拟机怎么解除加密？</div></div><div class="info-2"><div class="info-item-1">图文并茂演示在VMware中通过“编辑设置→访问控制→移除加密”解除虚拟机加密的全过程。</div></div></div></a><a class="pagination-related" href="/posts/3bb43d1e/" title="Apache Tomcat 文件读取/文件包含(CVE-2020-1938)漏洞复现"><img class="cover" src="/img/102.jpeg" onerror="onerror=null;src='/img/06.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Apache Tomcat 文件读取/文件包含(CVE-2020-1938)漏洞复现</div></div><div class="info-2"><div class="info-item-1">详细记录CVE-2020-1938（Tomcat AJP文件包含/读取）漏洞的环境搭建、检测、利用及GetShell全过程，含图文。</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/a5ecaa69/" title="XSS跨站脚本攻击"><img class="cover" src="/img/102.jpeg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-22</div><div class="info-item-2">XSS跨站脚本攻击</div></div><div class="info-2"><div class="info-item-1">聚焦XSS跨站脚本攻击，解析cookie机制与反射型、存储型、DOM型XSS原理、利用思路及防御要点。</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/02.jpg" onerror="this.onerror=null;this.src='/img/05.jpg'" alt="avatar"></div><div class="author-info-name">kukual</div><div class="author-info-description">专注于网络安全技术研究 | 渗透测试实战案例 | CTF竞赛解析 | 漏洞复现分析</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" href="https://kukual.github.io/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/kukual" target="_blank" title="Github" rel="external nofollow noopener noreferrer"><i class="fab fa-github" style="color: #8a2be2;"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_74811095" target="_blank" title="CSDN" rel="external nofollow noopener noreferrer"><i class="fa-solid fa-code" style="color: #8a2be2;"></i></a><a class="social-icon" href="https://www.xiaohongshu.com/user/profile/5e8a0aae0000000001002ce4" target="_blank" title="redbook" rel="external nofollow noopener noreferrer"><i class="fa-solid fa-book" style="color: #8a2be2;"></i></a><a class="social-icon" href="https://space.bilibili.com/498478848" target="_blank" title="bilibili" rel="external nofollow noopener noreferrer"><i class="fab fa-bilibili" style="color: #8a2be2;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><style>
+.announcement-card {
+    --main-color: #ff00ff;
+    --secondary-color: #00ffff;
+    --highlight-color: #ff5500;
+    position: relative;
+    overflow: hidden;
+}
+.announcement-content {
+    font-size: 1rem; 
+    line-height: 1.2; 
+    color: #ffffff;
+    position: relative;
+}
+.keyword {
+    color: var(--secondary-color);
+    font-weight: 300;
+    font-size: 1.1rem; 
+}
+.highlight {
+    color: var(--main-color);
+    font-weight: 1000;
+    font-size: 1.2rem; 
+}
+.announcement-content ul {
+    list-style-type: none;
+    margin: 0.8rem 0; 
+    padding-left: 1.5rem;   
+}
+</style>
+<div class="announcement-card">
+    <div class="announcement-content">
+        <p><span class="highlight">欢迎来到「酷库阿洛」网络安全研习录</span>！🎉</p>
+        <p><strong>本平台专注于：</strong></p>
+        <ul>
+            <li><span class="keyword">> 网络安全技术研究</span></li>
+            <li><span class="keyword">> 渗透测试实战案例</span></li>
+            <li><span class="keyword">> CTF竞赛解析</span></li>
+            <li><span class="keyword">> 漏洞复现分析</span></li>
+        </ul>
+        <p>🌟 <strong>加入我们，一起探索网络安全奥秘，提升攻防实战能力，共同守护数字世界的安宁！</strong></p>
+    </div>
+</div>
+</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="toc-number">1.</span> <span class="toc-text">SQL注入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%A5%E9%94%99%E4%B8%8E%E6%B3%A8%E9%87%8A"><span class="toc-number">1.1.</span> <span class="toc-text">报错与注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UNION"><span class="toc-number">1.2.</span> <span class="toc-text">UNION</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E5%92%8C%E6%97%B6%E9%97%B4%E5%BB%B6%E8%BF%9F"><span class="toc-number">1.3.</span> <span class="toc-text">布尔和时间延迟</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XSS%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB"><span class="toc-number">2.</span> <span class="toc-text">XSS网络攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E5%9E%8BXSS"><span class="toc-number">2.1.</span> <span class="toc-text">反射型XSS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%9E%8BXSS"><span class="toc-number">2.2.</span> <span class="toc-text">存储型XSS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM%E5%9E%8BXSS"><span class="toc-number">2.3.</span> <span class="toc-text">DOM型XSS</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IDOR%E6%BC%8F%E6%B4%9E"><span class="toc-number">3.</span> <span class="toc-text">IDOR漏洞</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/a817c557/" title="PHP 01"><img src="/img/102.jpeg" onerror="this.onerror=null;this.src='/img/06.jpg'" alt="PHP 01"></a><div class="content"><a class="title" href="/posts/a817c557/" title="PHP 01">PHP 01</a><time datetime="2025-04-27T20:52:00.000Z" title="发表于 2025-04-28 04:52:00">2025-04-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/c0a33dea/" title="openeluer操作系统概述"><img src="/img/102.jpeg" onerror="this.onerror=null;this.src='/img/06.jpg'" alt="openeluer操作系统概述"></a><div class="content"><a class="title" href="/posts/c0a33dea/" title="openeluer操作系统概述">openeluer操作系统概述</a><time datetime="2025-04-26T20:52:00.000Z" title="发表于 2025-04-27 04:52:00">2025-04-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/ff94a54/" title="Linux常用命令详解"><img src="/img/102.jpeg" onerror="this.onerror=null;this.src='/img/06.jpg'" alt="Linux常用命令详解"></a><div class="content"><a class="title" href="/posts/ff94a54/" title="Linux常用命令详解">Linux常用命令详解</a><time datetime="2025-04-25T20:52:00.000Z" title="发表于 2025-04-26 04:52:00">2025-04-26</time></div></div></div></div></div></div></main><footer id="footer" style="background-color: rgba(45, 10, 61, 0.2);"><div id="footer-wrap"><div class="footer_custom_text"><style>
+  .footer {
+    text-align: center;
+    position: relative;
+  }
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .social-links i {
+    color: #8400ff;
+  }
+  .social-link {
+    color: #8a2be2;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: rgba(138, 43, 226, 0.1);
+  }
+  .social-link:hover {
+    color: #892be294;
+    background: #892be294;
+    transform: translateY(-3px) scale(1.2);
+    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+    text-decoration: none !important; 
+  }
+  .footer p {
+    margin: 0.5rem 0;
+    line-height: 1;
+  }
+  .copyright {
+    font-size: 1.1rem; 
+    color: #c08bdf;
+    font-weight: 400;
+  }
+  .tagline {
+    font-size: 0.8rem;
+    color: #8a2be2;
+    font-style: italic;
+    font-weight: 500;
+  }
+  .visitor-count {
+    font-size: 0.75rem;
+    color: rgba(219, 142, 255, 0.658);
+    font-weight: 300;
+  }
+  #visitorCount {
+    font-weight: bold;
+  }
+</style>
+<div class="footer">
+  <div class="social-links">
+    <a href="https://github.com/kukual" class="social-link" target="_blank" rel="external nofollow noopener noreferrer" aria-label="GitHub" title="GitHub">
+      <i class="fab fa-github"></i>
+    </a>
+    <a href="https://blog.csdn.net/weixin_74811095" class="social-link" target="_blank" rel="external nofollow noopener noreferrer" aria-label="CSDN" title="CSDN">
+      <i class="fas fa-code"></i>
+    </a>
+    <a href="https://www.xiaohongshu.com/user/profile/5e8a0aae0000000001002ce4" class="social-link" target="_blank" rel="external nofollow noopener noreferrer" aria-label="小红书" title="小红书">
+      <i class="fas fa-book"></i>
+    </a>
+    <a href="https://space.bilibili.com/498478848" class="social-link" target="_blank" rel="external nofollow noopener noreferrer" aria-label="bilibili" title="bilibili">
+      <i class="fab fa-bilibili"></i>
+    </a>
+  </div>
+  <p class="copyright">© 2025 kukualのblog - 所有权利保留</p>
+  <p class="tagline">> Stay curious, stay hacking, stay anime! <</p>
+  <p class="visitor-count">访问量: <span id="visitorCount">1024</span> | 你是第 <span id="dailyVisitor">1</span> 位今日访客</p>
+</div>
+<script>
+  // 确保DOM加载完成后执行
+  document.addEventListener('DOMContentLoaded', function() {
+    // 模拟访问量增长
+    function updateVisitorCount() {
+      const countElement = document.getElementById('visitorCount');
+      let count = parseInt(countElement.textContent) || 1024;
+      // 从localStorage获取或初始化计数
+      const storedCount = localStorage.getItem('totalVisitors');
+      if (storedCount) {
+        count = parseInt(storedCount);
+        countElement.textContent = count;
+      }
+      // 每日访客计数
+      const today = new Date().toDateString();
+      const dailyData = JSON.parse(localStorage.getItem('dailyVisitors') || '{"date":"", "count":0}');
+      if (dailyData.date !== today) {
+        dailyData.date = today;
+        dailyData.count = 0;
+      }
+      dailyData.count += 1;
+      document.getElementById('dailyVisitor').textContent = dailyData.count;
+      localStorage.setItem('dailyVisitors', JSON.stringify(dailyData));
+      // 每30秒随机增加访问量
+      setInterval(() => {
+        count += Math.floor(Math.random() * 3);
+        countElement.textContent = count;
+        localStorage.setItem('totalVisitors', count.toString());
+      }, 30000);
+    }
+    updateVisitorCount();
+    // 添加点击动画效果
+    const socialLinks = document.querySelectorAll('.social-link');
+    socialLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        this.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 300);
+      });
+    });
+  });
+</script>
+</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script defer src="/js/cursor.js"></script><script defer src="/js/sakura.js"></script><script src="/live2d-widget/autoload.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="输入关键词…" type="text"></div></div><hr><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_categories_card_injector_config(){
+    // 检查容器是否存在
+    var parent_div_git = document.getElementById('recent-posts');
+    // 如果容器不存在，则动态创建
+    if (!parent_div_git) {
+      console.warn('butterfly_categories_card: 挂载容器不存在，正在动态创建...');
+      // 创建新容器（默认插入到页面主体顶部）
+      parent_div_git = document.createElement('div');
+      parent_div_git.id = 'recent-posts'; // 赋予配置的ID
+      document.querySelector('#page').prepend(parent_div_git); // 插入到 #content-inner 内
+    }
+    var item_html = '<style>li.categoryBar-list-item{width:32.3%;}.categoryBar-list{max-height: 950px;overflow:auto;}.categoryBar-list::-webkit-scrollbar{width:0!important}@media screen and (max-width: 650px){.categoryBar-list{max-height: 800px;}}</style><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"><div id="categoryBar"><ul class="categoryBar-list"><li class="categoryBar-list-item" style="background:url(/img/11.png);"> <a class="categoryBar-list-link" href="/categories/笔记杂记/">笔记杂记</a><span class="categoryBar-list-count">16</span><span class="categoryBar-list-descr">1</span></li><li class="categoryBar-list-item" style="background:url(/img/12.png);"> <a class="categoryBar-list-link" href="/categories/博客搭建/">博客搭建</a><span class="categoryBar-list-count">16</span><span class="categoryBar-list-descr">2</span></li></ul></div></div>';
+    console.log('已挂载 butterfly_categories_card');
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+  }
+  // 路径匹配逻辑（使用 startsWith）
+  if (location.pathname.startsWith('/categories/') || '/categories/' === 'all') {
+    butterfly_categories_card_injector_config();
+  }
+  </script><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/8ac25d20/" alt=""><img width="48" height="48" src="/img/106.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-31</span><a class="blog-slider__title" href="posts/8ac25d20/" alt="">butterfly主题魔改01：准备工作及魔改流程目录</a><div class="blog-slider__text">作为魔改系列的开篇，指导用户完成Butterfly主题的基础配置：包括主题安装、配置文件迁移（_config.butterfly.yml）、图片目录创建。同时列出后续12篇教程的目录，涵盖颜色、导航栏、动态背景、页面美化等主题，形成完整的定制路线图。强调通过分离配置文件避免版本冲突，为后续高阶修改奠定基础。</div><a class="blog-slider__button" href="posts/8ac25d20/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/8ac25d19/" alt=""><img width="48" height="48" src="/img/106.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-30</span><a class="blog-slider__title" href="posts/8ac25d19/" alt="">hexo butterfly主题整体结构解析</a><div class="blog-slider__text">全面解析Butterfly主题的模块化目录结构，从根目录的配置文件（_config.yml、plugins.yml）到核心功能模块（布局文件、样式脚本、静态资源）逐一说明。重点标注了layout/下的Pug模板组件（如头部、侧边栏、评论系统）、source/中的CSS/JS定制入口，以及scripts/的事件处理逻辑。适合开发者深度定制主题时快速定位文件，理解各模块的依赖关系与修改影响。</div><a class="blog-slider__button" href="posts/8ac25d19/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/77f87ebd/" alt=""><img width="48" height="48" src="/img/104.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-29</span><a class="blog-slider__title" href="posts/77f87ebd/" alt="">腾讯云COS+Obsidian实现图片自动上传到图床</a><div class="blog-slider__text">文章介绍如何通过腾讯云COS和PicList工具实现Obsidian笔记的图片自动上传。步骤包括：腾讯云COS存储桶创建、API密钥获取、PicList安装与配置（含时间戳重命名防冲突），以及Obsidian插件Image Auto Upload的安装与设置。详细说明了手动/自动上传图片的操作方法，并配有多张界面截图，帮助用户无缝衔接本地写作与云端图床管理，提升Markdown文档的图片管理效率。</div><a class="blog-slider__button" href="posts/77f87ebd/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/a817c557/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-28</span><a class="blog-slider__title" href="posts/a817c557/" alt="">PHP 01</a><div class="blog-slider__text">从环境搭建到语法、函数、数组、面向对象、字符串处理及Web交互，快速入门PHP后端开发。</div><a class="blog-slider__button" href="posts/a817c557/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/53689933/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-20</span><a class="blog-slider__title" href="posts/53689933/" alt="">Java程序设计基础</a><div class="blog-slider__text">从Java环境安装到语法、面向对象、集合、多线程、GUI、I/O、网络编程，系统呈现Java学习的完整路线。</div><a class="blog-slider__button" href="posts/53689933/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/ec335aec/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-28</span><a class="blog-slider__title" href="posts/ec335aec/" alt="">利用Github和hexo搭建自己的个人博客</a><div class="blog-slider__text">该教程详细指导用户从零开始搭建Hexo博客并部署到GitHub。内容涵盖Git、Node.js环境安装，Hexo框架初始化，主题安装（以Amazing主题为例），以及GitHub仓库创建与SSH密钥配置。通过图文并茂的步骤演示了本地测试、主题配置、依赖安装和最终部署流程。重点解决了国内用户使用npm速度慢的问题（推荐cnpm），并提供了常见问题的解决方案，如环境变量配置和SSH认证测试，适合新手快速搭建个人技术博客。</div><a class="blog-slider__button" href="posts/ec335aec/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/ff94a54/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-26</span><a class="blog-slider__title" href="posts/ff94a54/" alt="">Linux常用命令详解</a><div class="blog-slider__text">详解Linux系统登录、关机、密码、锁屏、命令行编辑与文件查看（cat/more/less/head/tail）等日常操作。</div><a class="blog-slider__button" href="posts/ff94a54/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/c0a33dea/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-27</span><a class="blog-slider__title" href="posts/c0a33dea/" alt="">openeluer操作系统概述</a><div class="blog-slider__text">介绍openEuler开源服务器操作系统的背景、特性、发行版、与鲲鹏生态协同及其在安全、性能上的增强</div><a class="blog-slider__button" href="posts/c0a33dea/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/c4becd09/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-25</span><a class="blog-slider__title" href="posts/c4becd09/" alt="">Linux常用命令2</a><div class="blog-slider__text">汇总Linux关机和重启命令（logout、reboot、shutdown、halt、passwd、vlock）及其选项，方便日常维护。</div><a class="blog-slider__button" href="posts/c4becd09/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/5db79cb3/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-24</span><a class="blog-slider__title" href="posts/5db79cb3/" alt="">Linux常用命令1</a><div class="blog-slider__text">归纳RPM、YUM包管理及服务启停/自启常用命令，帮助管理员快速完成软件安装、升级、维护与排障。</div><a class="blog-slider__button" href="posts/5db79cb3/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/f24bb437/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-23</span><a class="blog-slider__title" href="posts/f24bb437/" alt="">Linux操作系统概述</a><div class="blog-slider__text">概述Linux诞生、内核、发行版及开源优势，并给出运维工程师进阶路线、薪资与国产操作系统发展背景。</div><a class="blog-slider__button" href="posts/f24bb437/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/a4b345c0/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-15</span><a class="blog-slider__title" href="posts/a4b345c0/" alt="">安全见闻</a><div class="blog-slider__text">以费曼学习法切入，梳理渗透测试流程、语言选择、软件/网络/硬件/AI安全全景，并分享学习心得。</div><a class="blog-slider__button" href="posts/a4b345c0/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/a5ecaa69/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-22</span><a class="blog-slider__title" href="posts/a5ecaa69/" alt="">XSS跨站脚本攻击</a><div class="blog-slider__text">聚焦XSS跨站脚本攻击，解析cookie机制与反射型、存储型、DOM型XSS原理、利用思路及防御要点。</div><a class="blog-slider__button" href="posts/a5ecaa69/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/22f97770/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-19</span><a class="blog-slider__title" href="posts/22f97770/" alt="">HTTP基础</a><div class="blog-slider__text">用图解方式讲解TCP/IP、IP/端口、HTTP请求与响应，帮助零基础读者理解网站访问背后的网络与协议原理。</div><a class="blog-slider__button" href="posts/22f97770/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/e73517db/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-17</span><a class="blog-slider__title" href="posts/e73517db/" alt="">SQL注入</a><div class="blog-slider__text">结合示例图解释SQL注入原理：利用输入拼接、报错、注释、UNION、布尔/延时盲注及IDOR越权漏洞。</div><a class="blog-slider__button" href="posts/e73517db/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/65503319/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-21</span><a class="blog-slider__title" href="posts/65503319/" alt="">Kali安装配置docker</a><div class="blog-slider__text">手把手在Kali Linux上完成Docker的安装、启动、开机自启与验证，附截图与命令，适合初学者快速部署。</div><a class="blog-slider__button" href="posts/65503319/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/3bb43d1e/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-18</span><a class="blog-slider__title" href="posts/3bb43d1e/" alt="">Apache Tomcat 文件读取/文件包含(CVE-2020-1938)漏洞复现</a><div class="blog-slider__text">详细记录CVE-2020-1938（Tomcat AJP文件包含/读取）漏洞的环境搭建、检测、利用及GetShell全过程，含图文。</div><a class="blog-slider__button" href="posts/3bb43d1e/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/a5ecaa69/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-13</span><a class="blog-slider__title" href="posts/a5ecaa69/" alt="">网络安全术语</a><div class="blog-slider__text">系统梳理网络安全攻击、防守、技术、工具及攻防演练所需的中英文术语，方便快速查阅与对照。</div><a class="blog-slider__button" href="posts/a5ecaa69/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/f632dd30/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-16</span><a class="blog-slider__title" href="posts/f632dd30/" alt="">加密的虚拟机怎么解除加密？</a><div class="blog-slider__text">图文并茂演示在VMware中通过“编辑设置→访问控制→移除加密”解除虚拟机加密的全过程。</div><a class="blog-slider__button" href="posts/f632dd30/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/83e403fa/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-14</span><a class="blog-slider__title" href="posts/83e403fa/" alt="">网络安全术语中英文表</a><div class="blog-slider__text">按A-Z顺序给出网络安全核心概念的中英文对照，适合快速检索、统一用语并辅助学习或报告撰写。</div><a class="blog-slider__button" href="posts/83e403fa/" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>

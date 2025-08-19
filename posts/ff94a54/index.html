@@ -1,0 +1,538 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Linux常用命令详解 | kukualのblog</title><meta name="author" content="kukual"><meta name="copyright" content="kukual"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f5f0fa"><meta name="description" content="详解Linux系统登录、关机、密码、锁屏、命令行编辑与文件查看（cat&#x2F;more&#x2F;less&#x2F;head&#x2F;tail）等日常操作。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常用命令详解">
+<meta property="og:url" content="https://kukual.github.io/posts/ff94a54/index.html">
+<meta property="og:site_name" content="kukualのblog">
+<meta property="og:description" content="详解Linux系统登录、关机、密码、锁屏、命令行编辑与文件查看（cat&#x2F;more&#x2F;less&#x2F;head&#x2F;tail）等日常操作。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://kukual.github.io/img/102.jpeg">
+<meta property="article:published_time" content="2025-04-25T20:52:00.000Z">
+<meta property="article:modified_time" content="2025-04-25T20:52:11.000Z">
+<meta property="article:author" content="kukual">
+<meta property="article:tag" content="操作系统">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kukual.github.io/img/102.jpeg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Linux常用命令详解",
+  "url": "https://kukual.github.io/posts/ff94a54/",
+  "image": "https://kukual.github.io/img/102.jpeg",
+  "datePublished": "2025-04-25T20:52:00.000Z",
+  "dateModified": "2025-04-25T20:52:11.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "kukual",
+      "url": "https://kukual.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/01.png"><link rel="canonical" href="https://kukual.github.io/posts/ff94a54/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#2d0a3d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f5f0fa')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&amp;family=Ma+Shan+Zheng&amp;family=Fredoka+One&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":"ture","top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":true,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":300,"languages":{"author":"作者: kukual","link":"链接: ","source":"来源: kukualのblog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Linux常用命令详解',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Chewy&family=Fredoka+One&family=Caveat:wght@400;700&family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@300;500;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="/css/categorybar.css"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(https://kukual20250401-1351197034.cos.ap-guangzhou.myqcloud.com/blog/20250819223546030.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/02.jpg" onerror="this.onerror=null;this.src='/img/05.jpg'" alt="avatar"></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/101.jpeg);"><nav id="nav"><!-- 左侧博客信息区域--><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/01.png" alt="Logo"><span class="site-name">kukualのblog</span></a><a class="nav-page-title" href="/"><span class="site-name">Linux常用命令详解</span></a></span><!-- 新增的导航菜单容器（居中布局关键）--><div id="nav-menus-container"><!-- 菜单主体部分--><div id="menus"><!-- 搜索按钮--><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><!-- 菜单项--><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div><!-- 移动端汉堡菜单按钮（保持原位置）--><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Linux常用命令详解</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-04-25T20:52:00.000Z" title="发表于 2025-04-26 04:52:00">2025-04-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-04-25T20:52:11.000Z" title="更新于 2025-04-26 04:52:11">2025-04-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AC%94%E8%AE%B0%E6%9D%82%E8%AE%B0/">笔记杂记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">5.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>18分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id data-flag-title><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;本文最后更新于&quot;,&quot;messageNext&quot;:&quot;天前，部分内容可能已失效&quot;,&quot;postUpdate&quot;:&quot;2025-04-26 04:52:11&quot;}" hidden></div><h1 id="Linux常用命令详解"><a href="#Linux常用命令详解" class="headerlink" title="Linux常用命令详解"></a>Linux常用命令详解</h1><h1 id="1-系统安全性命令"><a href="#1-系统安全性命令" class="headerlink" title="1 系统安全性命令"></a>1 系统安全性命令</h1><h2 id="1-1-注册"><a href="#1-1-注册" class="headerlink" title="1.1 注册"></a>1.1 注册</h2><ol>
+<li>注册名<br>当用户在计算机屏幕上看到如下提示时，就表示计算机已准备接受用户的注册：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#localhost login:</span><br></pre></td></tr></table></figure>
+<p>这时，输入用户的注册名（有时也称其为用户名），然后按下【Enter】键。<br>此时，在屏幕上会看到自己的用户名和要求输入口令的提示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#localhost login:admin（admin是用户输入的注册名）</span><br><span class="line">#Password:</span><br></pre></td></tr></table></figure>
+<p>系统管理员可以根据需要设置不同的提示词。<br>2. 口令<br>当屏幕上出现如下提示时，可输入用户的账户口令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#Password:</span><br></pre></td></tr></table></figure>
+<p>输入口令后，再按【Enter】键，如果用户输入的注册名和口令都正确，那么系统会在屏幕上显示shell提示符，表示注册成功。接着，用户就可以输入命令完成自己要做的工作了。<br>如果用户输入的注册名或者口令不正确，那么系统将发出注册有错的信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Login  incorrect</span><br></pre></td></tr></table></figure>
+<p>然后，系统重新发出注册提示信息，让用户重试。</p>
+<h2 id="1-2-退出系统"><a href="#1-2-退出系统" class="headerlink" title="1.2 退出系统"></a>1.2 退出系统</h2><p>当完成任务想要退出系统时，可以在提示符后面输入以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logout</span><br></pre></td></tr></table></figure>
+<p>有些Linux系统退出系统的命令为：exit 。<br>然后按【Enter】键，系统进行相应的处理后，会重新在屏幕上显示注册提示信息。</p>
+<h2 id="1-3-重新启动和关闭系统"><a href="#1-3-重新启动和关闭系统" class="headerlink" title="1.3 重新启动和关闭系统"></a>1.3 重新启动和关闭系统</h2><ol>
+<li>reboot命令<br>reboot命令的一般格式：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot [选项]</span><br></pre></td></tr></table></figure>
+<p>该命令用于重新启动系统，即实际上是指向halt命令一个符号连接。</p>
+<ul>
+<li>选项及其含义：<br>  -d：重新启动以后，系统不向&#x2F;var&#x2F;tmp&#x2F;wtmp文件中写入记录。<br>  -w：仅做测试，并不实际执行重新启动操作，但是命令将重新启动信息写入&#x2F;var&#x2F;tmp&#x2F;wtmp文件中。<br>  -f：强制系统重新启动。</li>
+</ul>
+<ol start="2">
+<li>halt命令<br>halt命令的一般格式：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">halt [选项]</span><br></pre></td></tr></table></figure>
+<p>该命令用于关闭系统，并且在&#x2F;var&#x2F;log&#x2F;wtm记录系统关闭的信息。如果系统的运行级别不是0或者6，则系统调用shutdown来代替该命令关闭系统。</p>
+<ul>
+<li>选项及其含义：<br>  -d：不在&#x2F;var&#x2F;log&#x2F;wtm文件中记录相应的信息。<br>  -f：不调用shutdown命令，强行关机。<br>  -p：在执行该命令关闭系统以后，执行poweroff命令，关闭电源。<br>  -w：在&#x2F;var&#x2F;log&#x2F;wtm文件中记录相应的信息，但不关闭系统。</li>
+</ul>
+<ol start="3">
+<li>shutdown命令<br>shutdown命令的一般格式：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shutdown [选项]</span><br></pre></td></tr></table></figure>
+<p>该命令用于关闭系统，向所有已登录的用户发送信息，并向所有进程发送SIGTERM信号，通知进程关闭。   </p>
+<ul>
+<li>选项及其含义：<br>  time：设置在什么时间关机。<br>  warning-message：设置发送给所有用户的警告信息。<br>  -h：在关闭系统以后关机。<br>  -k：向所有已登录用户发送警告信息，但不真正关闭系统。<br>  -n：不调用init而直接关闭系统，一般情况下最好不要用这个选项关闭系统。<br>  -r：在关闭系统以后重新启动系统。<br>  -t sec：init在发送警告以后sec秒删除进程。</li>
+</ul>
+<h2 id="1-4-修改口令"><a href="#1-4-修改口令" class="headerlink" title="1.4 修改口令"></a>1.4 修改口令</h2><ol>
+<li>选择口令<br>选择用户口令时，应遵守以下基本规则：<br>（1）一个口令至少应有8个字符，包括字母、数字及符号，如ily&amp;%wxy；<br>（2）不建议使用姓名、别名、短语及字典中可以找到的词从前向后或者从后向前拼写的形式等作为口令；<br>（3）不同的计算机上要使用不同的口令，但是不要用计算机名作为口令；<br>（4）不要重复使用老口令，或许已将一个口令告诉过其他用户；<br>（5）如果认为其他用户已经知道了口令，就要及时修改口令；<br>（6）口令应注意保密，不要将口令写在自己桌面的纸上或者通过电子邮件发送出去，也不要与其他用户共用一个口令；<br>（7）要选择一个能够记住的口令。如果忘记了口令，就无法恢复它，但是系统管理员可以为用户重新设置一个口令。</li>
+<li>更改口令<br>可以利用passwd命令更改用户的口令，其具体过程如下：<br>（1）登录系统，在提示符下，   输入passwd命令：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[studentL @localhost studentL]$passwd</span><br></pre></td></tr></table></figure>
+<p>（2）在屏幕上马上出现如下提示信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Changing password for user studentL.</span><br><span class="line">Changing password for studentL</span><br><span class="line">（current）UNIX password: </span><br></pre></td></tr></table></figure>
+<p> 此时，输入老口令（即用户注册进入系统时使用的口令）。<br> 系统验证无误后，给出如下提示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">New password:</span><br></pre></td></tr></table></figure>
+<p> 此时输入新口令。<br>（3）输入一个合法的新口令后，系统会要求再输入一遍新口令，以便加以确认：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Retry New Password:</span><br></pre></td></tr></table></figure>
+<p>如果用户两次输入的口令完全一样，那么系统就接受这个口令作为用户下次注册时的口令。出于安全考虑，用户输入的所有口令都不在屏幕上以明文显示。<br>如果用户输入的口令不对，那么系统会发出提示，要求用户重新输入。</p>
+<h2 id="1-5-锁住终端会话"><a href="#1-5-锁住终端会话" class="headerlink" title="1.5 锁住终端会话"></a>1.5 锁住终端会话</h2><p>如果必须离开终端一会儿，可以使用&#x3D;&#x3D;【vlock】命令&#x3D;&#x3D;来锁住终端，使当前的会话不被他人看到。<br>该锁将一直锁住这个显示器，直到输入这个用户的登录口令才能解锁。</p>
+<h1 id="2-命令的使用"><a href="#2-命令的使用" class="headerlink" title="2 命令的使用"></a>2 命令的使用</h1><ul>
+<li>使用系统命令是与Linux操作系统交流的直接的方式。bash提供了数百个系统命令，尽管这些命令的功能不同，但它们的使用方式和规则都是统一的。</li>
+</ul>
+<h2 id="2-1-bash简介"><a href="#2-1-bash简介" class="headerlink" title="2.1 bash简介"></a>2.1 bash简介</h2><ul>
+<li>当进入Linux环境时，系统将自动启动相应的shell。shell是一种命令行解释程序，负责用户和操作系统之间的沟通。在提示符下输入的每个命令都先由shell解释，然后传给Linux内核执行。通过shell，可以启动、挂起、停止甚至编写程序。</li>
+<li>各种Linux环境下安装了多种shell，这是由历史原因造成的。这些shell都是由不同的人编写并都得到一部分用户的青睐。常用的是Bourne shell（sh）、C shell（chs）、Bourne Again shell（bash）和Korn shell。而Red Hat Linux的默认shell是bash。</li>
+<li>bash是Bourne Again shell的缩写，其作者是Brain Fox和Chet Ramey。它是向下兼容的，并且吸收了其他shell的许多优点，是一种功能全面的shell。另外，bash还有很多自己的特色。例如，可以使用方向键查阅以往的命令，对命令进行编辑；在忘记命令名时，还可以向系统求助，使用命令补齐功能等。bash在shell编程方面也相当优秀。</li>
+<li>各种Linux环境下安装了多种shell，这是由历史原因造成的。这些shell都是由不同的人编写并都得到一部分用户的青睐。常用的是Bourne shell（sh）、C shell（chs）、Bourne Again shell（bash）和Korn shell。而Red Hat Linux的默认shell是bash。</li>
+</ul>
+<h2 id="2-2-命令的使用"><a href="#2-2-命令的使用" class="headerlink" title="2.2 命令的使用"></a>2.2 命令的使用</h2><ul>
+<li>bash命令都具有相同的命令格式：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">命令名  [选项]  [参数1] [参数2]…</span><br></pre></td></tr></table></figure>
+<ul>
+<li>命令名由小写的英文字母构成，往往是表示相应功能的英文单词或单词的缩写。例如：date表示日期；who表示谁在系统中；cp是copy的缩写，复制命令，用于复制文件。</li>
+<li>其中&#x3D;&#x3D;方括号括起的部分&#x3D;&#x3D;，表明该项对命令行来说&#x3D;&#x3D;不是必须的，是可选的&#x3D;&#x3D;。既可以直接在提示符后面输入命令date，显示当前的日期和时间，也可以在date命令名后面带有选项和参数。</li>
+<li>选项是对命令的特别定义，以“-”开始，多个选项可用一个“-”连起来，例如“ls  -l -a”与“ls  -la”相同。</li>
+<li>命令行的参数提供命令运行的信息或者是命令执行过程中所使用的文件名。通常参数是一些文件名，告诉命令从哪里可以得到输入及将输出送到什么地方。</li>
+<li>如果命令行中没有提供参数，命令将从标准输入文件（即键盘）接收数据，输出结果显示在标准输出文件（即显示器）上。</li>
+<li>可以使用重定向功能对这些文件进行重定向。</li>
+<li>命令在正常执行后返回一个0值，表示执行成功；如果命令执行过程中出错，没有完成全部工作，则返回一个非零值。在shell脚本中可用此返回值作为控制逻辑流程的一部分。</li>
+<li>Linux操作系统的联机帮助对每个命令的准确语法都做了说明，使用时可以查阅。</li>
+</ul>
+<h2 id="2-3-键入命令"><a href="#2-3-键入命令" class="headerlink" title="2.3  键入命令"></a>2.3  键入命令</h2><ul>
+<li>在【shell】提示符下，可以输入相应的命令。输入后，必须按【Enter】键予以确认。shell会读取该命令并予以执行。命令完成后，屏幕将显示新的提示符。</li>
+<li>shell命令可以&#x3D;&#x3D;识别大小写&#x3D;&#x3D;。例如，DATE、date和Date是不同的，其中只有一个是真正的Linux命令。</li>
+<li>如果系统找不到输入的命令，会显示反馈信息：“-bash:命令：command not found”。这时，就要检查键入命令的拼写及大小写是否正确。</li>
+<li>如果一个命令太长，一行放不下时，要&#x3D;&#x3D;在第一行行尾键入“\”字符&#x3D;&#x3D;并按【Enter】键。这时&#x3D;&#x3D;shell会返回一个大于号（&gt;）&#x3D;&#x3D;作为提示符，表示允许命令延续到下一行。然后，可以接着输入命令。</li>
+<li>在命令与选项、参数之间要用空格或制表符隔开。连续的空格会被shell解释为单个空格。</li>
+</ul>
+<h2 id="2-4-修改命令行输入错误"><a href="#2-4-修改命令行输入错误" class="headerlink" title="2.4  修改命令行输入错误"></a>2.4  修改命令行输入错误</h2><ul>
+<li>输入命令时，可以使用多个空格符，但是拼写和语法必须是准确的。如果在命令行中出现拼写错误，在按【Enter】键之前，可以通过下列两种方式修改。<br>  （1）用&#x3D;&#x3D;“退格”键（即【Backspace】键）&#x3D;&#x3D;从后向前删除有错误的字符，再键入正确的命令字符串。<br>  （2）用&#x3D;&#x3D;【Ctrl+U】键&#x3D;&#x3D;可以删除光标所在的命令行。如果命令多于一行，首行末尾有反斜线，则只删除当前行。</li>
+</ul>
+<h2 id="2-5-特殊控制符"><a href="#2-5-特殊控制符" class="headerlink" title="2.5  特殊控制符"></a>2.5  特殊控制符</h2><p>shell提供了许多控制符及特殊字符，用于简化命令的输入。<br>（1）&#x3D;&#x3D;【Ctrl+H】&#x3D;&#x3D;键为默认的删除符号，它的功能与【Backspace】键相同。<br>（2）&#x3D;&#x3D;【Ctrl+U】&#x3D;&#x3D;键可以删除光标所在的命令行。<br>（3）&#x3D;&#x3D;【Ctrl+J】&#x3D;&#x3D;键相当于回车。<br>（4）如果在命令行中使用一对单引号，shell将&#x3D;&#x3D;不解释被单引号括起的内容&#x3D;&#x3D;，包括其中的空格和回车字符。<br>（5）分号可以将两个命令隔开，这样可以实现在一行中输入多个命令。命令的执行顺序与输入的顺序相同。</p>
+<h1 id="3-文件操作命令"><a href="#3-文件操作命令" class="headerlink" title="3 文件操作命令"></a>3 文件操作命令</h1><h2 id="3-1-文件系统概念"><a href="#3-1-文件系统概念" class="headerlink" title="3.1  文件系统概念"></a>3.1  文件系统概念</h2><ul>
+<li>磁盘上的文件系统是分层次的，由若干目录及其子目录组成，上层的目录称为根目录，用“&#x2F;”表示。</li>
+</ul>
+<h3 id="3-1-1-文件与目录的定义"><a href="#3-1-1-文件与目录的定义" class="headerlink" title="3.1.1 文件与目录的定义"></a>3.1.1 文件与目录的定义</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>文件系统</td>
+<td>它是磁盘上有特定格式的一片区域，操作系统通过文件系统可以方便地查寻和访问其中所包含的磁盘块。</td>
+</tr>
+<tr>
+<td>文件</td>
+<td>文件系统中存储数据的一个命名对象。一个文件可以是空文件，但仍可为操作系统提供其他信息。</td>
+</tr>
+<tr>
+<td>目录</td>
+<td>包含许多文件项目的一类特殊文件。目录支持文件系统的层次结构。文件系统中的每个文件都登记在一个（或多个）目录中。</td>
+</tr>
+<tr>
+<td>子目录</td>
+<td>包含在另一个目录中的目录。包含子目录的目录称为父目录。除了根目录以外，所有的目录都是子目录，并且有它们的父目录。根目录就作为自己的父目录。</td>
+</tr>
+<tr>
+<td>文件名</td>
+<td>用来标识文件的字符串，它保存在一个目录文件项中。</td>
+</tr>
+<tr>
+<td>路径名</td>
+<td>由斜线字符“&#x2F;”结合在一起的一个或多个文件名的集合。路径名指定一个文件在分层的树形结构（即文件系统）中的位置。</td>
+</tr>
+</tbody></table>
+<h3 id="3-1-2-文件结构"><a href="#3-1-2-文件结构" class="headerlink" title="3.1.2 文件结构"></a>3.1.2 文件结构</h3><p>文件是Linux操作系统处理信息的基本单位。所有软件都组织成文件形式。<br>（1）文件的成分<br>无论文件是一个程序、一个文档、一个数据库，或者是一个目录，操作系统都会赋予文件相同的结构，具体信息如下：<br>	① 索引节点：<br>		又称I节点。在文件系统结构中，包含有关相应文件信息的一个记录，这些信息包括文件权限、文件主（文件拥有者）、文件大小等。<br>	② 数据：<br>		兰德公司的研究结论表明，85%倒闭的大企业是由管理者的重大决策失误造成的。<br>（2）命名文件<br>文件名保存在目录文件中。Linux的文件名几乎可以由ASCII字符的任意组合构成，文件名可长达255个字符。<br>为方便管理文件，文件名应遵循以下规则：<br>	① 文件名应尽量简单，并且应反映出文件内容。文件名没有必要超过14个字符。<br>	② 除斜杠“&#x2F;”和空字符以外，文件名可以包含任意的ASCII字符，因为这两个字符被核心当做表示路径名的特殊字符来解释。<br>	③ 习惯上允许使用下线符<code>“_”</code>和句点<code>“.”</code>来区别文件的类型，使文件名更易读。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">但是应避免使用以下字符，因为对系统的shell来说，它们有特殊的含义。</span><br><span class="line">这些字符是： ;  |  &lt;  &gt;  `  &quot;  &#x27;  $  !  %  &amp;  *  ?  \  (  )  [  ]，另外文件名应避免使用空格、制表符或其他控制字符。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>  ④ 同类文件应使用同样的后缀或扩展名。<br>  ⑤ Linux系统区分文件名的大小写，例如名为letter的文件与名为Letter的文件不是同一个文件。</li>
+</ul>
+<p>注意：<br>	以圆点“.”开头的文件名是隐含文件，默认方式下使用ls命令并不能将它们在屏幕上显示出来。同样，在默认情况下，shell通配符并不匹配这类文件名。<br>（3）文件名扩展字符<br>	为了能一次处理多个文件，shell提供了几个特别字符，称为文件名扩展字符（也称通配符）。文件名扩展字符主要有以下几种：<br>	① 星号<code>“ * ”</code><br>        与0个或多个任意的字符相匹配，可以匹配当前目录下的所有文件，但以点“.”开头的隐含文件除外。例如：<code>file*</code>可以代表file123、fileabc或file。<br>	② 问号<code>“?”</code><br>        只与一个任意的字符匹配。可以使用多个问号。例如：<code>file?</code>可以与file1、file2、file3匹配，但不与file、file10匹配。<br>	③ 方括号<code>“[ ]”</code><br>		只与方括号中字符之一匹配，可以用短横代表一个范围内的字符，在方括号中如果以惊叹号开始，表示不与惊叹号后的字符匹配。例如，<code>file[1234]</code>只与文件file1、file2、file3或file4匹配；<code>file[!1234]</code>除了file1、file2、file3和file4这4个文件外，与其他任何一个以file起始的文件名匹配。</p>
+<h3 id="3-1-3-文件类型"><a href="#3-1-3-文件类型" class="headerlink" title="3.1.3 文件类型"></a>3.1.3 文件类型</h3><p>Linux操作系统支持以下文件类型：普通文件、目录文件、设备文件和符号链接文件。<br>（1）普通文件<br>	普通文件也称为常规文件，包含各种长度的字符串。核心对这些文件没有进行结构化，只是作为有序的字符序列将它提交给应用程序。应用程序自己组织和解释这些数据。它包括文本文件、数据文件和可执行的二进制程序。<br>（2）目录文件<br>	目录文件是一种特殊文件，利用它可以构成文件系统的&#x3D;&#x3D;分层树形结构&#x3D;&#x3D;。如同普通文件那样，目录文件也包含数据。但目录文件与普通文件的差别是：核心对这些数据加以结构化，即它是由成对的“I节点号&#x2F;文件名”构成的列表。<br>	※ I节点号是检索I节点表的下标，I节点中存有文件的状态信息。<br>	※ 文件名是给一个文件分配的文本形式的字符串，用来标识该文件。在一个指定的目录中，任何两项都不能有同样的名字。<br>	当把文件添加到一个目录中时，该目录的大小会增大，以便容纳新文件名。当删除文件时，目录的尺寸并不减少，而是核心对该目录项做上特殊标记，以便下次添加一个文件时重新使用它。<br>（3）设备文件<br>	设备文件是一种特殊文件，除了存放在文件I节点中的信息外，它们不包含任何数据。系统利用它们来标识各个设备驱动器，核心使用它们与硬件设备通信。它通常包含字符设备和块设备。<br>（4）符号链接文件<br>	符号链接文件是一种特殊文件，它们提供对其他文件的参照。它们存放的数据是文件系统中通向文件的路径。当使用符号链接文件时，核心自动地访问所保存的这个路径。</p>
+<h2 id="3-2-文件显示命令"><a href="#3-2-文件显示命令" class="headerlink" title="3.2 文件显示命令"></a>3.2 文件显示命令</h2><h3 id="3-2-1-cat命令"><a href="#3-2-1-cat命令" class="headerlink" title="3.2.1 cat命令"></a>3.2.1 cat命令</h3><ul>
+<li>cat命令连接文件并打印到标准输出设备上，经常用来显示文件的内容，相当于DOS下的type命令。</li>
+<li>cat命令的一般格式：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat  [选项] 文件名1 [文件名2]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>该命令有两项功能：<br>  其一是用来&#x3D;&#x3D;显示文件的内容&#x3D;&#x3D;。它依次读取由参数文件1所指明的文件，将它们的内容输出到标准输出上。<br>  其二是&#x3D;&#x3D;连接两个或多个文件&#x3D;&#x3D;，如cat f1 f2 &gt;f3，将把文件f1和f2的内容合并起来，然后通过输出重定向符“&gt;”，将它们放入文件f3中。</li>
+<li>选项的含义如下：<br>  -b，–number -noblank：从1开始对所有非空输出行进行编号。<br>  -n，–number：从1开始对所有输出行编号。<br>  -s，–squeeze-blank：将多个相邻的空行合并成一个空行。</li>
+</ul>
+<h3 id="3-2-2-more命令"><a href="#3-2-2-more命令" class="headerlink" title="3.2.2 more命令"></a>3.2.2 more命令</h3><ul>
+<li>如果文件太长，用cat命令只能看到文件的后一页，而用more命令时可以&#x3D;&#x3D;一页一页地显示&#x3D;&#x3D;。</li>
+<li>more命令的一般格式：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">more [选项] 文件名</span><br></pre></td></tr></table></figure>
+<ul>
+<li>功能：<br>  该命令一次显示一屏文本，满屏后显示停下来，并且在每个屏幕的底部出现一个提示信息，给出至今已显示的该文件的百分比：–More-（××%）。<br>  进入more状态，用&#x3D;&#x3D;【Enter】&#x3D;&#x3D;键可以向后移动一行；用&#x3D;&#x3D;空格键&#x3D;&#x3D;可以向后移动一页；用&#x3D;&#x3D;【Q】&#x3D;&#x3D;键可以退出；用&#x3D;&#x3D;【B】&#x3D;&#x3D;键，显示上一屏内容；用&#x3D;&#x3D;【H】&#x3D;&#x3D;键，显示帮助屏，该屏上有相关的帮助信息。在more状态下还有许多功能，可用man more命令获得。</li>
+<li>选项的含义如下：<br>  -num：这个选项指定一个整数，表示一个屏幕显示多少行。<br>  -d：在每屏的底部显示以下<code>“[Press space to continue,&#39;q&#39; to quit.]”</code>，并且在用户输入非功能键后，显示<code>“[Press &#39;h&#39; for instructions.]”</code>信息。<br>  -p：不滚屏，在显示下一屏之前先清屏。<br>  -s：文件中连续的空白行压缩成一个空白行显示。</li>
+</ul>
+<h3 id="3-2-3-less命令"><a href="#3-2-3-less命令" class="headerlink" title="3.2.3 less命令"></a>3.2.3 less命令</h3><ul>
+<li>与more命令一样，less命令也用来分屏文件内容，但功能比more命令的功能还强大。</li>
+<li>less命令的一般格式：</li>
+</ul>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">less [选项] 文件名</span><br></pre></td></tr></table></figure>
+<ul>
+<li>功能<br>  less实际上是more命令的改进版，其命令的直接含义是more的反义，功能比more命令的功能更灵活。<br>  例如，用【&#x3D;&#x3D;PgUp】键&#x3D;&#x3D;可以向前移动一页，用&#x3D;&#x3D;【PgDn】&#x3D;&#x3D;键可以向后移动一页，用&#x3D;&#x3D;向上光标键&#x3D;&#x3D;可以向前移动一行，用&#x3D;&#x3D;向下光标键&#x3D;&#x3D;可以向后移动一行。【Q】键、【Enter】键、空格键的功能与more命令中类似。</li>
+</ul>
+<h3 id="3-2-4-head命令"><a href="#3-2-4-head命令" class="headerlink" title="3.2.4 head命令"></a>3.2.4 head命令</h3><ul>
+<li>head命令在屏幕上显示&#x3D;&#x3D;指定文件的开头若干行&#x3D;&#x3D;，行数由参数值来确定。显示行数的&#x3D;&#x3D;默认值为10&#x3D;&#x3D;。</li>
+<li>head命令的一般格式：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head [参数] 文件名</span><br></pre></td></tr></table></figure>
+<ul>
+<li>选项的含义如下：<br>  -c SIZE,–bytes&#x3D;SIZE：显示文件开始的SIZE字节。<br>  -n NUMBER,–LINES&#x3D;NUMBER：显示开始的NUMBER行，默认输出10行。<br>  -q ,–quiet,–silent：不显示文件名。<br>  -v,–verbose：显示文件名。</li>
+</ul>
+<h3 id="3-2-5-tail命令"><a href="#3-2-5-tail命令" class="headerlink" title="3.2.5 tail命令"></a>3.2.5 tail命令</h3><ul>
+<li>tail命令在屏幕上显示&#x3D;&#x3D;指定文件的末尾若干行&#x3D;&#x3D;。行数由参数决定，默认显示文件的后10行。如果指定的文件多于一个，那么tail在显示每个文件之前先显示文件名。</li>
+<li>tail命令的一般格式：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail  [参数]  文件名</span><br></pre></td></tr></table></figure>
+<ul>
+<li>选项的含义如下：<br>  -c N,–byte&#x3D;N：输出后N个字节。<br>  -f,–follow tail：命令超过文件的末端以后，继续尝试读取更多的文件内容。有些文件的内容不断增加，如日志文件，这个选项可以不断地输出新添到文件中的内容。<br>  -n,–line&#x3D;N：输出后N行，而不是默认的10行。<br>  -q,-quiet,–silent：不输出包含给定文件的文件名。<br>  -v,–verbose：始终输出包含给定的文件名。</li>
+</ul>
+<h2 id="3-3-匹配、排序命令"><a href="#3-3-匹配、排序命令" class="headerlink" title="3.3 匹配、排序命令"></a>3.3 匹配、排序命令</h2><h1 id="4-目录及其操作命令"><a href="#4-目录及其操作命令" class="headerlink" title="4 目录及其操作命令"></a>4 目录及其操作命令</h1><h1 id="5-文件压缩命令"><a href="#5-文件压缩命令" class="headerlink" title="5 文件压缩命令"></a>5 文件压缩命令</h1><h1 id="6-进程控制命令"><a href="#6-进程控制命令" class="headerlink" title="6 进程控制命令"></a>6 进程控制命令</h1><h1 id="7-网络命令"><a href="#7-网络命令" class="headerlink" title="7 网络命令"></a>7 网络命令</h1><h1 id="8-其他命令"><a href="#8-其他命令" class="headerlink" title="8 其他命令"></a>8 其他命令</h1><h1 id="9-联机帮助命令"><a href="#9-联机帮助命令" class="headerlink" title="9 联机帮助命令"></a>9 联机帮助命令</h1></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://kukual.github.io/">kukual</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://kukual.github.io/posts/ff94a54/">https://kukual.github.io/posts/ff94a54/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="external nofollow noopener noreferrer">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://kukual.github.io" target="_blank">kukualのblog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="post-meta__tags" href="/tags/linux/">linux</a></div><div class="post-share"><div class="social-share" data-image="/img/102.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>感谢您的支持！</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"></a><div class="post-qr-code-desc">微信</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/c4becd09/" title="Linux常用命令2"><img class="cover" src="/img/102.jpeg" onerror="onerror=null;src='/img/06.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Linux常用命令2</div></div><div class="info-2"><div class="info-item-1">汇总Linux关机和重启命令（logout、reboot、shutdown、halt、passwd、vlock）及其选项，方便日常维护。</div></div></div></a><a class="pagination-related" href="/posts/c0a33dea/" title="openeluer操作系统概述"><img class="cover" src="/img/102.jpeg" onerror="onerror=null;src='/img/06.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">openeluer操作系统概述</div></div><div class="info-2"><div class="info-item-1">介绍openEuler开源服务器操作系统的背景、特性、发行版、与鲲鹏生态协同及其在安全、性能上的增强</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/f24bb437/" title="Linux操作系统概述"><img class="cover" src="/img/102.jpeg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-23</div><div class="info-item-2">Linux操作系统概述</div></div><div class="info-2"><div class="info-item-1">概述Linux诞生、内核、发行版及开源优势，并给出运维工程师进阶路线、薪资与国产操作系统发展背景。</div></div></div></a><a class="pagination-related" href="/posts/5db79cb3/" title="Linux常用命令1"><img class="cover" src="/img/102.jpeg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-24</div><div class="info-item-2">Linux常用命令1</div></div><div class="info-2"><div class="info-item-1">归纳RPM、YUM包管理及服务启停/自启常用命令，帮助管理员快速完成软件安装、升级、维护与排障。</div></div></div></a><a class="pagination-related" href="/posts/c4becd09/" title="Linux常用命令2"><img class="cover" src="/img/102.jpeg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-25</div><div class="info-item-2">Linux常用命令2</div></div><div class="info-2"><div class="info-item-1">汇总Linux关机和重启命令（logout、reboot、shutdown、halt、passwd、vlock）及其选项，方便日常维护。</div></div></div></a><a class="pagination-related" href="/posts/f632dd30/" title="加密的虚拟机怎么解除加密？"><img class="cover" src="/img/102.jpeg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-16</div><div class="info-item-2">加密的虚拟机怎么解除加密？</div></div><div class="info-2"><div class="info-item-1">图文并茂演示在VMware中通过“编辑设置→访问控制→移除加密”解除虚拟机加密的全过程。</div></div></div></a><a class="pagination-related" href="/posts/c0a33dea/" title="openeluer操作系统概述"><img class="cover" src="/img/102.jpeg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-27</div><div class="info-item-2">openeluer操作系统概述</div></div><div class="info-2"><div class="info-item-1">介绍openEuler开源服务器操作系统的背景、特性、发行版、与鲲鹏生态协同及其在安全、性能上的增强</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/02.jpg" onerror="this.onerror=null;this.src='/img/05.jpg'" alt="avatar"></div><div class="author-info-name">kukual</div><div class="author-info-description">专注于网络安全技术研究 | 渗透测试实战案例 | CTF竞赛解析 | 漏洞复现分析</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" href="https://kukual.github.io/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/kukual" target="_blank" title="Github" rel="external nofollow noopener noreferrer"><i class="fab fa-github" style="color: #8a2be2;"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_74811095" target="_blank" title="CSDN" rel="external nofollow noopener noreferrer"><i class="fa-solid fa-code" style="color: #8a2be2;"></i></a><a class="social-icon" href="https://www.xiaohongshu.com/user/profile/5e8a0aae0000000001002ce4" target="_blank" title="redbook" rel="external nofollow noopener noreferrer"><i class="fa-solid fa-book" style="color: #8a2be2;"></i></a><a class="social-icon" href="https://space.bilibili.com/498478848" target="_blank" title="bilibili" rel="external nofollow noopener noreferrer"><i class="fab fa-bilibili" style="color: #8a2be2;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><style>
+.announcement-card {
+    --main-color: #ff00ff;
+    --secondary-color: #00ffff;
+    --highlight-color: #ff5500;
+    position: relative;
+    overflow: hidden;
+}
+.announcement-content {
+    font-size: 1rem; 
+    line-height: 1.2; 
+    color: #ffffff;
+    position: relative;
+}
+.keyword {
+    color: var(--secondary-color);
+    font-weight: 300;
+    font-size: 1.1rem; 
+}
+.highlight {
+    color: var(--main-color);
+    font-weight: 1000;
+    font-size: 1.2rem; 
+}
+.announcement-content ul {
+    list-style-type: none;
+    margin: 0.8rem 0; 
+    padding-left: 1.5rem;   
+}
+</style>
+<div class="announcement-card">
+    <div class="announcement-content">
+        <p><span class="highlight">欢迎来到「酷库阿洛」网络安全研习录</span>！🎉</p>
+        <p><strong>本平台专注于：</strong></p>
+        <ul>
+            <li><span class="keyword">> 网络安全技术研究</span></li>
+            <li><span class="keyword">> 渗透测试实战案例</span></li>
+            <li><span class="keyword">> CTF竞赛解析</span></li>
+            <li><span class="keyword">> 漏洞复现分析</span></li>
+        </ul>
+        <p>🌟 <strong>加入我们，一起探索网络安全奥秘，提升攻防实战能力，共同守护数字世界的安宁！</strong></p>
+    </div>
+</div>
+</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">Linux常用命令详解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E6%80%A7%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">1 系统安全性命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E6%B3%A8%E5%86%8C"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 注册</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E9%80%80%E5%87%BA%E7%B3%BB%E7%BB%9F"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 退出系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E9%87%8D%E6%96%B0%E5%90%AF%E5%8A%A8%E5%92%8C%E5%85%B3%E9%97%AD%E7%B3%BB%E7%BB%9F"><span class="toc-number">2.3.</span> <span class="toc-text">1.3 重新启动和关闭系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E4%BF%AE%E6%94%B9%E5%8F%A3%E4%BB%A4"><span class="toc-number">2.4.</span> <span class="toc-text">1.4 修改口令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-%E9%94%81%E4%BD%8F%E7%BB%88%E7%AB%AF%E4%BC%9A%E8%AF%9D"><span class="toc-number">2.5.</span> <span class="toc-text">1.5 锁住终端会话</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">2 命令的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-bash%E7%AE%80%E4%BB%8B"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 bash简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 命令的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E9%94%AE%E5%85%A5%E5%91%BD%E4%BB%A4"><span class="toc-number">3.3.</span> <span class="toc-text">2.3  键入命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E4%BF%AE%E6%94%B9%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%BE%93%E5%85%A5%E9%94%99%E8%AF%AF"><span class="toc-number">3.4.</span> <span class="toc-text">2.4  修改命令行输入错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-%E7%89%B9%E6%AE%8A%E6%8E%A7%E5%88%B6%E7%AC%A6"><span class="toc-number">3.5.</span> <span class="toc-text">2.5  特殊控制符</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="toc-number">4.</span> <span class="toc-text">3 文件操作命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5"><span class="toc-number">4.1.</span> <span class="toc-text">3.1  文件系统概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">4.1.1.</span> <span class="toc-text">3.1.1 文件与目录的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2-%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-number">4.1.2.</span> <span class="toc-text">3.1.2 文件结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-3-%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.1.3.</span> <span class="toc-text">3.1.3 文件类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E6%96%87%E4%BB%B6%E6%98%BE%E7%A4%BA%E5%91%BD%E4%BB%A4"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 文件显示命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-cat%E5%91%BD%E4%BB%A4"><span class="toc-number">4.2.1.</span> <span class="toc-text">3.2.1 cat命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-more%E5%91%BD%E4%BB%A4"><span class="toc-number">4.2.2.</span> <span class="toc-text">3.2.2 more命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-3-less%E5%91%BD%E4%BB%A4"><span class="toc-number">4.2.3.</span> <span class="toc-text">3.2.3 less命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-4-head%E5%91%BD%E4%BB%A4"><span class="toc-number">4.2.4.</span> <span class="toc-text">3.2.4 head命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-5-tail%E5%91%BD%E4%BB%A4"><span class="toc-number">4.2.5.</span> <span class="toc-text">3.2.5 tail命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E5%8C%B9%E9%85%8D%E3%80%81%E6%8E%92%E5%BA%8F%E5%91%BD%E4%BB%A4"><span class="toc-number">4.3.</span> <span class="toc-text">3.3 匹配、排序命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E7%9B%AE%E5%BD%95%E5%8F%8A%E5%85%B6%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="toc-number">5.</span> <span class="toc-text">4 目录及其操作命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E6%96%87%E4%BB%B6%E5%8E%8B%E7%BC%A9%E5%91%BD%E4%BB%A4"><span class="toc-number">6.</span> <span class="toc-text">5 文件压缩命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%91%BD%E4%BB%A4"><span class="toc-number">7.</span> <span class="toc-text">6 进程控制命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4"><span class="toc-number">8.</span> <span class="toc-text">7 网络命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4"><span class="toc-number">9.</span> <span class="toc-text">8 其他命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-%E8%81%94%E6%9C%BA%E5%B8%AE%E5%8A%A9%E5%91%BD%E4%BB%A4"><span class="toc-number">10.</span> <span class="toc-text">9 联机帮助命令</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/a817c557/" title="PHP 01"><img src="/img/102.jpeg" onerror="this.onerror=null;this.src='/img/06.jpg'" alt="PHP 01"></a><div class="content"><a class="title" href="/posts/a817c557/" title="PHP 01">PHP 01</a><time datetime="2025-04-27T20:52:00.000Z" title="发表于 2025-04-28 04:52:00">2025-04-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/c0a33dea/" title="openeluer操作系统概述"><img src="/img/102.jpeg" onerror="this.onerror=null;this.src='/img/06.jpg'" alt="openeluer操作系统概述"></a><div class="content"><a class="title" href="/posts/c0a33dea/" title="openeluer操作系统概述">openeluer操作系统概述</a><time datetime="2025-04-26T20:52:00.000Z" title="发表于 2025-04-27 04:52:00">2025-04-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/ff94a54/" title="Linux常用命令详解"><img src="/img/102.jpeg" onerror="this.onerror=null;this.src='/img/06.jpg'" alt="Linux常用命令详解"></a><div class="content"><a class="title" href="/posts/ff94a54/" title="Linux常用命令详解">Linux常用命令详解</a><time datetime="2025-04-25T20:52:00.000Z" title="发表于 2025-04-26 04:52:00">2025-04-26</time></div></div></div></div></div></div></main><footer id="footer" style="background-color: rgba(45, 10, 61, 0.2);"><div id="footer-wrap"><div class="footer_custom_text"><style>
+  .footer {
+    text-align: center;
+    position: relative;
+  }
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .social-links i {
+    color: #8400ff;
+  }
+  .social-link {
+    color: #8a2be2;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: rgba(138, 43, 226, 0.1);
+  }
+  .social-link:hover {
+    color: #892be294;
+    background: #892be294;
+    transform: translateY(-3px) scale(1.2);
+    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+    text-decoration: none !important; 
+  }
+  .footer p {
+    margin: 0.5rem 0;
+    line-height: 1;
+  }
+  .copyright {
+    font-size: 1.1rem; 
+    color: #c08bdf;
+    font-weight: 400;
+  }
+  .tagline {
+    font-size: 0.8rem;
+    color: #8a2be2;
+    font-style: italic;
+    font-weight: 500;
+  }
+  .visitor-count {
+    font-size: 0.75rem;
+    color: rgba(219, 142, 255, 0.658);
+    font-weight: 300;
+  }
+  #visitorCount {
+    font-weight: bold;
+  }
+</style>
+<div class="footer">
+  <div class="social-links">
+    <a href="https://github.com/kukual" class="social-link" target="_blank" rel="external nofollow noopener noreferrer" aria-label="GitHub" title="GitHub">
+      <i class="fab fa-github"></i>
+    </a>
+    <a href="https://blog.csdn.net/weixin_74811095" class="social-link" target="_blank" rel="external nofollow noopener noreferrer" aria-label="CSDN" title="CSDN">
+      <i class="fas fa-code"></i>
+    </a>
+    <a href="https://www.xiaohongshu.com/user/profile/5e8a0aae0000000001002ce4" class="social-link" target="_blank" rel="external nofollow noopener noreferrer" aria-label="小红书" title="小红书">
+      <i class="fas fa-book"></i>
+    </a>
+    <a href="https://space.bilibili.com/498478848" class="social-link" target="_blank" rel="external nofollow noopener noreferrer" aria-label="bilibili" title="bilibili">
+      <i class="fab fa-bilibili"></i>
+    </a>
+  </div>
+  <p class="copyright">© 2025 kukualのblog - 所有权利保留</p>
+  <p class="tagline">> Stay curious, stay hacking, stay anime! <</p>
+  <p class="visitor-count">访问量: <span id="visitorCount">1024</span> | 你是第 <span id="dailyVisitor">1</span> 位今日访客</p>
+</div>
+<script>
+  // 确保DOM加载完成后执行
+  document.addEventListener('DOMContentLoaded', function() {
+    // 模拟访问量增长
+    function updateVisitorCount() {
+      const countElement = document.getElementById('visitorCount');
+      let count = parseInt(countElement.textContent) || 1024;
+      // 从localStorage获取或初始化计数
+      const storedCount = localStorage.getItem('totalVisitors');
+      if (storedCount) {
+        count = parseInt(storedCount);
+        countElement.textContent = count;
+      }
+      // 每日访客计数
+      const today = new Date().toDateString();
+      const dailyData = JSON.parse(localStorage.getItem('dailyVisitors') || '{"date":"", "count":0}');
+      if (dailyData.date !== today) {
+        dailyData.date = today;
+        dailyData.count = 0;
+      }
+      dailyData.count += 1;
+      document.getElementById('dailyVisitor').textContent = dailyData.count;
+      localStorage.setItem('dailyVisitors', JSON.stringify(dailyData));
+      // 每30秒随机增加访问量
+      setInterval(() => {
+        count += Math.floor(Math.random() * 3);
+        countElement.textContent = count;
+        localStorage.setItem('totalVisitors', count.toString());
+      }, 30000);
+    }
+    updateVisitorCount();
+    // 添加点击动画效果
+    const socialLinks = document.querySelectorAll('.social-link');
+    socialLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        this.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 300);
+      });
+    });
+  });
+</script>
+</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script defer src="/js/cursor.js"></script><script defer src="/js/sakura.js"></script><script src="/live2d-widget/autoload.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="输入关键词…" type="text"></div></div><hr><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_categories_card_injector_config(){
+    // 检查容器是否存在
+    var parent_div_git = document.getElementById('recent-posts');
+    // 如果容器不存在，则动态创建
+    if (!parent_div_git) {
+      console.warn('butterfly_categories_card: 挂载容器不存在，正在动态创建...');
+      // 创建新容器（默认插入到页面主体顶部）
+      parent_div_git = document.createElement('div');
+      parent_div_git.id = 'recent-posts'; // 赋予配置的ID
+      document.querySelector('#page').prepend(parent_div_git); // 插入到 #content-inner 内
+    }
+    var item_html = '<style>li.categoryBar-list-item{width:32.3%;}.categoryBar-list{max-height: 950px;overflow:auto;}.categoryBar-list::-webkit-scrollbar{width:0!important}@media screen and (max-width: 650px){.categoryBar-list{max-height: 800px;}}</style><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"><div id="categoryBar"><ul class="categoryBar-list"><li class="categoryBar-list-item" style="background:url(/img/11.png);"> <a class="categoryBar-list-link" href="/categories/笔记杂记/">笔记杂记</a><span class="categoryBar-list-count">16</span><span class="categoryBar-list-descr">1</span></li><li class="categoryBar-list-item" style="background:url(/img/12.png);"> <a class="categoryBar-list-link" href="/categories/博客搭建/">博客搭建</a><span class="categoryBar-list-count">16</span><span class="categoryBar-list-descr">2</span></li></ul></div></div>';
+    console.log('已挂载 butterfly_categories_card');
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+  }
+  // 路径匹配逻辑（使用 startsWith）
+  if (location.pathname.startsWith('/categories/') || '/categories/' === 'all') {
+    butterfly_categories_card_injector_config();
+  }
+  </script><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/8ac25d20/" alt=""><img width="48" height="48" src="/img/106.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-31</span><a class="blog-slider__title" href="posts/8ac25d20/" alt="">butterfly主题魔改01：准备工作及魔改流程目录</a><div class="blog-slider__text">作为魔改系列的开篇，指导用户完成Butterfly主题的基础配置：包括主题安装、配置文件迁移（_config.butterfly.yml）、图片目录创建。同时列出后续12篇教程的目录，涵盖颜色、导航栏、动态背景、页面美化等主题，形成完整的定制路线图。强调通过分离配置文件避免版本冲突，为后续高阶修改奠定基础。</div><a class="blog-slider__button" href="posts/8ac25d20/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/8ac25d19/" alt=""><img width="48" height="48" src="/img/106.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-30</span><a class="blog-slider__title" href="posts/8ac25d19/" alt="">hexo butterfly主题整体结构解析</a><div class="blog-slider__text">全面解析Butterfly主题的模块化目录结构，从根目录的配置文件（_config.yml、plugins.yml）到核心功能模块（布局文件、样式脚本、静态资源）逐一说明。重点标注了layout/下的Pug模板组件（如头部、侧边栏、评论系统）、source/中的CSS/JS定制入口，以及scripts/的事件处理逻辑。适合开发者深度定制主题时快速定位文件，理解各模块的依赖关系与修改影响。</div><a class="blog-slider__button" href="posts/8ac25d19/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/77f87ebd/" alt=""><img width="48" height="48" src="/img/104.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-29</span><a class="blog-slider__title" href="posts/77f87ebd/" alt="">腾讯云COS+Obsidian实现图片自动上传到图床</a><div class="blog-slider__text">文章介绍如何通过腾讯云COS和PicList工具实现Obsidian笔记的图片自动上传。步骤包括：腾讯云COS存储桶创建、API密钥获取、PicList安装与配置（含时间戳重命名防冲突），以及Obsidian插件Image Auto Upload的安装与设置。详细说明了手动/自动上传图片的操作方法，并配有多张界面截图，帮助用户无缝衔接本地写作与云端图床管理，提升Markdown文档的图片管理效率。</div><a class="blog-slider__button" href="posts/77f87ebd/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/a817c557/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-28</span><a class="blog-slider__title" href="posts/a817c557/" alt="">PHP 01</a><div class="blog-slider__text">从环境搭建到语法、函数、数组、面向对象、字符串处理及Web交互，快速入门PHP后端开发。</div><a class="blog-slider__button" href="posts/a817c557/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/53689933/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-20</span><a class="blog-slider__title" href="posts/53689933/" alt="">Java程序设计基础</a><div class="blog-slider__text">从Java环境安装到语法、面向对象、集合、多线程、GUI、I/O、网络编程，系统呈现Java学习的完整路线。</div><a class="blog-slider__button" href="posts/53689933/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/ec335aec/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-03-28</span><a class="blog-slider__title" href="posts/ec335aec/" alt="">利用Github和hexo搭建自己的个人博客</a><div class="blog-slider__text">该教程详细指导用户从零开始搭建Hexo博客并部署到GitHub。内容涵盖Git、Node.js环境安装，Hexo框架初始化，主题安装（以Amazing主题为例），以及GitHub仓库创建与SSH密钥配置。通过图文并茂的步骤演示了本地测试、主题配置、依赖安装和最终部署流程。重点解决了国内用户使用npm速度慢的问题（推荐cnpm），并提供了常见问题的解决方案，如环境变量配置和SSH认证测试，适合新手快速搭建个人技术博客。</div><a class="blog-slider__button" href="posts/ec335aec/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/ff94a54/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-26</span><a class="blog-slider__title" href="posts/ff94a54/" alt="">Linux常用命令详解</a><div class="blog-slider__text">详解Linux系统登录、关机、密码、锁屏、命令行编辑与文件查看（cat/more/less/head/tail）等日常操作。</div><a class="blog-slider__button" href="posts/ff94a54/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/c0a33dea/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-27</span><a class="blog-slider__title" href="posts/c0a33dea/" alt="">openeluer操作系统概述</a><div class="blog-slider__text">介绍openEuler开源服务器操作系统的背景、特性、发行版、与鲲鹏生态协同及其在安全、性能上的增强</div><a class="blog-slider__button" href="posts/c0a33dea/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/c4becd09/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-25</span><a class="blog-slider__title" href="posts/c4becd09/" alt="">Linux常用命令2</a><div class="blog-slider__text">汇总Linux关机和重启命令（logout、reboot、shutdown、halt、passwd、vlock）及其选项，方便日常维护。</div><a class="blog-slider__button" href="posts/c4becd09/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/5db79cb3/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-24</span><a class="blog-slider__title" href="posts/5db79cb3/" alt="">Linux常用命令1</a><div class="blog-slider__text">归纳RPM、YUM包管理及服务启停/自启常用命令，帮助管理员快速完成软件安装、升级、维护与排障。</div><a class="blog-slider__button" href="posts/5db79cb3/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/f24bb437/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-23</span><a class="blog-slider__title" href="posts/f24bb437/" alt="">Linux操作系统概述</a><div class="blog-slider__text">概述Linux诞生、内核、发行版及开源优势，并给出运维工程师进阶路线、薪资与国产操作系统发展背景。</div><a class="blog-slider__button" href="posts/f24bb437/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/a4b345c0/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-15</span><a class="blog-slider__title" href="posts/a4b345c0/" alt="">安全见闻</a><div class="blog-slider__text">以费曼学习法切入，梳理渗透测试流程、语言选择、软件/网络/硬件/AI安全全景，并分享学习心得。</div><a class="blog-slider__button" href="posts/a4b345c0/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/a5ecaa69/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-22</span><a class="blog-slider__title" href="posts/a5ecaa69/" alt="">XSS跨站脚本攻击</a><div class="blog-slider__text">聚焦XSS跨站脚本攻击，解析cookie机制与反射型、存储型、DOM型XSS原理、利用思路及防御要点。</div><a class="blog-slider__button" href="posts/a5ecaa69/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/22f97770/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-19</span><a class="blog-slider__title" href="posts/22f97770/" alt="">HTTP基础</a><div class="blog-slider__text">用图解方式讲解TCP/IP、IP/端口、HTTP请求与响应，帮助零基础读者理解网站访问背后的网络与协议原理。</div><a class="blog-slider__button" href="posts/22f97770/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/e73517db/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-17</span><a class="blog-slider__title" href="posts/e73517db/" alt="">SQL注入</a><div class="blog-slider__text">结合示例图解释SQL注入原理：利用输入拼接、报错、注释、UNION、布尔/延时盲注及IDOR越权漏洞。</div><a class="blog-slider__button" href="posts/e73517db/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/65503319/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-21</span><a class="blog-slider__title" href="posts/65503319/" alt="">Kali安装配置docker</a><div class="blog-slider__text">手把手在Kali Linux上完成Docker的安装、启动、开机自启与验证，附截图与命令，适合初学者快速部署。</div><a class="blog-slider__button" href="posts/65503319/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/3bb43d1e/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-18</span><a class="blog-slider__title" href="posts/3bb43d1e/" alt="">Apache Tomcat 文件读取/文件包含(CVE-2020-1938)漏洞复现</a><div class="blog-slider__text">详细记录CVE-2020-1938（Tomcat AJP文件包含/读取）漏洞的环境搭建、检测、利用及GetShell全过程，含图文。</div><a class="blog-slider__button" href="posts/3bb43d1e/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/a5ecaa69/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-13</span><a class="blog-slider__title" href="posts/a5ecaa69/" alt="">网络安全术语</a><div class="blog-slider__text">系统梳理网络安全攻击、防守、技术、工具及攻防演练所需的中英文术语，方便快速查阅与对照。</div><a class="blog-slider__button" href="posts/a5ecaa69/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/f632dd30/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-16</span><a class="blog-slider__title" href="posts/f632dd30/" alt="">加密的虚拟机怎么解除加密？</a><div class="blog-slider__text">图文并茂演示在VMware中通过“编辑设置→访问控制→移除加密”解除虚拟机加密的全过程。</div><a class="blog-slider__button" href="posts/f632dd30/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="posts/83e403fa/" alt=""><img width="48" height="48" src="/img/102.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-14</span><a class="blog-slider__title" href="posts/83e403fa/" alt="">网络安全术语中英文表</a><div class="blog-slider__text">按A-Z顺序给出网络安全核心概念的中英文对照，适合快速检索、统一用语并辅助学习或报告撰写。</div><a class="blog-slider__button" href="posts/83e403fa/" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>
